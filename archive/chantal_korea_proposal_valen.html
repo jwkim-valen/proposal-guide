@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHANTAL 한국 시장 진입 제안 — VALEN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F8F8F8;--black:#000000;--navy:#0C144D;
+  --blue-strong:#1842C1;--blue-bright:#3063E2;--blue-mid:#6D92E7;
+  --blue-soft:#86A6EE;--blue-light:#C1D7F9;--white:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR','Noto Sans CJK KR',sans-serif;
+  background:var(--bg);color:var(--navy);line-height:1.7;font-weight:400;
+  -webkit-font-smoothing:antialiased;letter-spacing:-0.01em}
+.wrap{max-width:980px;margin:0 auto;padding:0 28px}
+
+/* COVER */
+.cover{background:linear-gradient(135deg,var(--navy) 0%,var(--blue-strong) 60%,var(--blue-bright) 100%);
+  color:var(--white);padding:74px 0 64px;position:relative;overflow:hidden}
+.cover::after{content:"";position:absolute;right:-120px;top:-120px;width:440px;height:440px;
+  background:radial-gradient(circle,rgba(193,215,249,.28),transparent 70%);border-radius:50%}
+.coverhead{display:flex;align-items:center;gap:18px;margin-bottom:34px;flex-wrap:wrap}
+.brand{display:inline-block;background:var(--black);color:var(--white);font-weight:900;
+  font-size:15px;letter-spacing:1px;padding:8px 16px;border-radius:7px}
+.chantal-mark{display:inline-flex;align-items:center;height:40px;padding-left:18px;border-left:1px solid rgba(255,255,255,.28)}
+.chantal-svg{width:182px;height:auto}
+.chantal-svg path{fill:#ffffff !important}
+.cover .tag{font-size:13px;font-weight:500;letter-spacing:2px;color:var(--blue-light);text-transform:uppercase;margin-bottom:14px}
+.cover h1{font-size:40px;font-weight:900;line-height:1.22;letter-spacing:-0.02em;margin-bottom:18px}
+.cover h1 em{font-style:normal;color:var(--blue-light)}
+.cover .sub{font-size:16px;font-weight:300;color:#dbe5fb;max-width:680px}
+.cover .meta{margin-top:36px;font-size:13px;color:var(--blue-light);display:flex;gap:26px;flex-wrap:wrap}
+.cover .meta b{color:var(--white);font-weight:700}
+
+/* SECTION */
+section{padding:50px 0;border-bottom:1px solid #e6e9f2}
+.sec-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
+  border-radius:9px;background:var(--blue-strong);color:#fff;font-weight:900;font-size:15px;margin-right:12px;vertical-align:middle}
+.sec-num.key{background:var(--black)}
+h2{font-size:26px;font-weight:900;color:var(--navy);letter-spacing:-0.02em;margin-bottom:8px;display:flex;align-items:center}
+.lead{font-size:15px;color:#3a4365;font-weight:400;margin:14px 0 24px;max-width:820px}
+h3{font-size:16px;font-weight:700;color:var(--blue-strong);margin:24px 0 6px}
+h4{font-size:14px;font-weight:700;color:var(--navy);margin:16px 0 4px}
+p{font-size:14.5px;color:#2c3354;margin-bottom:10px}
+strong{font-weight:700;color:var(--navy)}
+.hl{background:linear-gradient(transparent 60%,var(--blue-light) 60%);font-weight:700;color:var(--navy)}
+
+/* CALLOUT */
+.callout{background:#fff;border:1px solid #e2e7f5;border-left:5px solid var(--blue-bright);
+  border-radius:10px;padding:18px 22px;margin:16px 0;box-shadow:0 1px 3px rgba(12,20,77,.04)}
+.callout.dark{background:var(--navy);border-left-color:var(--blue-soft);color:#e8eefc}
+.callout.dark p,.callout.dark strong,.callout.dark li{color:#eef2fd}
+.callout.check{border-left-style:dashed;border-left-color:var(--navy)}
+.callout.decide{border-left-color:var(--blue-strong);background:#f4f7ff}
+.callout .ico{font-size:12px;font-weight:900;letter-spacing:.5px;color:var(--blue-strong);margin-bottom:6px;text-transform:uppercase}
+.callout.dark .ico{color:var(--blue-soft)}
+.callout.check .ico{color:var(--navy)}
+.callout p:last-child{margin-bottom:0}
+.bigmsg{font-size:21px;font-weight:900;line-height:1.4;margin:2px 0}
+
+/* BADGES */
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin-right:6px;letter-spacing:.3px}
+.badge.decide{background:var(--blue-strong);color:#fff}
+.badge.check{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+.badge.dep{background:var(--black);color:#fff}
+.badge.l1{background:var(--blue-bright);color:#fff}
+.badge.l2{background:var(--navy);color:#fff}
+
+/* AGENDA CARD */
+.agenda{background:#fff;border:1px solid #e2e7f5;border-radius:14px;padding:26px 28px;margin:18px 0;
+  box-shadow:0 2px 10px rgba(12,20,77,.05);position:relative;overflow:hidden}
+.agenda::before{content:"";position:absolute;left:0;top:0;width:6px;height:100%;background:var(--blue-strong)}
+.agenda.a2::before{background:var(--blue-bright)}
+.agenda.a3::before{background:var(--blue-mid)}
+.agenda .ah{display:flex;align-items:baseline;gap:12px;margin-bottom:4px}
+.agenda .anum{font-size:13px;font-weight:900;color:#fff;background:var(--blue-strong);width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.agenda.a2 .anum{background:var(--blue-bright)}
+.agenda.a3 .anum{background:var(--blue-mid)}
+.agenda h3{margin:0;font-size:18px;color:var(--navy)}
+
+/* lists */
+ul.clean{list-style:none;margin:6px 0 12px}
+ul.clean li{font-size:14px;color:#2c3354;padding:6px 0 6px 22px;position:relative}
+ul.clean li::before{content:"";position:absolute;left:2px;top:13px;width:7px;height:7px;border-radius:2px;background:var(--blue-bright)}
+ul.clean li b{color:var(--navy)}
+ul.deci{list-style:none;margin:6px 0}
+ul.deci li{font-size:13.5px;color:#1c2547;padding:7px 0 7px 26px;position:relative;font-weight:500}
+ul.deci li::before{content:"›";position:absolute;left:6px;top:6px;color:var(--blue-strong);font-weight:900;font-size:16px}
+
+/* COMPARE 2-col */
+.compare{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;margin:18px 0}
+.cbox{background:#fff;border:1px solid #e2e7f5;border-radius:12px;padding:20px 22px}
+.cbox.old{background:#fafbff}
+.cbox.new{background:var(--navy);border-color:var(--navy)}
+.cbox .ct{font-size:12px;font-weight:900;letter-spacing:.4px;text-transform:uppercase;margin-bottom:10px}
+.cbox.old .ct{color:#8089a6}
+.cbox.new .ct{color:var(--blue-soft)}
+.cbox ul{list-style:none}
+.cbox li{font-size:15px;padding:6px 0;font-weight:500}
+.cbox.old li{color:#737c9b}
+.cbox.new li{color:#fff}
+.cbox.new li b{color:var(--blue-light)}
+.carrow{font-size:26px;font-weight:900;color:var(--blue-soft)}
+
+/* THROUGHLINE FLOW */
+.flow{display:flex;align-items:stretch;gap:0;margin:18px 0;flex-wrap:wrap}
+.fstep{flex:1;min-width:180px;background:#fff;border:1px solid #e2e7f5;border-radius:12px;padding:18px;position:relative;margin:6px}
+.fstep .fn{font-size:11px;font-weight:900;color:#fff;background:var(--blue-strong);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.fstep.s2 .fn{background:var(--blue-bright)}
+.fstep.s3 .fn{background:var(--blue-mid)}
+.fstep.s4 .fn{background:var(--blue-soft)}
+.fstep b{font-size:14px;color:var(--navy);display:block;margin-bottom:4px}
+.fstep p{font-size:12.5px;color:#5b637f;margin:0}
+
+/* DECISION/PORTFOLIO FRAME */
+.dframe{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.dframe.two{grid-template-columns:repeat(2,1fr)}
+.dcol{background:#fff;border:1px solid #e2e7f5;border-radius:12px;padding:20px;border-top:5px solid var(--blue-strong)}
+.dcol.l1{border-top-color:var(--blue-bright)}
+.dcol.l2{border-top-color:var(--navy)}
+.dcol.joint{border-top-color:var(--black)}
+.dcol .dt{font-size:13px;font-weight:900;color:var(--navy);margin-bottom:10px;letter-spacing:.3px}
+.dcol .dt span{display:block;font-size:11px;font-weight:700;color:var(--blue-strong);margin-top:2px}
+.dcol ul{list-style:none;margin:0}
+.dcol li{font-size:13px;color:#2c3354;padding:7px 0 7px 18px;position:relative;border-top:1px solid #f0f2fa}
+.dcol li:first-child{border-top:none}
+.dcol li::before{content:"·";position:absolute;left:4px;color:var(--blue-strong);font-weight:900;font-size:18px;top:3px}
+
+/* POSITIONING MAP */
+.pmap{position:relative;height:380px;background:#fff;border:1px solid #e2e7f5;border-radius:12px;margin:18px 0 6px;padding:24px 30px 34px 70px}
+.pmap .axis-x{position:absolute;left:70px;right:30px;bottom:34px;height:1px;background:#d7ddee}
+.pmap .axis-y{position:absolute;left:70px;top:24px;bottom:34px;width:1px;background:#d7ddee}
+.pmap .zone{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(48,99,226,.13),transparent 72%)}
+.pmap .lbl{position:absolute;font-size:11px;color:#8089a6;font-weight:600}
+.dot{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:7px;font-size:12px;color:#5b637f;white-space:nowrap}
+.dot::before{content:"";width:11px;height:11px;border-radius:50%;background:#c2c7d8;flex-shrink:0}
+.dot.hero{font-size:14px;font-weight:900;color:var(--navy)}
+.dot.hero::before{width:18px;height:18px;background:var(--blue-strong);box-shadow:0 0 0 5px rgba(24,66,193,.14)}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;background:#fff;border:1px solid #e2e7f5;border-radius:10px;overflow:hidden}
+.tbl th{background:var(--navy);color:#fff;font-weight:700;padding:12px 14px;text-align:left;font-size:13px}
+.tbl td{padding:11px 14px;border-top:1px solid #eef1f8;color:#2c3354;vertical-align:middle}
+.tbl tr:nth-child(even) td{background:#fafbff}
+.tbl td.num{font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.tbl td.hi{color:var(--blue-strong);font-weight:900}
+
+/* BAR CHART */
+.chartcard{background:#fff;border:1px solid #e2e7f5;border-radius:12px;padding:24px 26px 16px;margin:16px 0}
+.legend{display:flex;gap:18px;margin-bottom:10px;font-size:12.5px;font-weight:600;color:#5b637f}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.legend i.sales{background:var(--blue-strong)}
+.legend i.ad{background:var(--blue-light)}
+.barchart{display:flex;align-items:flex-end;justify-content:space-around;height:270px;border-bottom:1px solid #e6e9f2;padding-bottom:0}
+.bargroup{display:flex;flex-direction:column;align-items:center;flex:1}
+.bset{display:flex;align-items:flex-end;gap:12px;height:260px}
+.bar{width:54px;border-radius:6px 6px 0 0;position:relative;display:flex;justify-content:center}
+.bar.sales{background:linear-gradient(180deg,var(--blue-bright),var(--blue-strong))}
+.bar.ad{background:var(--blue-light)}
+.bar .bv{position:absolute;top:-22px;font-size:13px;font-weight:900;color:var(--navy)}
+.bar .bv.ad{color:#5b76b0}
+.byear{margin-top:10px;font-size:13px;font-weight:700;color:var(--navy)}
+
+/* METRICS */
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+.metric{background:#fff;border:1px solid #e2e7f5;border-radius:12px;padding:18px 20px;border-top:4px solid var(--blue-strong)}
+.metric .mv{font-size:26px;font-weight:900;color:var(--navy);letter-spacing:-0.02em}
+.metric .ml{font-size:12px;color:#6b7392;font-weight:600;margin-top:2px}
+
+/* CARD GRID (team/scope) */
+.cardgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}
+.ucard{background:#fff;border:1px solid #e2e7f5;border-radius:11px;padding:16px 16px 18px}
+.ucard .uh{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.ucard .un{width:28px;height:28px;border-radius:8px;background:var(--blue-strong);color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center}
+.ucard .ut{font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;padding:2px 8px;border-radius:20px;background:#eef2fd;color:var(--blue-strong)}
+.ucard .ut.ext{background:#fff;color:#6b7392;border:1px solid #d7ddee}
+.ucard b{font-size:14px;color:var(--navy);display:block;margin-bottom:3px}
+.ucard p{font-size:11.5px;color:#5b637f;margin:0;line-height:1.5}
+
+.note{font-size:12px;color:#78809c;margin-top:8px}
+.note.big{font-size:13px;color:#3a4365;line-height:1.7}
+footer{padding:42px 0;text-align:center;color:#9aa1b8;font-size:12px}
+footer b{color:var(--blue-strong)}
+
+.reveal{opacity:0;transform:translateY(16px);animation:rise .7s ease forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+@media(max-width:780px){
+  .cover h1{font-size:27px}
+  .dframe,.dframe.two,.metrics{grid-template-columns:1fr}
+  .cardgrid{grid-template-columns:1fr 1fr}
+  .compare{grid-template-columns:1fr}
+  .carrow{transform:rotate(90deg);justify-self:center}
+  h2{font-size:21px}
+  .bar{width:40px}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="wrap reveal">
+    <div class="coverhead">
+      <span class="brand">valen</span>
+      <span class="chantal-mark"><svg class="chantal-svg" width="100%" height="100%" viewBox="0 0 3544 867" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-5,-5)">
+        <g transform="matrix(4.166667,0,0,4.166667,-436.900417,-286.279167)">
+            <g transform="matrix(1,0,0,1,356.5001,206.0862)">
+                <path d="M0,-57.911C8.038,-57.911 15.905,-54.434 20.451,-49.191L22.19,-49.191C23.23,-52.542 23.912,-55.925 25.029,-59.308C17.876,-62.349 8.038,-64.055 -0.124,-64.055C-12.429,-64.055 -25.541,-61.558 -34.99,-54.932C-45.712,-47.329 -49.173,-38.079 -49.173,-26.815C-49.173,-19.49 -46.829,-13.066 -41.398,-7.232C-39.056,-4.78 -35.781,-1.956 -32.538,-0.172C-29.481,1.364 -22.437,4.048 -18.977,4.654C-12.94,5.678 -9.014,6.144 -2.824,6.144C5.431,6.144 14.167,4.963 21.584,1.892L24.285,-6.518L22.701,-7.016C17.132,-2.872 8.224,0.309 0.637,0.309C-7.883,0.309 -16.385,-2.67 -21.584,-8.101C-26.983,-13.843 -28.814,-21.167 -28.814,-28.212C-28.814,-42.565 -20.419,-57.911 0,-57.911" style="fill:rgb(35,31,32);fill-rule:nonzero;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,432.6581,142.5585)">
+                <path d="M0,62.021C-0.108,64.147 -0.358,66.303 -0.605,68.367C2.39,68.275 5.447,67.871 8.394,67.871C11.483,67.871 14.571,68.181 17.658,68.367C17.658,66.599 17.518,64.892 17.518,63.154L17.518,37.116C17.518,32.274 17.053,28.086 12.461,24.517C8.394,21.35 3.724,19.877 -1.954,19.877C-8.596,19.877 -15.858,23.834 -20.219,27.713L-19.956,17.006L-18.823,-6.346C-21.91,-5.881 -25.121,-5.881 -28.178,-5.881C-31.281,-5.881 -34.355,-5.959 -37.318,-6.346C-36.698,4.406 -36.372,15.222 -36.372,25.912C-36.372,29.761 -36.465,33.641 -36.465,37.349L-36.992,62.021C-36.992,64.147 -37.194,66.195 -37.318,68.367C-34.355,68.275 -31.407,67.871 -28.458,67.871C-25.463,67.871 -22.515,68.275 -19.582,68.367C-19.706,60.934 -20.219,53.533 -20.219,46.085C-20.219,39.754 -20.839,28.302 -9.465,28.302C-5.151,28.302 -1.335,30.941 -0.232,34.246C0.419,36.526 0.605,41.74 0.605,44.223C0.605,47.109 0.605,50.058 0.419,52.913L0,62.021Z" style="fill:rgb(35,31,32);fill-rule:nonzero;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,496.0919,189.265)">
+                <path d="M0,-3.756C-0.234,-0.621 -0.234,2.56 -0.234,5.741C-0.234,10.691 -1.831,16.138 -9.357,16.138C-14.649,16.138 -16.153,12.257 -16.153,8.596C-16.153,5.461 -15.394,2.56 -12.197,0.496C-10.071,-0.807 -7.355,-1.272 -4.919,-2.111C-3.289,-2.577 -1.583,-3.182 0,-3.756M-10.8,-5.153C-16.231,-4.05 -20.917,-3.398 -25.976,-0.994C-30.678,1.179 -33.393,5.555 -33.393,9.899C-33.393,18.402 -25.852,22.871 -15.75,22.871C-9.357,22.871 -3.181,20.202 0,15.734C2.016,19.97 6.424,22.763 12.227,22.763C13.965,22.763 15.703,22.5 17.41,22.158C19.38,21.569 21.428,21.087 23.307,20.202L23.307,19.209C23.307,16.617 23.183,18.496 19.132,17.502C17.504,16.913 16.309,14.741 16.153,13.344C16.059,11.482 16.059,9.62 16.059,7.696C16.059,2.854 16.417,-1.894 16.417,-6.735C16.417,-8.907 16.309,-11.173 16.309,-13.345C16.059,-23.152 3.972,-26.627 -6.378,-26.627C-14.151,-26.627 -23.369,-24.253 -29.187,-20.017L-27.605,-14.059L-26.736,-14.059C-26.348,-14.432 -25.758,-14.85 -25.371,-15.254C-21.554,-17.923 -16.759,-19.707 -11.669,-19.707C-6.005,-19.707 -0.234,-16.231 -0.234,-11.515C-0.234,-9.994 -0.342,-8.721 -1.831,-7.728C-4.5,-6.348 -7.743,-5.772 -10.8,-5.153" style="fill:rgb(35,31,32);fill-rule:nonzero;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,581.2797,205.3871)">
+                <path d="M0,-37.412C-4.328,-41.167 -9.016,-42.951 -15.392,-42.951C-23.073,-42.951 -29.435,-39.304 -34.121,-34.65L-33.781,-41.866C-36.449,-41.664 -39.072,-41.446 -41.788,-41.446C-44.875,-41.446 -47.808,-41.664 -50.911,-41.866L-50.787,-39.88C-50.678,-35.644 -50.15,-31.485 -50.15,-27.201L-50.15,-23.229C-50.15,-19.505 -50.306,-15.75 -50.306,-11.963C-50.306,-7.805 -50.538,-3.771 -50.538,0.419C-50.538,2.064 -50.911,3.848 -50.911,5.539C-47.932,5.447 -44.983,5.043 -42.051,5.043C-39.072,5.043 -36.123,5.447 -33.144,5.539C-33.253,-1.894 -33.781,-9.296 -33.781,-16.743C-33.781,-22.949 -34.401,-34.526 -23.073,-34.526C-12.413,-34.526 -12.972,-24.456 -12.972,-18.481C-12.972,-16.014 -13.05,-13.562 -13.05,-11.08C-13.174,-7.216 -13.282,-3.461 -13.655,0.419C-13.794,2.064 -14.043,3.848 -14.167,5.539C-11.342,5.447 -8.626,5.043 -5.835,5.043C-2.452,5.043 0.729,5.353 4.05,5.539C4.05,0.108 3.956,-5.431 3.956,-10.878C3.956,-14.943 4.05,-18.885 4.05,-22.949C4.05,-28.04 4.47,-33.44 0,-37.412" style="fill:rgb(35,31,32);fill-rule:nonzero;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,604.5562,161.7853)">
+                <path d="M0,34.492C0,43.709 3.459,50.056 16.261,50.056C20.078,50.056 24.516,49.14 28.224,48.147C28.458,47.946 28.83,47.946 29.078,47.776L29.078,43.927C28.598,44.129 28.1,44.285 27.589,44.501C18.123,46.193 17.13,42.5 16.743,36.2C16.619,33.81 16.463,31.451 16.463,29.063C16.463,21.815 16.897,14.6 17.208,7.369L28.1,7.369L28.1,2.341L17.208,2.341C17.208,-3.399 17.844,-9.266 18.495,-15.099L17.208,-15.564C11.683,-13.408 6.113,-11.328 0.356,-9.544C0.48,-5.587 0.853,-1.523 0.853,2.341L-7.775,2.341L-7.775,3.334C-7.651,4.699 -7.651,6.004 -7.775,7.369L0.853,7.369C0.931,11.249 0.729,15.02 0.62,18.866C0.356,24.081 0,29.341 0,34.492" style="fill:rgb(35,31,32);fill-rule:nonzero;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,667.85,189.265)">
+                <path d="M0,-3.756C-0.249,-0.621 -0.249,2.56 -0.249,5.741C-0.249,10.691 -1.846,16.138 -9.357,16.138C-14.648,16.138 -16.153,12.257 -16.153,8.596C-16.153,5.461 -15.378,2.56 -12.181,0.496C-10.087,-0.807 -7.403,-1.272 -4.935,-2.111C-3.353,-2.577 -1.598,-3.182 0,-3.756M-10.848,-5.153C-16.279,-4.05 -20.949,-3.398 -26.022,-0.994C-30.694,1.179 -33.409,5.555 -33.409,9.899C-33.409,18.402 -25.898,22.871 -15.781,22.871C-9.357,22.871 -3.243,20.202 0,15.734C1.986,19.97 6.424,22.763 12.195,22.763C13.933,22.763 15.656,22.5 17.41,22.158C19.38,21.569 21.428,21.087 23.291,20.202L23.291,19.209C23.291,16.617 23.151,18.496 19.085,17.502C17.502,16.913 16.277,14.741 16.137,13.344C15.997,11.482 15.997,9.62 15.997,7.696C15.997,2.854 16.385,-1.894 16.385,-6.735C16.385,-8.907 16.277,-11.173 16.277,-13.345C15.997,-23.152 3.972,-26.627 -6.394,-26.627C-14.167,-26.627 -23.43,-24.253 -29.251,-20.017L-27.636,-14.059L-26.751,-14.059C-26.364,-14.432 -25.744,-14.85 -25.387,-15.254C-21.57,-17.923 -16.774,-19.707 -11.701,-19.707C-6.006,-19.707 -0.249,-16.231 -0.249,-11.515C-0.249,-9.994 -0.373,-8.721 -1.846,-7.728C-4.562,-6.348 -7.775,-5.772 -10.848,-5.153" style="fill:rgb(35,31,32);fill-rule:nonzero;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,703.9413,159.3168)">
+                <path d="M0,28.52C-0.108,36.279 -0.108,43.99 -0.853,51.609C2.22,51.423 5.479,51.113 8.55,51.113C11.607,51.113 14.788,51.423 17.891,51.609C17.022,37.054 16.806,22.546 16.806,7.975C16.806,2.622 17.022,-2.825 17.022,-8.162C17.022,-11.763 17.272,-15.394 17.272,-18.962C17.272,-20.343 17.643,-21.724 17.643,-23.089C14.571,-22.717 11.359,-22.639 8.146,-22.639C5.059,-22.639 1.986,-22.717 -1.085,-23.089C-0.961,-21.414 -0.604,-19.738 -0.604,-18.047C-0.464,-14.229 -0.232,-10.458 -0.232,-6.596C-0.232,-1.241 0,4.204 0,9.62L0,28.52Z" style="fill:rgb(35,31,32);fill-rule:nonzero;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,850.9661,152.751)">
+                <path d="M0,-21.954C-71.55,-58.544 -197.641,-82.844 -341.235,-82.844C-564.184,-82.844 -744.91,-24.298 -744.91,47.98C-744.91,52.34 -744.259,56.686 -742.97,60.89C-711.363,-3.055 -549.396,-57.395 -349.102,-66.395C-206.64,-72.789 -78.438,-54.696 0,-21.954" style="fill:rgb(35,31,32);fill-rule:nonzero;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,954.4951,277.7883)">
+                <path d="M0,-143.78C-31.593,-79.803 -193.558,-25.417 -393.868,-16.431C-536.314,-10.039 -664.532,-28.1 -742.97,-60.904C-671.39,-24.314 -545.314,0 -401.704,0C-178.772,0 1.954,-58.576 1.954,-130.824C1.954,-135.152 1.303,-139.498 0,-143.78" style="fill:rgb(35,31,32);fill-rule:nonzero;"/>
+            </g>
+        </g>
+    </g>
+</svg></span>
+    </div>
+    <div class="tag">CHANTAL × VALEN · KOREA MARKET ENTRY</div>
+    <h1>헤어케어가 아니라, 헤어 더모<br><em>Dermo Haircare</em><span style="font-weight:500;font-size:.5em;color:var(--blue-light);display:block;margin-top:10px">35년 유럽 헤어 전문가가 만든 더모 헤어케어 브랜드의 한국 시장 진입 전략</span></h1>
+    <p class="sub">한국 뷰티의 축이 ‘감성→효능’으로 이동하는 지금, CHANTAL을 <b style="color:#fff">유럽 살롱·임상 기반의 더모 헤어케어</b>로 재정의해 어노브·피노·두피 앰플 사이의 공백을 선점하는 진입 전략입니다.</p>
+    <div class="meta">
+      <span>작성 <b>발렌 (valen)</b></span>
+      <span>대상 <b>CHANTAL</b></span>
+      <span>버전 <b>KR v1</b> (EN·PL 추후 제작)</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- 핵심 -->
+<section>
+  <h2><span class="sec-num key">!</span>이 제안의 핵심</h2>
+  <p class="lead">지금 한국에 ‘있는 그대로’ 들어가면 어노브·라보에이치·닥터그루트·바이브랩·모로칸오일·피노·케라스타즈 사이에서 <strong>존재 이유가 없습니다.</strong> 반대로 <span class="hl">“35년간 유럽에서 헤어 전문가·살롱을 대상으로 연구해온 더모 헤어케어 브랜드”</span>로 재정의하면 이야기가 완전히 달라집니다.</p>
+  <div class="compare">
+    <div class="cbox old">
+      <div class="ct">있는 그대로 진입</div>
+      <ul>
+        <li>또 하나의 헤어 브랜드</li>
+        <li>가격 · 향 · 모델 경쟁</li>
+        <li>차별점 없음</li>
+      </ul>
+    </div>
+    <div class="carrow">→</div>
+    <div class="cbox new">
+      <div class="ct">더모로 재정의</div>
+      <ul>
+        <li><b>연구</b> — 자체 R&amp;D 랩</li>
+        <li><b>살롱</b> — 전문가 검증</li>
+        <li><b>효능</b> — 임상 기반</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout dark">
+    <div class="ico">브랜드 마스터 메시지</div>
+    <p class="bigmsg">“35년 유럽 헤어 전문가의 홈 클리닉”</p>
+    <p style="margin-top:8px">Supporting · “유럽 살롱에서 검증된 헤어 과학” &nbsp;|&nbsp; Consumer · “좋은 향이 아니라, 좋은 머릿결과 건강한 두피를 만드는 브랜드”</p>
+  </div>
+</section>
+
+<!-- 1. 시장 관점 -->
+<section>
+  <h2><span class="sec-num">1</span>한국 시장에 대한 관점</h2>
+  <p class="lead">지난 5년, 한국 뷰티 시장의 가장 큰 변화는 <strong>‘감성 → 효능’으로의 이동</strong>입니다. 스킨케어에서 이미 끝난 변화가, 지금 헤어케어로 넘어오고 있습니다.</p>
+  <div class="compare">
+    <div class="cbox old">
+      <div class="ct">과거의 소비 기준</div>
+      <ul><li>예쁜 패키지</li><li>연예인 모델</li><li>좋은 향</li><li>감성</li></ul>
+    </div>
+    <div class="carrow">→</div>
+    <div class="cbox new">
+      <div class="ct">현재의 소비 기준</div>
+      <ul><li><b>더마 · 임상</b></li><li><b>전문가 · 성분</b></li><li><b>R&amp;D · 의약사</b></li><li><b>병원</b></li></ul>
+    </div>
+  </div>
+  <h4>이미 증명된 더모의 성장 — 다음은 헤어다</h4>
+  <p>리쥬란 · 에스트라 · 이지듀 · 리쥬올 · 닥터지 · 셀퓨전씨 — 더마/임상/전문가 스토리를 가진 브랜드들이 시장을 끌어올렸습니다.</p>
+  <div class="callout">
+    <div class="ico">올리브영이 키우는 카테고리 = ‘Advanced Dermo’</div>
+    <p>유통 1번지가 직접 더모 영역을 육성하면서 소비자 동선과 신뢰가 더모로 집중되고 있습니다. 소비자는 이제 <strong>“이 제품은 누가 만들었는가”</strong>를 봅니다. 이 흐름은 반드시 헤어 시장으로 이동합니다.</p>
+  </div>
+</section>
+
+<!-- 2. 포지셔닝 -->
+<section>
+  <h2><span class="sec-num">2</span>CHANTAL의 한국 포지셔닝</h2>
+  <p class="lead">한국 헤어 시장이 <strong>향·디자인·모델</strong>로 싸울 때, CHANTAL은 <strong>연구·살롱·효능</strong>으로 말합니다.</p>
+  <div class="compare">
+    <div class="cbox old"><div class="ct">현재 정의</div><ul><li>폴란드 헤어 브랜드</li></ul></div>
+    <div class="carrow">→</div>
+    <div class="cbox new"><div class="ct">한국형 재정의</div><ul><li><b>35년 유럽 헤어 전문가가 만든<br>더모 헤어케어 브랜드</b></li></ul></div>
+  </div>
+  <div class="callout dark">
+    <div class="ico">핵심 메시지</div>
+    <p class="bigmsg" style="font-size:30px">Hair is Skin. 두피는 피부다.</p>
+  </div>
+  <p class="note">* ‘폴란드’ 원산지보다 ‘유럽 살롱·임상’이라는 기능적 자산으로 번역해 신뢰를 만듭니다.</p>
+</section>
+
+<!-- 3. 차별화 맵 -->
+<section>
+  <h2><span class="sec-num">3</span>차별화 — 아무도 서 있지 않은 자리</h2>
+  <p class="lead">효능 · 전문가 · 프리미엄 더모 헤어 — 경쟁사가 비워둔 <strong>공백(Whitespace)</strong>을 선점합니다.</p>
+  <div class="pmap">
+    <div class="axis-x"></div><div class="axis-y"></div>
+    <div class="zone" style="right:30px;top:24px;width:300px;height:230px"></div>
+    <div class="lbl" style="left:74px;top:8px">프리미엄</div>
+    <div class="lbl" style="left:74px;bottom:42px">대중</div>
+    <div class="lbl" style="left:74px;bottom:12px">향 · 감성 · 비주얼</div>
+    <div class="lbl" style="right:30px;bottom:12px">효능 · 전문가 · 임상</div>
+    <div class="lbl" style="right:42px;top:30px;color:var(--blue-strong);font-style:italic">공백 (Whitespace)</div>
+    <div class="dot" style="left:22%;top:80%">피노</div>
+    <div class="dot" style="left:30%;top:54%">어노브</div>
+    <div class="dot" style="left:25%;top:24%">모로칸오일</div>
+    <div class="dot" style="left:40%;top:14%">케라스타즈</div>
+    <div class="dot" style="left:58%;top:70%">닥터그루트</div>
+    <div class="dot" style="left:62%;top:52%">라보에이치</div>
+    <div class="dot" style="left:68%;top:36%">바이브랩</div>
+    <div class="dot hero" style="left:84%;top:22%">CHANTAL</div>
+  </div>
+</section>
+
+<!-- 4. 포트폴리오 -->
+<section>
+  <h2><span class="sec-num">4</span>포트폴리오 전략 — 하나의 브랜드, 두 개의 게임</h2>
+  <p class="lead">두 라인은 마케팅 문법이 완전히 다릅니다. 섞으면 둘 다 흐려집니다. <strong>1번으로 모으고, 2번으로 남깁니다.</strong></p>
+  <div class="dframe two">
+    <div class="dcol l1">
+      <div class="dt">Line 1 · Glossyfication<span>획득 (Acquisition) 엔진</span></div>
+      <ul><li>감각 · 향 · 즉각적 윤기</li><li>낮은 진입장벽 · 바이럴 · 선물</li><li>신규 고객과 트래픽을 모은다</li></ul>
+    </div>
+    <div class="dcol l2">
+      <div class="dt">Line 2 · Hair Biotic<span>LTV · 브랜드 자산 엔진</span></div>
+      <ul><li>효능 · 임상 · 두피 더모</li><li>루틴 · 구독 · 높은 재구매</li><li>신뢰와 수익으로 남긴다</li></ul>
+    </div>
+  </div>
+  <div class="callout dark">
+    <div class="ico">크로스셀 구조</div>
+    <p>Line 1의 트래픽을 Line 2의 루틴·구독으로 전환합니다. Line 1은 인지·획득의 깔때기 입구, Line 2는 LTV·수익의 깊이입니다.</p>
+  </div>
+</section>
+
+<!-- 5. Line 1 -->
+<section>
+  <h2><span class="sec-num">5</span>Line 1 · Glossyfication</h2>
+  <div class="agenda a2">
+    <div class="ah"><span class="anum">①</span><h3>유럽판 ‘피노 + 어노브’ — 단, 향이 아니라 라미네이션</h3></div>
+    <h4>Consumer Pain Point</h4>
+    <p>20~39세 여성 · 염색 · 탈색 · 고데기 · 열손상 → <strong>“머릿결은 상했는데, 관리할 시간은 없다.”</strong></p>
+    <h4>Positioning — Hair Lamination</h4>
+    <p>향도, 단순 영양도 아닌 <strong>‘헤어 라미네이션’</strong> 개념. 브랜드가 Glossyfication을 라미네이션으로 설명하고 있으며, 살롱 시술을 집으로 가져오는 프레임입니다.</p>
+    <div class="callout">
+      <div class="ico">메시지</div>
+      <p class="bigmsg">“헤어에 바르는 글래스 스킨”</p>
+      <p style="margin-top:6px">Sub · “한 번의 사용으로 완성되는 유리알 머릿결”</p>
+    </div>
+    <h4>Hero SKU</h4>
+    <ul class="clean"><li><b>① Laminating Mask</b></li><li><b>② Split-End Sealing Serum</b></li></ul>
+    <h4>콘텐츠 전략 — ‘보이는 결과’로 증명하는 4단계</h4>
+    <div class="flow">
+      <div class="fstep s1"><div class="fn">1</div><b>Before / After</b><p>손상모→윤기모, 직관적 비주얼 후킹</p></div>
+      <div class="fstep s2"><div class="fn">2</div><b>Hair Glass Test</b><p>빛 반사 실험으로 ‘유리알 윤기’ 증명</p></div>
+      <div class="fstep s3"><div class="fn">3</div><b>살롱 전문가 리뷰</b><p>현장 디자이너의 검증 = 신뢰 레이어</p></div>
+      <div class="fstep s4"><div class="fn">4</div><b>피노 비교 콘텐츠</b><p>“유럽 살롱은 왜 라미네이션을 하는가”</p></div>
+    </div>
+    <p class="note">Target · 어포더블 프리미엄 · 올리브영 히어로 · 충동/선물/바이럴</p>
+  </div>
+</section>
+
+<!-- 6. Line 2 -->
+<section>
+  <h2><span class="sec-num">6</span>Line 2 · Hair Biotic</h2>
+  <div class="agenda a3">
+    <div class="ah"><span class="anum">②</span><h3>더 큰 기회 — 탈모가 아니라 ‘여성 두피 안티에이징’</h3></div>
+    <h4>성공 브랜드의 공통점</h4>
+    <p>리필드 · 바이브랩 · 라보에이치 · 릴리이브 — 모두 ‘탈모’를 팔지 않고 <strong>‘두피 건강’</strong>을 팝니다.</p>
+    <ul class="clean">
+      <li><b>포지셔닝 전환</b> — 탈모 제품 → 두피 마이크로바이옴 케어 → <b>두피 안티에이징</b></li>
+      <li><b>핵심 솔루션</b> — Procapil · Tricorexina 기반 두피 강화</li>
+    </ul>
+    <div class="callout">
+      <div class="ico">메시지</div>
+      <p class="bigmsg">“얼굴은 안티에이징 하면서 왜 두피는 관리하지 않나요?”</p>
+      <p style="margin-top:6px">Sub · “두피 나이부터 어려지는 루틴”</p>
+    </div>
+    <h4>Hero SKU — 비우고(Peel), 채운다(Lotion)</h4>
+    <ul class="clean">
+      <li><b>① Hair Biotic Scalp Peel</b> — 비우기 · 각질·노폐물 정돈</li>
+      <li><b>② Hair Biotic Scalp Lotion</b> — 채우기 · 두피 강화·진정</li>
+    </ul>
+    <h4>Target</h4>
+    <p>25~45세 여성 · 출산 후 탈모 · 스트레스성 탈모 · 가르마 고민 · 정수리 볼륨</p>
+    <div class="callout check">
+      <div class="ico"><span class="badge check">체크포인트</span> 선결 과제</div>
+      <p>탈모·두피 안티에이징·성분(Procapil/Tricorexina) <strong>효능 표현</strong>은 화장품/의약외품 광고 심의 경계를 좌우합니다. → 클레임 확정 전 <strong>RA(규제) 검토</strong>가 전제되어야 합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. GTM -->
+<section>
+  <h2><span class="sec-num">7</span>Go-To-Market — 신뢰를 쌓는 채널 시퀀싱</h2>
+  <p class="lead">D2C → 올리브영 → 약국 / 살롱 순으로, 데이터와 신뢰를 단계적으로 축적합니다.</p>
+  <div class="flow">
+    <div class="fstep s1"><div class="fn">1</div><b>1년차 · 증명(Proof)</b><p>자사몰·네이버·쿠팡·올리브영 온라인. 리뷰·콘텐츠·임상 자산 축적. Line 1 히어로 트랙션, Line 2 신뢰 앵커.</p></div>
+    <div class="fstep s2"><div class="fn">2</div><b>2년차 · 확산(Scale)</b><p>올리브영 오프라인 롤아웃 = 변곡점. Line 2를 Advanced Dermo존 입점. 약국·더모 클리닉 테스트.</p></div>
+    <div class="fstep s3"><div class="fn">3</div><b>3년차 · 신뢰채널+B2B</b><p>약국·병의원 정식 전개. 살롱은 매출이 아닌 ‘신뢰·시딩’ 거점. 일본·중동 등 차기 시장 발판.</p></div>
+  </div>
+</section>
+
+<!-- 8. 매출 -->
+<section>
+  <h2><span class="sec-num">8</span>매출 성장 목표</h2>
+  <p class="lead">광고비 효율(ROAS)을 개선하며 3년간 <strong>10억 → 28억 → 56억</strong>으로 성장하는 목표 시나리오입니다.</p>
+  <div class="chartcard">
+    <div class="legend"><span><i class="sales"></i>매출</span><span><i class="ad"></i>광고비</span></div>
+    <div class="barchart">
+      <div class="bargroup">
+        <div class="bcol">
+          <div class="bset">
+            <div class="bar sales" style="height:38.3px"><span class="bv">10억</span></div>
+            <div class="bar ad" style="height:19.2px"><span class="bv ad">5억</span></div>
+          </div>
+        </div>
+        <div class="byear">1년차</div>
+      </div>
+      <div class="bargroup">
+        <div class="bcol">
+          <div class="bset">
+            <div class="bar sales" style="height:107.3px"><span class="bv">28억</span></div>
+            <div class="bar ad" style="height:46.0px"><span class="bv ad">12억</span></div>
+          </div>
+        </div>
+        <div class="byear">2년차</div>
+      </div>
+      <div class="bargroup">
+        <div class="bcol">
+          <div class="bset">
+            <div class="bar sales" style="height:214.7px"><span class="bv">56억</span></div>
+            <div class="bar ad" style="height:76.7px"><span class="bv ad">20억</span></div>
+          </div>
+        </div>
+        <div class="byear">3년차</div>
+      </div>
+    </div>
+  </div>
+  <div class="metrics">
+    <div class="metric"><div class="mv">+180% → +100%</div><div class="ml">연간 매출 성장률 (1→2년차, 2→3년차)</div></div>
+    <div class="metric"><div class="mv">2.0x → 2.8x</div><div class="ml">ROAS (매출 ÷ 광고비) 개선</div></div>
+    <div class="metric"><div class="mv">50% → 36%</div><div class="ml">매출 대비 광고비 비중 감소</div></div>
+  </div>
+  <div class="scroll"><table class="tbl">
+    <tr><th>구분</th><th>1년차</th><th>2년차</th><th>3년차</th></tr>
+    <tr><td>매출</td><td class="num">10억</td><td class="num">28억</td><td class="num hi">56억</td></tr>
+    <tr><td>광고비</td><td class="num">5억</td><td class="num">12억</td><td class="num">20억</td></tr>
+    <tr><td>매출 성장률</td><td>—</td><td class="hi">+180%</td><td class="hi">+100%</td></tr>
+    <tr><td>ROAS (매출/광고비)</td><td>2.0x</td><td>2.3x</td><td>2.8x</td></tr>
+    <tr><td>광고비 비중</td><td>50%</td><td>43%</td><td>36%</td></tr>
+  </table></div>
+  <div class="callout check">
+    <div class="ico"><span class="badge check">비용 별도</span> 본 매출·광고비 목표에 미포함</div>
+    <p><strong>브랜드 전략 진단 · 현지 마케팅 업무 용역 · 자사몰 구축 · 촬영 · 물류/운영 · 유통 수수료</strong> 비용은 상기 매출·광고비와 <strong>별도</strong>입니다.</p>
+  </div>
+  <p class="note">* 목표 시나리오로, 실제 수치는 마케팅 투입·채널 입점 성패에 좌우됩니다. 절대 규모보다 단위경제(CAC·재구매율·구독전환)가 손익을 결정하므로 실행 전 P&amp;L 정합성 검증을 권장합니다.</p>
+</section>
+
+<!-- 9. KPI & 리스크 -->
+<section>
+  <h2><span class="sec-num">9</span>KPI &amp; 리스크</h2>
+  <div class="dframe two">
+    <div class="dcol l1"><div class="dt">Line 1 KPI · 획득<span>Glossyfication</span></div>
+      <ul><li>신규 획득수 · 바이럴 계수</li><li>올리브영 랭킹</li><li>객단가</li></ul></div>
+    <div class="dcol l2"><div class="dt">Line 2 KPI · LTV<span>Hair Biotic</span></div>
+      <ul><li>재구매율 · 구독전환</li><li>리뷰 내 효능 언급률</li><li>LTV</li></ul></div>
+  </div>
+  <h4>핵심 리스크 &amp; 대응</h4>
+  <ul class="clean">
+    <li><b>원산지 인지 부재</b> — ‘폴란드’가 아닌 ‘유럽 살롱·임상’ 자산으로 번역.</li>
+    <li><b>효능 광고 규제</b> — 탈모·두피 표현은 화장품/의약외품 심의 경계 사전 확인(RA).</li>
+    <li><b>경쟁 과열</b> — 어노브·피노·두피 앰플과 ‘전문가·임상 신뢰’로 차별.</li>
+  </ul>
+</section>
+
+<!-- 10. 팀 -->
+<section>
+  <h2><span class="sec-num">10</span>발렌 프로젝트 팀 구성</h2>
+  <p class="lead">런칭 단계 <strong>코어 4~6명</strong>으로 시작하고, 스케일 단계에서 채널·콘텐츠 인력을 증원합니다.</p>
+  <div class="cardgrid">
+    <div class="ucard"><div class="uh"><span class="un">AD</span><span class="ut">코어</span></div><b>프로젝트 총괄</b><p>전략·일정·예산 총괄, 클라이언트 단일 창구</p></div>
+    <div class="ucard"><div class="uh"><span class="un">ST</span><span class="ut">코어</span></div><b>브랜드 전략·기획</b><p>포지셔닝·메시지·현지화 설계, 카테고리 정의</p></div>
+    <div class="ucard"><div class="uh"><span class="un">GR</span><span class="ut">코어</span></div><b>퍼포먼스·그로스</b><p>미디어 운영·CRM·퍼널 설계, 데이터 리포팅</p></div>
+    <div class="ucard"><div class="uh"><span class="un">CR</span><span class="ut">코어</span></div><b>콘텐츠·크리에이티브</b><p>비주얼·영상·상세페이지, 디자이너 협업</p></div>
+    <div class="ucard"><div class="uh"><span class="un">MD</span><span class="ut ext">확장</span></div><b>채널·MD</b><p>올리브영·약국·살롱 입점, D2C 구축</p></div>
+    <div class="ucard"><div class="uh"><span class="un">PR</span><span class="ut ext">확장</span></div><b>PR·인플루언서</b><p>시딩·리뷰·전문가 콘텐츠 네트워크</p></div>
+    <div class="ucard"><div class="uh"><span class="un">RA</span><span class="ut ext">자문</span></div><b>RA · 규제 자문</b><p>화장품/의약외품 광고 심의·표시기재 (파트)</p></div>
+    <div class="ucard"><div class="uh"><span class="un">OP</span><span class="ut ext">운영</span></div><b>현지화·운영</b><p>번역·CS·물류 코디네이션</p></div>
+  </div>
+</section>
+
+<!-- 11. 대행 범위 -->
+<section>
+  <h2><span class="sec-num">11</span>발렌 대행 범위 (모듈형)</h2>
+  <p class="lead">전략부터 운영까지 풀퍼널. 클라이언트가 필요한 모듈만 선택할 수 있도록 구성합니다.</p>
+  <div class="cardgrid">
+    <div class="ucard"><b>시장 진단·전략</b><p>시장·경쟁 분석, 브랜드 현지화 전략, GTM 설계</p></div>
+    <div class="ucard"><b>브랜드·현지화</b><p>메시지·네이밍·패키지/클레임 현지화</p></div>
+    <div class="ucard"><b>콘텐츠·크리에이티브</b><p>비주얼·영상·상세페이지·SNS 자산 제작</p></div>
+    <div class="ucard"><b>퍼포먼스·미디어</b><p>광고 운영, 퍼널·CRM, 그로스 리포팅</p></div>
+    <div class="ucard"><b>인플루언서·PR</b><p>시딩, 전문가 리뷰, 미디어 PR</p></div>
+    <div class="ucard"><b>채널 입점·MD</b><p>올리브영·약국·살롱 입점, 자사몰 구축</p></div>
+    <div class="ucard"><b>커머스 운영</b><p>주문·CS·풀필먼트 코디네이션</p></div>
+    <div class="ucard"><b>RA·규제 자문</b><p>광고 심의·표시기재 리스크 검토</p></div>
+  </div>
+</section>
+
+<!-- ★ 종합 -->
+<section style="border-bottom:none">
+  <h2><span class="sec-num key">★</span>종합 — 어떻게 시작할 것인가</h2>
+  <div class="flow">
+    <div class="fstep s1"><div class="fn">0</div><b>Phase 0 · 진단·전략 합의</b><p>시장 진단, 포지셔닝·SKU·채널 전략 확정</p></div>
+    <div class="fstep s2"><div class="fn">1</div><b>Phase 1 · 런칭 (1년차)</b><p>D2C·올리브영 온라인, 콘텐츠·리뷰 자산 구축</p></div>
+    <div class="fstep s3"><div class="fn">2</div><b>Phase 2 · 스케일 (2~3년차)</b><p>오프라인·약국·살롱 확장, 글로벌 발판</p></div>
+  </div>
+  <div class="callout dark">
+    <div class="ico">다음 단계 &amp; 비용 안내</div>
+    <p><strong>먼저 Phase 0(진단·전략 합의)부터 함께 시작하시길 제안</strong>드립니다. 업무 요금은 스코프 확정 후 별도 구체화하여 전달합니다.</p>
+    <p style="margin-top:8px">※ 브랜드 전략 진단 · 현지 마케팅 업무 용역 · 자사몰 구축 · 촬영 · 물류/운영 · 유통 수수료 비용은 매출·광고비 목표와 <strong>별도</strong>입니다.</p>
+  </div>
+  <p class="note big">본 제안서는 <strong>한국어(KR v1)</strong> 버전입니다. 동일 구성으로 <strong>영어 · 폴란드어</strong> 버전을 추후 제작 가능합니다.</p>
+</section>
+
+</div>
+
+<footer>
+  <b>valen</b> &nbsp;·&nbsp; CHANTAL 한국 시장 진입 제안 (KR v1) &nbsp;·&nbsp; Confidential
+</footer>
+
+<script>
+const obs=new IntersectionObserver((es)=>{es.forEach((e,i)=>{if(e.isIntersecting){e.target.style.animationDelay=(i*0.04)+'s';e.target.classList.add('reveal');obs.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('section, .agenda, .fstep, .dcol, .ucard, .metric').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
