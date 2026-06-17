@@ -1552,6 +1552,7 @@
       });
 
       restoreEdits();
+      document.querySelectorAll('.s-meta').forEach(el => syncMetaToToc(el));
 
       if (isReadonly) { bar.style.display = 'none'; return; }
 
