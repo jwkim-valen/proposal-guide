@@ -790,9 +790,10 @@
   <!-- EDIT BAR -->
   <div id="edit-bar" style="display:none">
     <div class="eb-status"><div class="eb-dot"></div><span>편집 모드</span></div>
-    <span class="eb-hint">텍스트를 클릭하여 수정 · 완료 후 "수정 완료" 입력</span>
+    <span class="eb-hint">텍스트 더블클릭하여 수정 · 수정 완료 후 "HTML 저장"을 눌러 파일을 다운로드하세요</span>
     <div class="eb-actions">
       <button class="eb-btn" onclick="resetEdits()">초기화</button>
+      <button class="eb-btn eb-export" onclick="downloadHTML()">HTML 저장</button>
     </div>
   </div>
 
@@ -1446,6 +1447,9 @@
   </div>
 
   <script>
+    /* 다운로드용 원본 소스 캡처 (동적 상태 반영 전) */
+    const _srcHTML = document.documentElement.outerHTML;
+
     // Scroll reveal
     const revealObs = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -1535,10 +1539,88 @@
       location.reload();
     }
 
-    function exportHTML() {
+    async function downloadHTML() {
       saveEdits();
-      localStorage.setItem(MODE_KEY, 'readonly');
-      location.reload();
+
+      /* 원본 소스 기반 clean DOM 생성 (live 동적 상태 제외) */
+      const parser = new DOMParser();
+      const doc = parser.parseFromString('<!DOCTYPE html>\n' + _srcHTML, 'text/html');
+
+      /* localStorage 편집 내용을 clean DOM에 적용 */
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      if (saved.text) {
+        let counter = 0;
+        function _applyKeys(root) {
+          const walker = doc.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+          let el;
+          while ((el = walker.nextNode())) {
+            if (SKIP_TAGS.has(el.tagName)) continue;
+            if (el.closest('nav,svg,#edit-bar,.drag-handle')) continue;
+            if (el.parentElement && el.parentElement.dataset.ek) continue;
+            const hasText = Array.from(el.childNodes).some(n => n.nodeType === 3 && n.textContent.trim());
+            if (hasText && !el.dataset.ek) el.dataset.ek = 'ek-' + (counter++);
+          }
+        }
+        ['.cover-wrapper', '.layout', 'footer'].forEach(sel => {
+          const root = doc.querySelector(sel);
+          if (root) _applyKeys(root);
+        });
+        Object.entries(saved.text).forEach(([k, v]) => {
+          const el = doc.querySelector('[data-ek="' + k + '"]');
+          if (el) el.innerHTML = v;
+        });
+      }
+
+      /* EDIT_MODE = false */
+      doc.querySelectorAll('script').forEach(s => {
+        if (s.textContent.trim().startsWith('const EDIT_MODE')) {
+          s.textContent = 'const EDIT_MODE = false;';
+        }
+      });
+
+      /* 편집 관련 요소·속성 제거 */
+      const bar = doc.querySelector('#edit-bar');
+      if (bar) bar.remove();
+      doc.querySelectorAll('[data-ek]').forEach(el => el.removeAttribute('data-ek'));
+
+      /* 다운로드 파일에서 restoreEdits() 재실행 방지 플래그 */
+      doc.documentElement.setAttribute('data-static', '1');
+
+      /* 직렬화 */
+      const html = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
+      const fname = (document.title.split(/[\s—]/)[0] || 'proposal').toLowerCase();
+      const today = new Date();
+      const dateStr = today.getFullYear().toString()
+        + String(today.getMonth() + 1).padStart(2, '0')
+        + String(today.getDate()).padStart(2, '0');
+      const suggestedName = fname + '_proposal_' + dateStr + '.html';
+      const enc = new TextEncoder();
+      const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+      const blob = new Blob([bom, enc.encode(html)], { type: 'text/html; charset=utf-8' });
+
+      /* 네이티브 저장 다이얼로그 (수정본 폴더로 직접 이동 가능) */
+      if (window.showSaveFilePicker) {
+        try {
+          const handle = await window.showSaveFilePicker({
+            suggestedName,
+            types: [{ description: 'HTML 파일', accept: { 'text/html': ['.html'] } }]
+          });
+          const writable = await handle.createWritable();
+          await writable.write(blob);
+          await writable.close();
+          return;
+        } catch(e) {
+          if (e.name === 'AbortError') return;
+        }
+      }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = suggestedName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     }
 
     function initEditMode() {
@@ -1551,12 +1633,13 @@
         if (root) assignKeys(root);
       });
 
-      restoreEdits();
+      /* 저장된 텍스트 복원 (다운로드 파일은 내용 이미 적용됨 → 재실행 방지) */
+      if (!document.documentElement.dataset.static) restoreEdits();
       document.querySelectorAll('.s-meta').forEach(el => syncMetaToToc(el));
 
-      if (isReadonly) { bar.style.display = 'none'; return; }
+      if (isReadonly) { if (bar) bar.style.display = 'none'; return; }
 
-      bar.style.display = 'flex';
+      if (bar) bar.style.display = 'flex';
       document.body.classList.add('is-edit');
 
       document.querySelectorAll('[data-ek]').forEach(el => {

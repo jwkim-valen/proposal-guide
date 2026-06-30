@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="ko">
-
-<head>
+﻿<!DOCTYPE html>
+<html lang="ko" data-static="1"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CHANTAL 한국 시장 진출 제안 — valen</title>
+  <title>INFIDERM 그로스 제안 — valen</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap"
-    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
   <style>
     /* ── TOKENS ── */
     :root {
@@ -74,6 +70,7 @@
       overflow-wrap: break-word
     }
 
+    /* ── WORD BREAK · 핵심 텍스트 컴포넌트 명시 ── */
     h1, h2, h3, h4, h5, h6,
     p, li, b, strong, span,
     .s-head .lead,
@@ -89,6 +86,7 @@
       overflow-wrap: break-word
     }
 
+    /* 테이블 셀은 고정폭 레이아웃이므로 예외 */
     .tbl th, .tbl td {
       word-break: normal;
       overflow-wrap: break-word
@@ -304,6 +302,7 @@
       font-weight: 600
     }
 
+    /* ── COVER KPI (left panel) ── */
     .cover-tagline {
       margin: 16px 0 20px
     }
@@ -356,6 +355,7 @@
       line-height: 1.4
     }
 
+    /* ── COVER CARD RIGHT (image area) ── */
     .cover-card-r {
       background: var(--blue-800);
       position: relative;
@@ -373,40 +373,6 @@
     }
 
     .cover-img-placeholder {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      color: rgba(255, 255, 255, .2);
-      font-family: var(--font-en);
-      font-size: 11px;
-      text-align: center;
-      line-height: 1.7;
-      letter-spacing: .3px
-    }
-
-    .s-img-area {
-      border-radius: 16px;
-      overflow: hidden;
-      background: var(--blue-800);
-      position: relative;
-      min-height: 280px;
-      margin-bottom: 28px
-    }
-
-    .s-img-area img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block
-    }
-
-    .s-img-placeholder {
       position: absolute;
       inset: 0;
       display: flex;
@@ -587,6 +553,7 @@
       align-items: center;
       gap: 8px
     }
+
 
     .s-head {
       margin-bottom: 32px;
@@ -790,6 +757,7 @@
       color: var(--white)
     }
 
+    /* ── INSIGHT CALLOUT ── */
     .callout.insight {
       background: rgba(0, 225, 220, .06);
       border-color: rgba(0, 225, 220, .22)
@@ -1002,8 +970,16 @@
       margin-bottom: 12px
     }
 
-    .fstep.s2 .fn,
-    .fstep.s3 .fn,
+    .fstep.s2 .fn {
+      background: var(--green);
+      color: var(--blue-core)
+    }
+
+    .fstep.s3 .fn {
+      background: var(--green);
+      color: var(--blue-core)
+    }
+
     .fstep.s4 .fn {
       background: var(--green);
       color: var(--blue-core)
@@ -1509,6 +1485,35 @@
       flex-shrink: 0
     }
 
+    .ucard.has-bg {
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    .ucard.has-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 20, 80, 0.78);
+      border-radius: inherit;
+      z-index: 0
+    }
+
+    .ucard.has-bg > * {
+      position: relative;
+      z-index: 1
+    }
+
+    .ucard.has-bg b {
+      color: #fff
+    }
+
+    .ucard.has-bg p {
+      color: rgba(255, 255, 255, 0.75)
+    }
+
     /* ── NOTE ── */
     .note {
       font-size: var(--cap);
@@ -1539,6 +1544,7 @@
       color: var(--green)
     }
 
+
     .s-closing .s-head h2 {
       color: var(--white)
     }
@@ -1555,6 +1561,7 @@
       background: rgba(255, 255, 255, .07);
       border-color: rgba(255, 255, 255, .12)
     }
+
 
     .s-closing .callout .ico {
       color: var(--green)
@@ -1625,27 +1632,15 @@
       color: var(--gray-400)
     }
 
-    /* ── BAR CONCLUSION ── */
-    .bar-conclusion {
-      background: var(--blue-core);
-      border-radius: 10px;
-      padding: 22px 28px;
-      margin: 32px 0 0
+
+    /* ── CALLOUT BRAND-MSG ── */
+    .callout.brand-msg {
+      background: var(--bg-soft);
+      border: 1px solid var(--border)
     }
 
-    .bar-conclusion .bc-msg {
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--white);
-      line-height: 1.55;
-      letter-spacing: -.02em
-    }
-
-    .bar-conclusion .bc-sub {
-      font-size: var(--body2);
-      color: rgba(255, 255, 255, .5);
-      margin-top: 6px;
-      line-height: 1.65
+    .callout.brand-msg .ico {
+      color: var(--gray-400)
     }
 
     /* ── FOOTER ── */
@@ -1690,10 +1685,52 @@
       }
     }
 
+    /* ── BAR CONCLUSION ── */
+    .bar-conclusion {
+      background: var(--blue-core);
+      border-radius: 10px;
+      padding: 22px 28px;
+      margin: 32px 0 0
+    }
+
+    .bar-conclusion .bc-msg {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.55;
+      letter-spacing: -.02em
+    }
+
+    .bar-conclusion .bc-sub {
+      font-size: var(--body2);
+      color: rgba(255, 255, 255, .5);
+      margin-top: 6px;
+      line-height: 1.65
+    }
+
+    /* ── TRACK CHIP ── */
+    .track-chip {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(0, 225, 220, .12);
+      color: var(--blue-600);
+      border: 1px solid rgba(0, 225, 220, .4);
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px
+    }
+
     @media(max-width:767px) {
       :root {
         --t1: 26px;
         --t1-lh: 34px;
+        --t3: 20px;
+        --t3-lh: 28px;
         --sub2: 17px;
         --sub2-lh: 26px;
         --body1: 17px;
@@ -1712,12 +1749,30 @@
         min-height: 260px
       }
 
+      .intro-kpi {
+        gap: 20px
+      }
+
+      .intro-kpi-v {
+        font-size: 24px
+      }
+
       .s-intro {
         padding: 40px 24px 36px
       }
 
+      .intro-h1 {
+        font-size: 30px;
+        line-height: 40px
+      }
+
       .s {
         padding: 48px 24px
+      }
+
+      .s-head {
+        margin-bottom: 24px;
+        padding-bottom: 18px
       }
 
       .s-closing {
@@ -1754,6 +1809,11 @@
         width: 36px
       }
 
+      .btn-primary {
+        width: 100%;
+        justify-content: center
+      }
+
       .stat-row {
         flex-direction: column
       }
@@ -1785,6 +1845,20 @@
         font-size: 18px
       }
 
+      .intro-kpi {
+        flex-wrap: wrap;
+        gap: 16px
+      }
+
+      .intro-kpi-item {
+        flex: 1;
+        min-width: 120px
+      }
+
+      .tbl-wrap {
+        margin: 16px 0
+      }
+
       .pmap {
         zoom: 0.78
       }
@@ -1804,6 +1878,60 @@
       .barchart {
         min-width: 280px
       }
+
+      .pull-quote {
+        padding: 20px 20px
+      }
+
+    }
+
+    @media(max-width:480px) {
+      .cardgrid,
+      .cardgrid.c3 {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .tbl {
+        min-width: 0
+      }
+
+      .tbl th,
+      .tbl td {
+        padding: 9px 10px;
+        white-space: normal
+      }
+
+      .intro-identity {
+        padding: 18px 16px
+      }
+
+      .intro-kpi-item {
+        min-width: 80px
+      }
+
+      .s-head h2 {
+        font-size: 24px;
+        line-height: 34px
+      }
+
+      .s-head .lead {
+        font-size: 16px;
+        line-height: 1.75
+      }
+
+      .callout p, .ucard p {
+        font-size: 14px;
+        line-height: 1.7
+      }
+
+      .bar {
+        width: 28px
+      }
+
+      .pmap {
+        zoom: 0.65
+      }
+
     }
 
     /* ── EDIT MODE ── */
@@ -1887,26 +2015,19 @@
     }
 
   </style>
-  <script>const EDIT_MODE = true;</script>
+  <script>const EDIT_MODE = false;</script>
 </head>
 
 <body>
+  <div id="progress-bar"></div>
   <!-- EDIT BAR (편집 모드 시 표시) -->
-  <div id="edit-bar" style="display:none">
-    <div class="eb-status"><div class="eb-dot"></div><span>편집 모드</span></div>
-    <span class="eb-hint">텍스트 더블클릭하여 수정 · 수정 완료 후 "HTML 저장"을 눌러 파일을 다운로드하세요</span>
-    <div class="eb-actions">
-      <button class="eb-btn" onclick="resetEdits()">초기화</button>
-      <button class="eb-btn eb-export" onclick="downloadHTML()">HTML 저장</button>
-    </div>
-  </div>
-<div id="progress-bar"></div>
+  
   <div class="page">
 
     <!-- COVER -->
     <div class="cover-wrapper">
       <div class="cover-card reveal">
-        <img class="cover-img-area" src="assets/cover_img.png" alt="cover">
+        <img class="cover-img-area" src="assets/cover_img.png" alt="INFIDERM Korea">
       </div>
     </div>
 
@@ -1917,17 +2038,17 @@
         <span class="toc-label">Contents</span>
         <ul class="toc-list">
           <li class="toc-item"><a class="toc-link" href="#sec-core"><span class="toc-num">!</span>이 제안의 핵심</a></li>
-          <li class="toc-item"><a class="toc-link" href="#sec-01"><span class="toc-num">01</span>한국 시장 관점</a></li>
-          <li class="toc-item"><a class="toc-link" href="#sec-02"><span class="toc-num">02</span>포지셔닝</a></li>
-          <li class="toc-item"><a class="toc-link" href="#sec-03"><span class="toc-num">03</span>차별화 맵</a></li>
-          <li class="toc-item"><a class="toc-link" href="#sec-04"><span class="toc-num">04</span>포트폴리오 전략</a></li>
-          <li class="toc-item"><a class="toc-link" href="#sec-05"><span class="toc-num">05</span>Line 1 · Glossyfication</a></li>
-          <li class="toc-item"><a class="toc-link" href="#sec-06"><span class="toc-num">06</span>Line 2 · Hair Biotic</a></li>
-          <li class="toc-item"><a class="toc-link" href="#sec-07"><span class="toc-num">07</span>Go-To-Market</a></li>
+          <li class="toc-item"><a class="toc-link" href="#sec-01"><span class="toc-num">01</span>시장 관점</a></li>
+          <li class="toc-item"><a class="toc-link" href="#sec-02"><span class="toc-num">02</span>차별화</a></li>
+          <li class="toc-item"><a class="toc-link" href="#sec-03"><span class="toc-num">03</span>히어로 SKU 전략</a></li>
+          <li class="toc-item"><a class="toc-link" href="#sec-04"><span class="toc-num">04</span>브랜드 스토리라인</a></li>
+          <li class="toc-item"><a class="toc-link" href="#sec-05"><span class="toc-num">05</span>경쟁 차별화</a></li>
+          <li class="toc-item"><a class="toc-link" href="#sec-06"><span class="toc-num">06</span>Go-To-Market</a></li>
+          <li class="toc-item"><a class="toc-link" href="#sec-07"><span class="toc-num">07</span>발렌 실무 범위</a></li>
           <li class="toc-item"><a class="toc-link" href="#sec-08"><span class="toc-num">08</span>매출 성장 목표</a></li>
-          <li class="toc-item"><a class="toc-link" href="#sec-09"><span class="toc-num">09</span>KPI &amp; 리스크</a></li>
-          <li class="toc-item"><a class="toc-link" href="#sec-10"><span class="toc-num">10</span>발렌 프로젝트 팀</a></li>
-          <li class="toc-item"><a class="toc-link" href="#sec-11"><span class="toc-num">11</span>발렌 대행 범위</a></li>
+          <li class="toc-item"><a class="toc-link" href="#sec-09"><span class="toc-num">09</span>발렌 그로스 레퍼런스</a></li>
+          <li class="toc-item"><a class="toc-link" href="#sec-10"><span class="toc-num">10</span>전담 인력 구성</a></li>
+          <li class="toc-item"><a class="toc-link" href="#sec-11"><span class="toc-num">11</span>협업 조건</a></li>
           <li class="toc-item"><a class="toc-link" href="#sec-closing"><span class="toc-num">★</span>종합</a></li>
         </ul>
       </nav>
@@ -1937,341 +2058,324 @@
 
         <!-- INTRO -->
         <section class="s s-intro reveal" id="sec-intro">
-          <div class="intro-eye">CHANTAL × VALEN · Korea Market Entry</div>
-          <div class="intro-brand">
-            <span class="brand-badge">CHANTAL</span>
-            <span class="chantal-mark">
-              <svg class="chantal-svg" viewBox="0 0 3544 867" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-                <g transform="matrix(1,0,0,1,-5,-5)">
-                  <g transform="matrix(4.166667,0,0,4.166667,-436.900417,-286.279167)">
-                    <g transform="matrix(1,0,0,1,356.5001,206.0862)"><path d="M0,-57.911C8.038,-57.911 15.905,-54.434 20.451,-49.191L22.19,-49.191C23.23,-52.542 23.912,-55.925 25.029,-59.308C17.876,-62.349 8.038,-64.055 -0.124,-64.055C-12.429,-64.055 -25.541,-61.558 -34.99,-54.932C-45.712,-47.329 -49.173,-38.079 -49.173,-26.815C-49.173,-19.49 -46.829,-13.066 -41.398,-7.232C-39.056,-4.78 -35.781,-1.956 -32.538,-0.172C-29.481,1.364 -22.437,4.048 -18.977,4.654C-12.94,5.678 -9.014,6.144 -2.824,6.144C5.431,6.144 14.167,4.963 21.584,1.892L24.285,-6.518L22.701,-7.016C17.132,-2.872 8.224,0.309 0.637,0.309C-7.883,0.309 -16.385,-2.67 -21.584,-8.101C-26.983,-13.843 -28.814,-21.167 -28.814,-28.212C-28.814,-42.565 -20.419,-57.911 0,-57.911" style="fill:rgb(35,31,32);fill-rule:nonzero;"/></g>
-                    <g transform="matrix(1,0,0,1,432.6581,142.5585)"><path d="M0,62.021C-0.108,64.147 -0.358,66.303 -0.605,68.367C2.39,68.275 5.447,67.871 8.394,67.871C11.483,67.871 14.571,68.181 17.658,68.367C17.658,66.599 17.518,64.892 17.518,63.154L17.518,37.116C17.518,32.274 17.053,28.086 12.461,24.517C8.394,21.35 3.724,19.877 -1.954,19.877C-8.596,19.877 -15.858,23.834 -20.219,27.713L-19.956,17.006L-18.823,-6.346C-21.91,-5.881 -25.121,-5.881 -28.178,-5.881C-31.281,-5.881 -34.355,-5.959 -37.318,-6.346C-36.698,4.406 -36.372,15.222 -36.372,25.912C-36.372,29.761 -36.465,33.641 -36.465,37.349L-36.992,62.021C-36.992,64.147 -37.194,66.195 -37.318,68.367C-34.355,68.275 -31.407,67.871 -28.458,67.871C-25.463,67.871 -22.515,68.275 -19.582,68.367C-19.706,60.934 -20.219,53.533 -20.219,46.085C-20.219,39.754 -20.839,28.302 -9.465,28.302C-5.151,28.302 -1.335,30.941 -0.232,34.246C0.419,36.526 0.605,41.74 0.605,44.223C0.605,47.109 0.605,50.058 0.419,52.913L0,62.021Z" style="fill:rgb(35,31,32);fill-rule:nonzero;"/></g>
-                    <g transform="matrix(1,0,0,1,496.0919,189.265)"><path d="M0,-3.756C-0.234,-0.621 -0.234,2.56 -0.234,5.741C-0.234,10.691 -1.831,16.138 -9.357,16.138C-14.649,16.138 -16.153,12.257 -16.153,8.596C-16.153,5.461 -15.394,2.56 -12.197,0.496C-10.071,-0.807 -7.355,-1.272 -4.919,-2.111C-3.289,-2.577 -1.583,-3.182 0,-3.756M-10.8,-5.153C-16.231,-4.05 -20.917,-3.398 -25.976,-0.994C-30.678,1.179 -33.393,5.555 -33.393,9.899C-33.393,18.402 -25.852,22.871 -15.75,22.871C-9.357,22.871 -3.181,20.202 0,15.734C2.016,19.97 6.424,22.763 12.227,22.763C13.965,22.763 15.703,22.5 17.41,22.158C19.38,21.569 21.428,21.087 23.307,20.202L23.307,19.209C23.307,16.617 23.183,18.496 19.132,17.502C17.504,16.913 16.309,14.741 16.153,13.344C16.059,11.482 16.059,9.62 16.059,7.696C16.059,2.854 16.417,-1.894 16.417,-6.735C16.417,-8.907 16.309,-11.173 16.309,-13.345C16.059,-23.152 3.972,-26.627 -6.378,-26.627C-14.151,-26.627 -23.369,-24.253 -29.187,-20.017L-27.605,-14.059L-26.736,-14.059C-26.348,-14.432 -25.758,-14.85 -25.371,-15.254C-21.554,-17.923 -16.759,-19.707 -11.669,-19.707C-6.005,-19.707 -0.234,-16.231 -0.234,-11.515C-0.234,-9.994 -0.342,-8.721 -1.831,-7.728C-4.5,-6.348 -7.743,-5.772 -10.8,-5.153" style="fill:rgb(35,31,32);fill-rule:nonzero;"/></g>
-                    <g transform="matrix(1,0,0,1,581.2797,205.3871)"><path d="M0,-37.412C-4.328,-41.167 -9.016,-42.951 -15.392,-42.951C-23.073,-42.951 -29.435,-39.304 -34.121,-34.65L-33.781,-41.866C-36.449,-41.664 -39.072,-41.446 -41.788,-41.446C-44.875,-41.446 -47.808,-41.664 -50.911,-41.866L-50.787,-39.88C-50.678,-35.644 -50.15,-31.485 -50.15,-27.201L-50.15,-23.229C-50.15,-19.505 -50.306,-15.75 -50.306,-11.963C-50.306,-7.805 -50.538,-3.771 -50.538,0.419C-50.538,2.064 -50.911,3.848 -50.911,5.539C-47.932,5.447 -44.983,5.043 -42.051,5.043C-39.072,5.043 -36.123,5.447 -33.144,5.539C-33.253,-1.894 -33.781,-9.296 -33.781,-16.743C-33.781,-22.949 -34.401,-34.526 -23.073,-34.526C-12.413,-34.526 -12.972,-24.456 -12.972,-18.481C-12.972,-16.014 -13.05,-13.562 -13.05,-11.08C-13.174,-7.216 -13.282,-3.461 -13.655,0.419C-13.794,2.064 -14.043,3.848 -14.167,5.539C-11.342,5.447 -8.626,5.043 -5.835,5.043C-2.452,5.043 0.729,5.353 4.05,5.539C4.05,0.108 3.956,-5.431 3.956,-10.878C3.956,-14.943 4.05,-18.885 4.05,-22.949C4.05,-28.04 4.47,-33.44 0,-37.412" style="fill:rgb(35,31,32);fill-rule:nonzero;"/></g>
-                    <g transform="matrix(1,0,0,1,604.5562,161.7853)"><path d="M0,34.492C0,43.709 3.459,50.056 16.261,50.056C20.078,50.056 24.516,49.14 28.224,48.147C28.458,47.946 28.83,47.946 29.078,47.776L29.078,43.927C28.598,44.129 28.1,44.285 27.589,44.501C18.123,46.193 17.13,42.5 16.743,36.2C16.619,33.81 16.463,31.451 16.463,29.063C16.463,21.815 16.897,14.6 17.208,7.369L28.1,7.369L28.1,2.341L17.208,2.341C17.208,-3.399 17.844,-9.266 18.495,-15.099L17.208,-15.564C11.683,-13.408 6.113,-11.328 0.356,-9.544C0.48,-5.587 0.853,-1.523 0.853,2.341L-7.775,2.341L-7.775,3.334C-7.651,4.699 -7.651,6.004 -7.775,7.369L0.853,7.369C0.931,11.249 0.729,15.02 0.62,18.866C0.356,24.081 0,29.341 0,34.492" style="fill:rgb(35,31,32);fill-rule:nonzero;"/></g>
-                    <g transform="matrix(1,0,0,1,667.85,189.265)"><path d="M0,-3.756C-0.249,-0.621 -0.249,2.56 -0.249,5.741C-0.249,10.691 -1.846,16.138 -9.357,16.138C-14.648,16.138 -16.153,12.257 -16.153,8.596C-16.153,5.461 -15.378,2.56 -12.181,0.496C-10.087,-0.807 -7.403,-1.272 -4.935,-2.111C-3.353,-2.577 -1.598,-3.182 0,-3.756M-10.848,-5.153C-16.279,-4.05 -20.949,-3.398 -26.022,-0.994C-30.694,1.179 -33.409,5.555 -33.409,9.899C-33.409,18.402 -25.898,22.871 -15.781,22.871C-9.357,22.871 -3.243,20.202 0,15.734C1.986,19.97 6.424,22.763 12.195,22.763C13.933,22.763 15.656,22.5 17.41,22.158C19.38,21.569 21.428,21.087 23.291,20.202L23.291,19.209C23.291,16.617 23.151,18.496 19.085,17.502C17.502,16.913 16.277,14.741 16.137,13.344C15.997,11.482 15.997,9.62 15.997,7.696C15.997,2.854 16.385,-1.894 16.385,-6.735C16.385,-8.907 16.277,-11.173 16.277,-13.345C15.997,-23.152 3.972,-26.627 -6.394,-26.627C-14.167,-26.627 -23.43,-24.253 -29.251,-20.017L-27.636,-14.059L-26.751,-14.059C-26.364,-14.432 -25.744,-14.85 -25.387,-15.254C-21.57,-17.923 -16.774,-19.707 -11.701,-19.707C-6.006,-19.707 -0.249,-16.231 -0.249,-11.515C-0.249,-9.994 -0.373,-8.721 -1.846,-7.728C-4.562,-6.348 -7.775,-5.772 -10.848,-5.153" style="fill:rgb(35,31,32);fill-rule:nonzero;"/></g>
-                    <g transform="matrix(1,0,0,1,703.9413,159.3168)"><path d="M0,28.52C-0.108,36.279 -0.108,43.99 -0.853,51.609C2.22,51.423 5.479,51.113 8.55,51.113C11.607,51.113 14.788,51.423 17.891,51.609C17.022,37.054 16.806,22.546 16.806,7.975C16.806,2.622 17.022,-2.825 17.022,-8.162C17.022,-11.763 17.272,-15.394 17.272,-18.962C17.272,-20.343 17.643,-21.724 17.643,-23.089C14.571,-22.717 11.359,-22.639 8.146,-22.639C5.059,-22.639 1.986,-22.717 -1.085,-23.089C-0.961,-21.414 -0.604,-19.738 -0.604,-18.047C-0.464,-14.229 -0.232,-10.458 -0.232,-6.596C-0.232,-1.241 0,4.204 0,9.62L0,28.52Z" style="fill:rgb(35,31,32);fill-rule:nonzero;"/></g>
-                    <g transform="matrix(1,0,0,1,850.9661,152.751)"><path d="M0,-21.954C-71.55,-58.544 -197.641,-82.844 -341.235,-82.844C-564.184,-82.844 -744.91,-24.298 -744.91,47.98C-744.91,52.34 -744.259,56.686 -742.97,60.89C-711.363,-3.055 -549.396,-57.395 -349.102,-66.395C-206.64,-72.789 -78.438,-54.696 0,-21.954" style="fill:rgb(35,31,32);fill-rule:nonzero;"/></g>
-                    <g transform="matrix(1,0,0,1,954.4951,277.7883)"><path d="M0,-143.78C-31.593,-79.803 -193.558,-25.417 -393.868,-16.431C-536.314,-10.039 -664.532,-28.1 -742.97,-60.904C-671.39,-24.314 -545.314,0 -401.704,0C-178.772,0 1.954,-58.576 1.954,-130.824C1.954,-135.152 1.303,-139.498 0,-143.78" style="fill:rgb(35,31,32);fill-rule:nonzero;"/></g>
-                  </g>
-                </g>
-              </svg>
-            </span>
-          </div>
-          <h1 class="intro-h1">헤어케어가 아니라, 헤어 더모<br><span>Dermo Haircare</span></h1>
-          <p class="intro-sub">35년 유럽 헤어 전문가가 만든 더모 헤어케어 브랜드의 한국 시장 진출 지원 전략</p>
+          <div class="intro-eye">INFIDERM × VALEN · D2C → 약국 → 올리브영 GROWTH</div>
+          <h1 class="intro-h1">화잘먹 크림은<br><span>화잘먹의 과학은 없었다</span></h1>
+          <p class="intro-sub">피부과 전문의의 클리닉에서 시작하는 더모 화잘먹 크림 — 인피덤 그로스 전략</p>
           <div class="intro-identity">
             <div class="intro-tagline">
-              <strong>Hair is Skin. 두피도 피부다.</strong>
-              <span>유럽 이론·연구 기반 더모 헤어케어 브랜드</span>
+              <strong>화장이 잘 먹는 피부는, 만들어진다.</strong>
+              <span>더모 화잘먹 크림 · 피부과 전문의 설계</span>
             </div>
             <div class="intro-kpi">
               <div class="intro-kpi-item">
-                <div class="intro-kpi-v">35<em>년</em></div>
-                <div class="intro-kpi-l">유럽 헤어 전문가<br>연구 기반</div>
+                <div class="intro-kpi-v">28<em>억</em></div>
+                <div class="intro-kpi-l">12개월 누적 매출 목표</div>
               </div>
               <div class="intro-kpi-item">
-                <div class="intro-kpi-v">2<em>Lines</em></div>
-                <div class="intro-kpi-l">Glossyfication<br>Hair Biotic</div>
+                <div class="intro-kpi-v">900<em>만/월</em></div>
+                <div class="intro-kpi-l">월 고정비 (VAT 별도)</div>
               </div>
               <div class="intro-kpi-item">
-                <div class="intro-kpi-v">56<em>억</em></div>
-                <div class="intro-kpi-l">3년차 매출<br>목표 시나리오</div>
+                <div class="intro-kpi-v">3<em>단계</em></div>
+                <div class="intro-kpi-l">D2C → 약국 → 올리브영</div>
               </div>
             </div>
           </div>
-          <p class="intro-desc">한국 뷰티의 흐름이 <strong>'감성'에서 '효능'으로</strong> 이동하는 지금, CHANTAL의 유럽 이론·연구 기반 더모 헤어케어로 재정의하여 이브레·피브·러티그루트 사이의 공백을 점유하는 진출 전략입니다.</p>
-          <div class="intro-meta">
-            <span>작성 <b>발렌 (valen)</b></span>
-            <span>대상 <b>CHANTAL</b></span>
-            <span>버전 <b>KR v1</b></span>
-          </div>
+          <p class="intro-desc">'화장이 잘 먹는다'는 표현은 넘쳐도, <strong>왜 잘 먹는지를 피부 과학으로 설계하는 더모 크림</strong>은 비어 있습니다. 클림의원 김현옥 원장의 전문성과 병원의 프리미엄 자산을 인피덤의 히어로 SKU로 번역해, 아무도 서 있지 않은 자리를 선점하는 전략입니다.</p>
         </section>
 
         <!-- 핵심 -->
         <section class="s reveal" id="sec-core" data-section="sec-core">
           <div class="s-meta">! · 이 제안의 핵심</div>
           <div class="s-head">
-            <h2>지금 그대로 들어가면 존재 이유가 없습니다</h2>
-            <p class="lead">이브레·라보아이치·룩티그루트·바이브림·모로칸오일·피브·킬라스티즈 사이에서 <strong>차지할 자리가 없습니다.</strong> 반대로 <span class="hl">'35년 유럽 헤어 전문가·이론을 바탕으로 연구해온 더모 헤어케어 브랜드'</span>로 재정의하면 이야기가 완전히 달라집니다.</p>
+            <h2>지금 인피덤이 '있는 그대로' 진입하면 또 하나의 더모 크림입니다</h2>
+            <p class="lead">지금 인피덤이 '있는 그대로' 더모 코스메틱 시장에 들어가면 리쥬란·CNP·에스트라·제나벨<br>사이에서 <strong>또 하나의 더모 크림</strong>일 뿐입니다. 반대로 <span class="hl">"화장이 잘 먹는 피부의 조건을, 전문의가<br>과학으로 설계한 더모 크림"</span>으로 재정의하면 경쟁의 축 자체가 바뀝니다.</p>
           </div>
           <div class="s-body">
             <div class="compare">
               <div class="cbox">
-                <div class="ct">현재 그대로 진출</div>
+                <div class="ct">있는 그대로 진입</div>
                 <ul>
-                  <li>또 하나의 헤어 브랜드</li>
-                  <li>가격 · 향 · 모델 경쟁</li>
-                  <li>차별적 이유 없음</li>
+                  <li>또 하나의 더모 크림</li>
+                  <li>성분 · 가격 경쟁</li>
+                  <li>히어로 SKU 불명확</li>
                 </ul>
               </div>
               <div class="carrow">→</div>
               <div class="cbox new">
-                <div class="ct">더모로 재정의</div>
+                <div class="ct">더모 화잘먹으로 재정의</div>
                 <ul>
-                  <li><b>연구</b> → 자체 R&D 기반</li>
-                  <li><b>이론</b> → 전문가 검증</li>
-                  <li><b>효능</b> → 연구 기반</li>
+                  <li><b>과학</b> — 화잘먹의 원리</li>
+                  <li><b>전문의</b> — 김현옥 원장</li>
+                  <li><b>히어로</b> — 퍼밍 크림</li>
                 </ul>
               </div>
             </div>
-            <div class="callout dark">
+            <div class="callout brand-msg">
               <div class="ico">브랜드 마스터 메시지</div>
-              <p class="bigmsg">"35년 유럽 헤어 전문가의 프로토콜"</p>
-              <p style="margin-top:8px">Supporting · "유럽 이론에서 검증된 헤어 과학" &nbsp;|&nbsp; Consumer · "좋은 향이 아니라, 좋은 머릿결과 건강한 두피를 만드는 브랜드"</p>
+              <p class="bigmsg">"화장이 잘 먹는 피부는, 만들어진다."</p>
+              <p>Supporting · "피부과 전문의가 설계한 더모 화잘먹 크림" &nbsp;|&nbsp; Consumer · "바르는 순간이 아니라, 화장하는 아침이 달라지는 크림"</p>
             </div>
             <div class="bar-conclusion">
-              <div class="bc-msg">'헤어케어'가 아닌 '더모 헤어케어' — 카테고리 자체를 선점합니다.</div>
+              <div class="bc-msg">인피덤을 '더모 화잘먹'으로 재정의하는 것 — 이 제안의 핵심입니다.</div>
+              <div class="bc-sub">카테고리를 재정의하면 경쟁 브랜드는 리쥬란·CNP가 아니라, 아무도 없는 자리가 됩니다.</div>
             </div>
           </div>
         </section>
 
         <!-- 01 -->
         <section class="s reveal" id="sec-01" data-section="sec-01">
-          <div class="s-meta">01 · 한국 시장에 대한 관점</div>
+          <div class="s-meta">01 · 시장 관점</div>
           <div class="s-head">
-            <h2>시장은 '감성'에서 '효능'으로 이동 중입니다</h2>
-            <p class="lead">지난 5년, 한국 뷰티 시장의 가장 큰 변화는 <strong>'감성 → 효능'으로의 이동</strong>입니다. 스킨케어에서 이미 된 변화가, 지금 헤어케어로 넘어오고 있습니다.</p>
+            <h2>두 가지 흐름이 동시에 인피덤에 유리하게 흐르고 있습니다</h2>
+            <p class="lead"><strong>올리브영이 직접 <span class="hl" contenteditable="true" spellcheck="false">'Advanced Dermo'</span> 카테고리를 육성</strong>하고, <br><strong>약국 채널을 통해 더모·이너뷰티 브랜드가 신뢰 자산으로 부상</strong>하고 있습니다.<br>두 흐름 모두 인피덤이 갈 방향을 먼저 열어두고 있습니다.</p>
           </div>
           <div class="s-body">
             <div class="compare">
               <div class="cbox">
-                <div class="ct">과거의 소비 기준</div>
+                <div class="ct">화잘먹의 현재</div>
                 <ul>
-                  <li>예쁜 패키지</li>
-                  <li>유명인 모델</li>
-                  <li>좋은 향</li>
-                  <li>감성</li>
+                  <li>표면 · 밀착 · 메이크업 픽서</li>
+                  <li>'느낌' 위주의 소구</li>
+                  <li>원리 설명 부재</li>
+                  <li>일회성 화제</li>
                 </ul>
               </div>
               <div class="carrow">→</div>
               <div class="cbox new">
-                <div class="ct">현재의 소비 기준</div>
+                <div class="ct">인피덤이 만들 화잘먹</div>
                 <ul>
-                  <li><b>더마 · 연구</b></li>
-                  <li><b>전문가 · 성분</b></li>
-                  <li><b>R&D · 임상사</b></li>
-                  <li><b>병원</b></li>
+                  <li><b>피부 조건 · 결 · 탄력</b></li>
+                  <li><b>전문의 · 임상 근거</b></li>
+                  <li><b>왜 잘 먹는가의 과학</b></li>
+                  <li><b>상시 루틴 · 재구매</b></li>
                 </ul>
               </div>
             </div>
-            <h4>이미 증명된 더모의 성장 — 다음은 헤어다</h4>
-            <p>리쥬란 · 아이스트라 · 이지듀 · 리쥬사 · 룩티지 · 스피큘 에센스 → 더마/연구/전문가 스토리를 가진 브랜드들이 시장에 올라섰습니다.</p>
             <div class="callout insight">
-              <div class="ico">라이즈보이스가 키우는 카테고리 = "Advanced Dermo"</div>
-              <p>이통1번지가 직접 더모 영역을 육성하면서 소비자의 기대와 신뢰가 더모로 집중되고 있습니다. 소비자는 이제 <strong>"이 제품은 누가 만들었는가"</strong>를 봅니다. 이 흐름은 반드시 헤어 시장으로 이동합니다.</p>
+              <div class="ico">올리브영이 키우는 카테고리 = 'Advanced Dermo'</div>
+              <p>유통 1번지가 직접 더모 영역을 육성하면서 소비자 동선과 신뢰가 더모로 집중됩니다.<br>소비자는 이제 <strong>"이 제품은 누가 만들었는가"</strong>를 봅니다.<br>운영 중인 클리닉과 실재하는 여성 전문의는 그 질문에 가장 강하게 답하는 자산입니다.</p>
             </div>
           </div>
         </section>
 
         <!-- 02 -->
         <section class="s reveal" id="sec-02" data-section="sec-02">
-          <div class="s-meta">02 · CHANTAL의 한국 포지셔닝</div>
+          <div class="s-meta">02 · 차별화</div>
           <div class="s-head">
-            <h2>한국 헤어 시장이 향·디자인·모델로 싸울 때, CHANTAL은 연구·이론·효능으로 맞섭니다</h2>
-            <p class="lead">현재 포지션을 <strong>기능적 원산지</strong>로 번역해 신뢰를 만듭니다.</p>
-          </div>
-          <div class="s-body">
-            <div class="compare">
-              <div class="cbox">
-                <div class="ct">현재 인식</div>
-                <ul>
-                  <li>클래식한 헤어 브랜드</li>
-                </ul>
-              </div>
-              <div class="carrow">→</div>
-              <div class="cbox new">
-                <div class="ct">한국화 재정의</div>
-                <ul>
-                  <li><b>35년 유럽 헤어 전문가가 만든<br>더모 헤어케어 브랜드</b></li>
-                </ul>
-              </div>
-            </div>
-            <div class="callout dark">
-              <div class="ico">핵심 메시지</div>
-              <p class="bigmsg" style="font-size:26px">Hair is Skin. 두피도 피부다.</p>
-            </div>
-            <p class="note">* '클래식한' 원산지보다 '유럽 이론·연구'라는 기능적 원산지로 번역해 신뢰를 만듭니다.</p>
-          </div>
-        </section>
-
-        <!-- 03 -->
-        <section class="s reveal" id="sec-03" data-section="sec-03">
-          <div class="s-meta">03 · 차별화 맵</div>
-          <div class="s-head">
-            <h2>차별화 — 아무도 점유하지 않은 자리</h2>
-            <p class="lead">효능 · 전문가 · 프리미엄 더모 헤어 — 경쟁사가 없는 <strong>공백(Whitespace)</strong>을 점유합니다.</p>
+            <h2>차별화 — 아무도 서 있지 않은 자리</h2>
+            <p class="lead">'화잘먹'을 말하는 브랜드는 표면·감성에 머물고, 더모를 말하는 브랜드는 성분·재생에 집중합니다.<br><strong>더모의 신뢰로 화잘먹을 설명하는 자리(Whitespace)</strong>는 비어 있습니다.</p>
           </div>
           <div class="s-body">
             <div class="pmap">
               <div class="axis-x"></div>
               <div class="axis-y"></div>
-              <div class="zone" style="right:32px;top:24px;width:300px;height:230px"></div>
-              <div class="lbl" style="top:6px;left:50%;transform:translateX(-50%)">프리미엄</div>
+              <div class="zone" style="right:16px;top:6px;width:160px;height:140px"></div>
+              <div class="lbl" style="top:6px;left:50%;transform:translateX(-50%)">프리미엄 · 전문의</div>
               <div class="lbl" style="bottom:6px;left:50%;transform:translateX(-50%)">대중</div>
-              <div class="lbl" style="left:10px;top:calc(50% - 32px);font-size:10px">향 · 감성 · 비주얼</div>
-              <div class="lbl" style="right:10px;top:calc(50% - 32px);font-size:10px">효능 · 전문가 · 연구</div>
-              <div class="lbl" style="right:44px;top:28px;color:var(--green);font-style:italic">공백 (Whitespace)</div>
-              <div class="dot" style="left:24%;top:76%">피브</div>
-              <div class="dot" style="left:32%;top:50%">이브레</div>
-              <div class="dot" style="left:28%;top:22%">모로칸오일</div>
-              <div class="dot" style="left:48%;top:16%">킬라스티즈</div>
-              <div class="dot" style="left:60%;top:68%">룩티그루트</div>
-              <div class="dot" style="left:64%;top:50%">라보아이치</div>
-              <div class="dot" style="left:70%;top:36%">바이브림</div>
-              <div class="dot hero" style="left:84%;top:22%">CHANTAL</div>
+              <div class="lbl" style="left:10px;top:calc(50% - 32px)">표면 · 감성 · 픽서</div>
+              <div class="lbl" style="right:10px;top:calc(50% - 32px)">더모 · 과학 · 피부 조건</div>
+              <div class="lbl" style="right:44px;top:28px;color:var(--green);font-style:italic;font-size:10px">공백 (Whitespace)</div>
+              <div class="dot" style="left:22%;top:80%">토니모리</div>
+              <div class="dot" style="left:33%;top:60%">라네즈</div>
+              <div class="dot" style="left:30%;top:30%">라운드랩</div>
+              <div class="dot" style="left:52%;top:74%">닥터지</div>
+              <div class="dot" style="left:58%;top:44%">에스트라</div>
+              <div class="dot" style="left:64%;top:34%">CNP</div>
+              <div class="dot" style="left:70%;top:24%">리쥬란</div>
+              <div class="dot hero" style="left:86%;top:18%">INFIDERM</div>
             </div>
             <div class="pull-quote">
-              <p>프리미엄 더모 헤어케어 — 경쟁사가 없는 자리를 선점합니다.</p>
+              <p>제약사가 '무엇이 들었는가'로 말할 때, 인피덤은 '누가 만들었고, 매일 아침 무엇이 달라지는가'로 말합니다.</p>
+              <p class="pq-sub">전문의의 얼굴과 일상의 직관적 효익이 결합되는 지점이 인피덤만의 자리입니다.</p>
             </div>
-            <div class="bar-conclusion">
-              <div class="bc-msg">효능·전문가·연구 기반의 프리미엄 포지션 — 지금 이 자리는 비어 있습니다.</div>
+            <p class="note">* 경쟁 포지션은 예시이며, 인피덤은 '더모 × 화잘먹 × 전문의 프리미엄' 교차점을 선점합니다.</p>
+          </div>
+        </section>
+
+        <!-- 03 -->
+        <section class="s reveal" id="sec-03" data-section="sec-03">
+          <div class="s-meta">03 · 히어로 SKU 전략</div>
+          <div class="s-head">
+            <h2>히어로 SKU 전략 — 상시로 쌓고, 시즌에 친다</h2>
+            <p class="lead">전 라인을 동시에 밀면 메시지가 흐려집니다.<br><strong>퍼밍 크림을 단 하나의 히어로로 확정</strong>해 상시 매출의 베이스를 쌓고,<br><strong>선크림으로 시즌 매출을 스파이크</strong>로 끌어올립니다.</p>
+          </div>
+          <div class="s-body">
+            <div class="dframe two">
+              <div class="dcol l1">
+                <div class="dt">상시 엔진 · 퍼밍 크림<span>히어로 SKU · 화잘먹의 과학</span></div>
+                <ul>
+                  <li>탄력·결 정돈 = 화잘먹의 조건</li>
+                  <li>루틴·재구매로 매출 베이스 형성</li>
+                  <li>전문의 키메시지의 중심축</li>
+                </ul>
+              </div>
+              <div class="dcol l2">
+                <div class="dt">시즌 엔진 · 선크림<span>스파이크 · 시즌 매출 견인</span></div>
+                <ul>
+                  <li>봄·여름 시즌 수요 집중</li>
+                  <li>신규 획득·바이럴 트래픽 유입</li>
+                  <li>크림 라인으로 크로스셀 연결</li>
+                </ul>
+              </div>
+            </div>
+            <div class="callout dark">
+              <div class="ico">운영 리듬</div>
+              <p>퍼밍 크림으로 <strong>연중 상시 부스팅(베이스 매출)</strong>을 유지하고, 선크림으로 <strong>시즌 스파이크(피크 매출)</strong>를 만든 뒤 그 트래픽을 다시 크림 루틴으로 전환합니다.</p>
             </div>
           </div>
         </section>
 
         <!-- 04 -->
         <section class="s reveal" id="sec-04" data-section="sec-04">
-          <div class="s-meta">04 · 포트폴리오 전략</div>
+          <div class="s-meta">04 · 브랜드 스토리라인</div>
           <div class="s-head">
-            <h2>포트폴리오 전략 — 하나의 브랜드, 두 가지 게임</h2>
-            <p class="lead">두 라인의 마케팅 문법이 완전히 다릅니다. 섞이면 둘 다 흐려집니다. <strong>1번으로 모이고, 2번으로 남깁니다.</strong></p>
+            <h2>하나로 연결되는 브랜드 스토리라인</h2>
+            <p class="lead">클림의원의 시술력 → 김현옥 원장의 셀프브랜딩 →인피덤 히어로 SKU 키메시지 → 유통 전략이<br><strong>같은 한 문장</strong>으로 일관되게 이어지는 것이 이 브랜드의 핵심 경쟁력입니다.</p>
           </div>
           <div class="s-body">
-            <div class="dframe two">
-              <div class="dcol l1">
-                <div class="dt">Line 1 · Glossyfication<span>획득 (Acquisition) 엔진</span></div>
-                <ul>
-                  <li>감각 · 향 · 즉각적 즐거움</li>
-                  <li>낮은 진입장벽 · 바이럴 · 선물</li>
-                  <li>신규 고객과 트래픽을 모은다</li>
-                </ul>
+            <div class="flow">
+              <div class="fstep s1">
+                <div class="fn">1</div>
+                <b>클림의원 시술</b>
+                <p>탄력·리프팅·결 개선 시술 노하우 = 효능의 임상적 근거</p>
               </div>
-              <div class="dcol l2">
-                <div class="dt">Line 2 · Hair Biotic<span>LTV · 브랜드 자산 엔진</span></div>
-                <ul>
-                  <li>효능 · 연구 · 두피 더모</li>
-                  <li>루틴 · 구독 · 높은 재구매</li>
-                  <li>신뢰와 이익으로 남긴다</li>
-                </ul>
+              <div class="fstep s2">
+                <div class="fn">2</div>
+                <b>김현옥 원장 셀프브랜딩</b>
+                <p>비주얼 있는 여성 전문의 = 신뢰와 동경을 동시에</p>
+              </div>
+              <div class="fstep s3">
+                <div class="fn">3</div>
+                <b>히어로 SKU 키메시지</b>
+                <p>퍼밍 크림 = "화장이 잘 먹는 피부를 만든다"</p>
+              </div>
+              <div class="fstep s4">
+                <div class="fn">4</div>
+                <b>유통 전략</b>
+                <p>고급 클리닉·피부과 → 올리브영 → 약국으로 신뢰 확장</p>
               </div>
             </div>
-            <div class="callout dark">
-              <div class="ico">크로스의 구조</div>
-              <p>Line 1의 트래픽을 Line 2의 루틴·구독으로 전환합니다. Line 1은 인지·획득을 깔기 위한 전략, Line 2는 LTV·이익을 깊이입니다.</p>
+            <div class="callout check">
+              <div class="ico"><span class="badge check">전제</span> 일관성이 자산이다</div>
+              <p>시술·원장·제품·채널의 메시지가 어긋나면 프리미엄이 무너집니다.<br>모든 콘텐츠와 채널이 <strong>'전문의가 만든 화잘먹의 과학'</strong>이라는 단일 키메시지에 수렴하도록 설계합니다.</p>
             </div>
           </div>
         </section>
 
         <!-- 05 -->
         <section class="s reveal" id="sec-05" data-section="sec-05">
-          <div class="s-meta">05 · Line 1 · Glossyfication</div>
+          <div class="s-meta">05 · 경쟁 차별화</div>
           <div class="s-head">
-            <h2>Line 1 · Glossyfication</h2>
-            <p class="lead">유럽화 '피브 + 이브레' → 단, 향이 아니라 라미네이션</p>
+            <h2>더모 경쟁군 대비 차별화 포인트</h2>
+            <p class="lead">리쥬란 코스메틱·동국제약·대웅제약(EGFX)·CNP·제나벨은 <br><strong>제약·바이오의 '성분·재생' 서사</strong>로 시장을 만들었습니다. 인피덤은 같은 축에서 싸우지 않습니다.</p>
           </div>
           <div class="s-body">
-            <div class="agenda a2">
-              <div class="ah"><span class="anum">①</span>
-                <h3>유럽화 '피브 + 이브레' → 단, 향이 아니라 라미네이션</h3>
+            <div class="compare">
+              <div class="cbox">
+                <div class="ct">제약계 더모</div>
+                <ul>
+                  <li>성분 · 재생 · PDRN/EGF</li>
+                  <li>대형 제약·바이오 자산</li>
+                  <li>'기능' 중심 서사</li>
+                </ul>
               </div>
-              <h4>Consumer Pain Point</h4>
-              <p>20~39세 여성 · 일상 · 환절기 · 고반기 · 이상에 → <strong>"머릿결을 원하는데, 관리할 시간이 없다."</strong></p>
-              <h4>Positioning — Hair Lamination</h4>
-              <p>향도, 단순 영양도 아닌 <strong>"헤어 라미네이션"</strong> 개념. 브랜드가 Glossyfication을 라미네이션으로 설명하고 있으며, 이론 연구의 결과로 가져오는 프레임 입니다.</p>
-              <div class="callout">
-                <div class="ico">메시지</div>
-                <p class="bigmsg">"헤어에 바르는 글로스 스페어"</p>
-                <p style="margin-top:6px">Sub · "한 번의 사용으로 완성되는 정리와 머릿결"</p>
+              <div class="carrow">→</div>
+              <div class="cbox new">
+                <div class="ct">전문의계 더모 (인피덤)</div>
+                <ul>
+                  <li><b>실재하는 여성 전문의</b></li>
+                  <li><b>운영 중인 클리닉</b></li>
+                  <li><b>'매일의 화잘먹' 결과</b></li>
+                </ul>
               </div>
-              <h4>Hero SKU</h4>
-              <ul class="clean">
-                <li><b>① Laminating Mask</b></li>
-                <li><b>② Split-End Sealing Serum</b></li>
-              </ul>
-              <h4>콘텐츠 전략 — '보이는 결과'로 증명하는 4단계</h4>
-              <div class="flow">
-                <div class="fstep s1">
-                  <div class="fn">1</div><b>Before / After</b>
-                  <p>촉모→중기모, 직관적 비주얼 임팩</p>
-                </div>
-                <div class="fstep s2">
-                  <div class="fn">2</div><b>Hair Glass Test</b>
-                  <p>빛 반사 실험으로 '정리의 중기' 증명</p>
-                </div>
-                <div class="fstep s3">
-                  <div class="fn">3</div><b>이론 전문가 리뷰</b>
-                  <p>화장 전문가이든의 검증 = 신뢰 레이어</p>
-                </div>
-                <div class="fstep s4">
-                  <div class="fn">4</div><b>피브 비교 콘텐츠</b>
-                  <p>"유럽 이론의 라미네이션에 한눈에"</p>
-                </div>
-              </div>
-              <p class="note">Target · 이커머스 하이리먼트 · 세리보이스 하이라인 · 충동/선물/바이럴</p>
+            </div>
+            <div class="callout insight">
+              <div class="ico">차별화 한 줄</div>
+              <p>제약사가 <strong>'무엇이 들었는가'</strong>로 말할 때,<br>인피덤은 <strong>'누가 만들었고, 매일 아침 무엇이 달라지는가'</strong>로 말합니다.<br>전문의의 얼굴과 일상의 직관적 효익이 결합되는 지점이 인피덤만의 자리입니다.</p>
             </div>
           </div>
         </section>
 
         <!-- 06 -->
         <section class="s reveal" id="sec-06" data-section="sec-06">
-          <div class="s-meta">06 · Line 2 · Hair Biotic</div>
+          <div class="s-meta">06 · Go-To-Market</div>
           <div class="s-head">
-            <h2>Line 2 · Hair Biotic</h2>
-            <p class="lead">더 큰 기회 → 탈모가 아닌 "여성 두피 안티에이징"</p>
+            <h2>Go-To-Market — 신뢰를 쌓는 채널 시퀀싱</h2>
+            <p class="lead">클리닉·피부과를 <strong>신뢰의 기원(시딩)</strong>으로 두고,<br>D2C → 약국 → 올리브영·쿠팡 순으로 데이터와 신뢰를 단계적으로 축적합니다.</p>
           </div>
           <div class="s-body">
-            <div class="agenda a3">
-              <div class="ah"><span class="anum">②</span>
-                <h3>더 큰 기회 → 탈모가 아닌 '여성 두피 안티에이징'</h3>
+            <div class="flow">
+              <div class="fstep s1">
+                <div class="fn">1</div>
+                <b>1단계 · 증명 (1~3개월)</b>
+                <p>D2C(자사몰) 중심. 클리닉·전문의 콘텐츠와 리뷰·임상 자산 구축. 퍼밍 크림 히어로 트랙션 확보.</p>
               </div>
-              <h4>성공 브랜드의 공통점</h4>
-              <p>리퍼 · 바이브림 · 라보아이치 · 릴리에브 → 모두 '탈모'를 하지 않고 <strong>'두피 건강'</strong>에 합니다.</p>
-              <ul class="clean">
-                <li><b>포지션의 전환</b> → 탈모 처치 → 두피 마이크로바이옴 케어 → <b>두피 안티에이징</b></li>
-                <li><b>핵심 솔루션</b> → Procapil · Tricorexina 기반 두피 강화</li>
-              </ul>
-              <div class="callout">
-                <div class="ico">메시지</div>
-                <p class="bigmsg">"얼굴에 안티에이징 하면서 왜 두피는 관리하지 않나요?"</p>
-                <p style="margin-top:6px">Sub · "두피 노이즈부터 이루어지는 루틴"</p>
+              <div class="fstep s2">
+                <div class="fn">2</div>
+                <b>2단계 · 신뢰 확장 (4~6개월)</b>
+                <p>D2C + 약국. 더모 신뢰 채널 진입으로 '전문의·임상' 포지션 강화.</p>
               </div>
-              <h4>Hero SKU — 벗겨고(Peel), 채워든다(Lotion)</h4>
-              <ul class="clean">
-                <li><b>① Hair Biotic Scalp Peel</b> — 벗겨기 · 각질·노폐물 정리</li>
-                <li><b>② Hair Biotic Scalp Lotion</b> — 채우기 · 두피 강화·지속</li>
-              </ul>
-              <h4>Target</h4>
-              <p>25~45세 여성 · 출산 후 탈모 · 스트레스성 탈모 · 가르마 고민 · 정수리 볼륨</p>
-              <div class="callout check">
-                <div class="ico"><span class="badge check">체크포인트</span> 법적 검토 필요</div>
-                <p>탈모·두피 안티에이징·성분(Procapil/Tricorexina) <strong>효능 표현</strong>은 화장품/의약외품 광고 사전경고를 좌우합니다. → 제품 출시 전 <strong>RA(규제) 검토</strong>가 선제되어야 합니다.</p>
+              <div class="fstep s3">
+                <div class="fn">3</div>
+                <b>3단계 · 확산 (7~12개월)</b>
+                <p>+ 올리브영(Advanced Dermo) + 쿠팡. 대중 확산과 매출 스케일, 선크림 시즌 스파이크 결합.</p>
               </div>
+            </div>
+            <div class="bar-conclusion">
+              <div class="bc-msg">신뢰의 기원에서 대중으로 — 채널이 브랜드의 신뢰를 증명합니다.</div>
+              <div class="bc-sub">클리닉·피부과 → D2C → 약국 → 올리브영·쿠팡. 채널 확장이 곧 포지셔닝의 확장입니다.</div>
             </div>
           </div>
         </section>
 
         <!-- 07 -->
         <section class="s reveal" id="sec-07" data-section="sec-07">
-          <div class="s-meta">07 · Go-To-Market</div>
+          <div class="s-meta">07 · 발렌 실무 범위</div>
           <div class="s-head">
-            <h2>Go-To-Market — 신뢰를 쌓는 채널 시퀀스</h2>
-            <p class="lead">D2C → 세리보이스 → 쿠팡 / 이론 순으로, 데이터와 신뢰를 단계적으로 축적합니다.</p>
+            <h2>발렌 실행 업무 범위</h2>
+            <p class="lead">자사몰과 올리브영을 핵심 매출 채널로 삼아,<br>퍼포먼스·CRM·콘텐츠·바이럴을 묶은 <strong>풀퍼널 세일즈 부스트</strong>를 운영합니다.</p>
           </div>
           <div class="s-body">
-            <div class="flow">
-              <div class="fstep s1">
-                <div class="fn">1</div><b>1단계 · 증명(Proof)</b>
-                <p>의사몰·네이버·쿠팡·세리보이스 온라인. 리뷰·콘텐츠·영상 성과 추적. Line 1 하이라인 론칭, Line 2 신뢰 앵커.</p>
+            <div class="dframe two">
+              <div class="dcol l1">
+                <div class="dt">자사몰 (D2C)<span>신규 획득 · 첫구매 · 재구매</span></div>
+                <ul>
+                  <li>퍼포먼스 미디어 운영 (SA·DA), ROAS·CPA KPI</li>
+                  <li>가입 후 첫구매 CRM 오토메이션, 전환율 상향</li>
+                  <li>패키지·업셀로 AOV 상향, 랜딩·UI/UX 고도화</li>
+                </ul>
               </div>
-              <div class="fstep s2">
-                <div class="fn">2</div><b>2단계 · 확산(Scale)</b>
-                <p>세리보이스 오프라인 롤인 = 변곡점. Line 2를 Advanced Dermo존 입점. 쿠팡·리마트 클리닉 테스트.</p>
+              <div class="dcol l2">
+                <div class="dt">올리브영<span>구좌·프로모션 · 랭킹</span></div>
+                <ul>
+                  <li>오늘의특가·올영세일·올영라이브 스킴 설계</li>
+                  <li>구좌별 혜택 기획으로 CVR·AOV 개선</li>
+                  <li>썸네일·랜딩 고도화, 인앱·CRM 부스트</li>
+                </ul>
               </div>
-              <div class="fstep s3">
-                <div class="fn">3</div><b>3단계 · 신뢰채널+B2B</b>
-                <p>쿠팡·병원의 정적 입지. 이론이 매출이 아닌 '신뢰·시딩' 거점. 일본·스뎁 등 차기 시장 발판.</p>
+            </div>
+            <div class="dframe two">
+              <div class="dcol l1">
+                <div class="dt">광고 · 퍼포먼스<span>전략 · 소재 · 성과분석</span></div>
+                <ul>
+                  <li>디지털·옥외 광고 전략 수립, 미디어믹스</li>
+                  <li>히어로 SKU 키메시지·타깃 발굴</li>
+                  <li>소재 기획–집행–성과분석 최적화 (주 10~15개 신규소재 테스트)</li>
+                </ul>
               </div>
+              <div class="dcol l2">
+                <div class="dt">인플루언서 · 바이럴<span>브랜드 쿼리 · 랭킹</span></div>
+                <ul>
+                  <li>카페·블로그·인스타·유튜브 바이럴 플래닝</li>
+                  <li>네이버 쇼핑 상위노출, 브랜드 쿼리 부스팅</li>
+                  <li>메가~마이크로 인플루언서 캐스팅·PPL, 2차 활용</li>
+                </ul>
+              </div>
+            </div>
+            <div class="callout check">
+              <div class="ico"><span class="badge check">월 산출물 기준</span></div>
+              <p>상세페이지 <strong>월 1 SKU 기획–제작</strong>,<br>메인 프로모션 <strong>월 1개 컨셉 기획–제작</strong>,<br>데일리 운영 코멘트(오전)·월간 성과 리포트 1회·월 1회 오프라인 회고 미팅을 기본으로 제공합니다.</p>
             </div>
           </div>
         </section>
@@ -2281,189 +2385,211 @@
           <div class="s-meta">08 · 매출 성장 목표</div>
           <div class="s-head">
             <h2>매출 성장 목표</h2>
-            <p class="lead">광고비 효율(ROAS)을 개선하며 3년간 <strong>10억 → 28억 → 56억</strong>으로 성장하는 목표 시나리오입니다.</p>
+            <p class="lead">광고 효율(ROAS)을 개선하며 12개월 동안 <strong>2억 → 6억 → 20억</strong>으로 성장하는<br>단계별 목표 시나리오입니다.(각 단계 누적 매출 기준)</p>
           </div>
           <div class="s-body">
+            <div class="stat-row">
+              <div class="stat-item">
+                <div class="stat-v">28<em style="color:var(--blue-core)">억</em></div>
+                <div class="stat-l">12개월 누적 매출 목표 (2+6+20)</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-v"><em style="color:var(--green)">0.8x→</em>2.2<em style="color:var(--blue-core)">x</em></div>
+                <div class="stat-l">ROAS (매출÷광고비) 개선 목표</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-v"><em style="color:var(--green)">125%→</em>45<em style="color:var(--blue-core)">%</em></div>
+                <div class="stat-l">매출 대비 광고비 비중 감소</div>
+              </div>
+            </div>
             <div class="chartcard">
               <div class="legend"><span><i class="sales"></i>매출</span><span><i class="ad"></i>광고비</span></div>
               <div class="barchart">
                 <div class="chart-grid">
                   <div class="gl" style="bottom:25px"></div>
+                  <div class="gl" style="bottom:50px"></div>
                   <div class="gl" style="bottom:75px"></div>
+                  <div class="gl" style="bottom:100px"></div>
                   <div class="gl" style="bottom:125px"></div>
+                  <div class="gl" style="bottom:150px"></div>
                   <div class="gl" style="bottom:175px"></div>
+                  <div class="gl" style="bottom:200px"></div>
                   <div class="gl" style="bottom:225px"></div>
                 </div>
                 <div class="bargroup">
                   <div class="bset">
-                    <div class="bar sales" style="height:45px"><span class="bv">10억</span></div>
-                    <div class="bar ad" style="height:22px"><span class="bv ad">5억</span></div>
+                    <div class="bar sales" style="height:20px"><span class="bv">2억</span></div>
+                    <div class="bar ad" style="height:25px"><span class="bv ad">2.5억</span></div>
                   </div>
                 </div>
                 <div class="bargroup">
                   <div class="bset">
-                    <div class="bar sales" style="height:125px"><span class="bv">28억</span></div>
-                    <div class="bar ad" style="height:54px"><span class="bv ad">12억</span></div>
+                    <div class="bar sales" style="height:60px"><span class="bv">6억</span></div>
+                    <div class="bar ad" style="height:30px"><span class="bv ad">3억</span></div>
                   </div>
                 </div>
                 <div class="bargroup">
                   <div class="bset">
-                    <div class="bar sales" style="height:250px"><span class="bv">56억</span></div>
-                    <div class="bar ad" style="height:89px"><span class="bv ad">20억</span></div>
+                    <div class="bar sales" style="height:200px"><span class="bv">20억</span></div>
+                    <div class="bar ad" style="height:90px"><span class="bv ad">8~10억</span></div>
                   </div>
                 </div>
               </div>
               <div class="barlabels">
-                <div class="byear">1년차</div>
-                <div class="byear">2년차</div>
-                <div class="byear">3년차</div>
+                <div class="byear">1단계 (1~3개월)</div>
+                <div class="byear">2단계 (4~6개월)</div>
+                <div class="byear">3단계 (7~12개월)</div>
               </div>
             </div>
             <div class="metrics">
               <div class="metric">
-                <div class="mv">+180% → +100%</div>
-                <div class="ml">연간 매출 성장률 (1→2년차, 2→3년차)</div>
+                <div class="mv">28억</div>
+                <div class="ml">12개월 누적 매출 목표 (2+6+20)</div>
               </div>
               <div class="metric">
-                <div class="mv">2.0x → 2.8x</div>
-                <div class="ml">ROAS (매출 ÷ 광고비) 개선</div>
+                <div class="mv">0.8x → 2.2x</div>
+                <div class="ml">ROAS (매출÷광고비) 개선</div>
               </div>
               <div class="metric">
-                <div class="mv">50% → 36%</div>
+                <div class="mv">125% → 45%</div>
                 <div class="ml">매출 대비 광고비 비중 감소</div>
               </div>
             </div>
             <div class="tbl-wrap">
-              <table class="tbl">
+            <table class="tbl">
+              <thead>
                 <tr>
-                  <th>구분</th><th>1년차</th><th>2년차</th><th>3년차</th>
+                  <th>구분</th>
+                  <th>1단계 (1~3개월)</th>
+                  <th>2단계 (4~6개월)</th>
+                  <th>3단계 (7~12개월)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>채널</td>
+                  <td>D2C</td>
+                  <td>D2C + 약국</td>
+                  <td class="hi">D2C + 약국 + 올리브영 + 쿠팡</td>
                 </tr>
                 <tr>
-                  <td>매출</td>
-                  <td class="num">10억</td>
-                  <td class="num">28억</td>
-                  <td class="num hi">56억</td>
+                  <td>매출 (단계 누적)</td>
+                  <td class="num">2억</td>
+                  <td class="num">6억</td>
+                  <td class="num hi">20억</td>
                 </tr>
                 <tr>
                   <td>광고비</td>
-                  <td class="num">5억</td>
-                  <td class="num">12억</td>
-                  <td class="num">20억</td>
-                </tr>
-                <tr>
-                  <td>매출 성장률</td>
-                  <td>—</td>
-                  <td class="hi">+180%</td>
-                  <td class="hi">+100%</td>
+                  <td class="num">2.5억</td>
+                  <td class="num">3억</td>
+                  <td class="num">8~10억</td>
                 </tr>
                 <tr>
                   <td>ROAS (매출/광고비)</td>
+                  <td>0.8x</td>
                   <td>2.0x</td>
-                  <td>2.3x</td>
-                  <td>2.8x</td>
+                  <td>약 2.2x</td>
                 </tr>
                 <tr>
                   <td>광고비 비중</td>
+                  <td>125%</td>
                   <td>50%</td>
-                  <td>43%</td>
-                  <td>36%</td>
+                  <td>45~50%</td>
                 </tr>
-              </table>
+                <tr>
+                  <td>단계 목표</td>
+                  <td>인프라·자산 구축</td>
+                  <td>신뢰 채널 확장</td>
+                  <td class="hi">대중 확산·스케일</td>
+                </tr>
+              </tbody>
+            </table>
             </div>
             <div class="callout check">
               <div class="ico"><span class="badge check">비용 별도</span> 본 매출·광고비 목표에 미포함</div>
-              <p><strong>브랜드 전략 진단 · 하우스타일 마케팅 업무 용역 · 의사몰 구축 · 촬영 · 물류/이상 · 법통 자문료</strong> 비용은 매출·광고비 목표에 <strong>별도</strong>입니다.</p>
+              <p><strong>공식몰 웹사이트 개발(퍼블리싱) · 콘텐츠 촬영 · 리브랜딩/리패키징 · 유통 수수료</strong><br>등은 상기 매출·광고비 및 기본 요금과 <strong>별도 실비</strong>로 청구됩니다.</p>
             </div>
-            <p class="note">* 목표 시나리오로, 실제 수치는 마케팅 투자·채널 성과 수치에 좌우됩니다. 절대 규모보다 단위경제(CAC·재구매율·구독이후)가 이익을 결정하므로 실행 전 P&L 사후성 검증을 권장합니다.</p>
+            <p class="note">* 목표 시나리오로, 실제 수치는 광고비 투입·채널 입점 성패에 좌우됩니다. 1단계는 인프라 구축 구간으로 광고비가 매출을 상회하며, 단위경제(CAC·재구매율)가 손익을 결정하므로 실행 전 P&amp;L 정합성 검증을 권장합니다.</p>
           </div>
         </section>
 
         <!-- 09 -->
         <section class="s reveal" id="sec-09" data-section="sec-09">
-          <div class="s-meta">09 · KPI &amp; 리스크</div>
+          <div class="s-meta">09 · 발렌 그로스 레퍼런스</div>
           <div class="s-head">
-            <h2>KPI &amp; 리스크</h2>
-            <p class="lead">라인별 핵심 지표와 진출 전 반드시 검토해야 할 <strong>핵심 리스크</strong>입니다.</p>
+            <h2>발렌 그로스 레퍼런스</h2>
+            <p class="lead">뷰티·더모·이너뷰티·병의원 영역에서 <strong>0→스케일</strong>을 만든 실적입니다.</p>
           </div>
           <div class="s-body">
-            <div class="dframe two">
-              <div class="dcol l1">
-                <div class="dt">Line 1 KPI · 획득<span>Glossyfication</span></div>
-                <ul>
-                  <li>신규 획득수 · 바이럴 계수</li>
-                  <li>세리보이스 랭킹</li>
-                  <li>객단가</li>
-                </ul>
+            <div class="cardgrid c3">
+              <div class="ucard reveal">
+                <div class="ucard-img"></div>
+                <b>리터니티 · 코스메틱</b>
+                <p>공식몰 매출 0원 → 26.8억 (8개월),<br>25년 3월 올영세일 역대 최대 매출,<br>홈쇼핑 13억 달성</p>
               </div>
-              <div class="dcol l2">
-                <div class="dt">Line 2 KPI · LTV<span>Hair Biotic</span></div>
-                <ul>
-                  <li>재구매율 · 구독이후</li>
-                  <li>리뷰 내 효능 언급률</li>
-                  <li>LTV</li>
-                </ul>
+              <div class="ucard reveal" style="transition-delay:.08s">
+                <div class="ucard-img"></div>
+                <b>테라로직 · 코스메틱</b>
+                <p>올리브영 뷰티 랭킹 1위,<br>입점 6개월 만에 오프라인 30개 지점 입성,<br>올영라이브 더모코스메틱 1위</p>
+              </div>
+              <div class="ucard reveal" style="transition-delay:.16s">
+                <div class="ucard-img"></div>
+                <b>레놉티 · 프리미엄 콜라겐</b>
+                <p>3개월 협업으로 매출 전 기간 대비 400%,<br>단일 브랜드 월매출 2천 → 5억</p>
+              </div>
+              <div class="ucard reveal" style="transition-delay:.08s">
+                <div class="ucard-img"></div>
+                <b>체크오 · 건강기능식품</b>
+                <p>6개월 협업 후 월매출 3천 → 6억</p>
+              </div>
+              <div class="ucard reveal" style="transition-delay:.16s">
+                <div class="ucard-img"></div>
+                <b>메노킨 · 버블 마스크팩</b>
+                <p>온라인 매출 15배 상승,<br>역대급 실적 달성</p>
+              </div>
+              <div class="ucard reveal" style="transition-delay:.24s">
+                <div class="ucard-img"></div>
+                <b>강남권 메이저 피부과·성형외과 · 병의원</b>
+                <p>CPA를 전년 대비 1/3 수준으로 감축,<br>역대 최대 매출 경신</p>
               </div>
             </div>
-            <h4>핵심 리스크 &amp; 대응</h4>
-            <ul class="clean">
-              <li><b>원산지 인지 부재</b> → '클래식한'이 아닌 '유럽 이론·연구' 원산지로 번역.</li>
-              <li><b>효능 광고 규제</b> → 탈모·두피 표현의 화장품/의약외품 광고 사전경고 사전 확인(RA).</li>
-              <li><b>경쟁 과잉</b> → 이브레·피브·두피 화환과 '전문가·연구 신뢰'로 차별.</li>
-            </ul>
+            <p class="note">* 휩드(큐텐 뷰티 종합 랭킹 1위)·셀리맥스(일본 큐텐 메가와리 2주 11억)·럭스나인(온라인 2.5배) 등 추가 레퍼런스 보유.</p>
           </div>
         </section>
 
         <!-- 10 -->
         <section class="s reveal" id="sec-10" data-section="sec-10">
-          <div class="s-meta">10 · 발렌 프로젝트 팀</div>
+          <div class="s-meta">10 · 전담 인력 구성</div>
           <div class="s-head">
-            <h2>발렌 프로젝트 팀 구성</h2>
-            <p class="lead">발착 단계 <strong>코어 4~6명</strong>으로 시작하고, 스케일 단계에서 채널·콘텐츠 인력을 증원합니다.</p>
+            <h2>전담 인력 구성</h2>
+            <p class="lead">브랜드·그로스 총괄을 중심으로 <strong>전담 코어 팀</strong>이 인피덤 프로젝트를 운영합니다.</p>
           </div>
           <div class="s-body">
-            <div class="s-img-area">
-              <div class="s-img-placeholder">이미지 영역 · 발렌 팀</div>
-            </div>
             <div class="cardgrid">
               <div class="ucard reveal">
-                <div class="uh"><span class="un">AD</span><span class="ut">코어</span></div>
-                <b>프로젝트 이관</b>
-                <p>전략·일정·성과 이관, 클라이언트 단일 창구</p>
+                <div class="uh"><span class="un">PM</span><span class="ut">코어</span></div>
+                <b>브랜드·그로스 총괄</b>
+                <p>퍼포먼스·그로스 전략 관리, 전반 방향 총괄</p>
               </div>
               <div class="ucard reveal" style="transition-delay:.08s">
-                <div class="uh"><span class="un">ST</span><span class="ut">코어</span></div>
-                <b>브랜드 전략·기획</b>
-                <p>포지셔닝·메시지·하우스타일 설계, 카테고리 정의</p>
+                <div class="uh"><span class="un">AE</span><span class="ut">코어</span></div>
+                <b>담당 AE</b>
+                <p>광고주 소통 전담, 캠페인 성과 관리·운영 최적화</p>
               </div>
               <div class="ucard reveal" style="transition-delay:.16s">
-                <div class="uh"><span class="un">GR</span><span class="ut">코어</span></div>
-                <b>퍼포먼스·그로스</b>
-                <p>미디어 이상·CRM·피드 설계, 데이터 리포트</p>
+                <div class="uh"><span class="un">CR</span><span class="ut">코어</span></div>
+                <b>콘텐츠</b>
+                <p>미디어별 최적화 광고 크리에이티브 기획·제작·운영</p>
               </div>
               <div class="ucard reveal" style="transition-delay:.24s">
-                <div class="uh"><span class="un">CR</span><span class="ut">코어</span></div>
-                <b>콘텐츠·크리에이티브</b>
-                <p>비주얼·영상·상세페이지, 가이드라인 제작</p>
+                <div class="uh"><span class="un">IF</span><span class="ut">코어</span></div>
+                <b>인플루언서·바이럴·공구</b>
+                <p>핵심 타깃 인플루언서 전략, 카페·블로그 바이럴, 상위노출</p>
               </div>
               <div class="ucard reveal">
-                <div class="uh"><span class="un">MD</span><span class="ut ext">확장</span></div>
-                <b>채널·MD</b>
-                <p>세리보이스·쿠팡·이마트 심사, D2C 구축</p>
-              </div>
-              <div class="ucard reveal" style="transition-delay:.08s">
-                <div class="uh"><span class="un">PR</span><span class="ut ext">확장</span></div>
-                <b>PR·인플루언서</b>
-                <p>시딩·리뷰·전문가 콘텐츠 네트워크</p>
-              </div>
-              <div class="ucard reveal" style="transition-delay:.16s">
-                <div class="uh"><span class="un">RA</span><span class="ut ext">자문</span></div>
-                <b>RA · 규제 자문</b>
-                <p>화장품/의약외품 광고 사전·허위기재 (파트)</p>
-              </div>
-              <div class="ucard reveal" style="transition-delay:.24s">
-                <div class="uh"><span class="un">OP</span><span class="ut ext">이상</span></div>
-                <b>하우스타일·이상</b>
-                <p>번역·CS·물류 코디네이션</p>
+                <div class="uh"><span class="un">DS</span><span class="ut">코어</span></div>
+                <b>UI/UX·크리에이티브 디자인</b>
+                <p>웹사이트 UI/UX, 상세·기획전 페이지 등 브랜딩 에셋</p>
               </div>
             </div>
           </div>
@@ -2471,21 +2597,47 @@
 
         <!-- 11 -->
         <section class="s reveal" id="sec-11" data-section="sec-11">
-          <div class="s-meta">11 · 발렌 대행 범위</div>
+          <div class="s-meta">11 · 협업 조건</div>
           <div class="s-head">
-            <h2>발렌 대행 범위 (모듈화)</h2>
-            <p class="lead">전략부터 이상까지 풀패킹. 클라이언트가 필요한 모듈만 선택할 수 있도록 구성합니다.</p>
+            <h2>협업 조건 (VAT 미포함)</h2>
+            <p class="lead">월 고정비와 광고비 연동 변동비로 구성된 <strong>그로스 파트너십</strong> 모델입니다.</p>
           </div>
           <div class="s-body">
-            <div class="cardgrid">
-              <div class="ucard reveal"><b>시장 진단·전략</b><p>시장·경쟁 분석, 브랜드 하우스타일 전략, GTM 설계</p></div>
-              <div class="ucard reveal" style="transition-delay:.08s"><b>브랜드·하우스타일</b><p>메시지·나이밍·패키지/제품 하우스타일</p></div>
-              <div class="ucard reveal" style="transition-delay:.16s"><b>콘텐츠·크리에이티브</b><p>비주얼·영상·상세페이지·SNS 성과 제안</p></div>
-              <div class="ucard reveal" style="transition-delay:.24s"><b>퍼포먼스·미디어</b><p>광고 이상, 피드·CRM, 그로스 리포트</p></div>
-              <div class="ucard reveal"><b>인플루언서·PR</b><p>시딩, 전문가 리뷰, 미디어 PR</p></div>
-              <div class="ucard reveal" style="transition-delay:.08s"><b>채널 심사·MD</b><p>세리보이스·쿠팡·이론 심사, 의사몰 구축</p></div>
-              <div class="ucard reveal" style="transition-delay:.16s"><b>커머스 이상</b><p>주문·CS·패이먼트 코디네이션</p></div>
-              <div class="ucard reveal" style="transition-delay:.24s"><b>RA·규제 자문</b><p>광고 사전·허위기재 리스크 검토</p></div>
+            <div class="tbl-wrap">
+            <table class="tbl">
+              <thead>
+                <tr>
+                  <th>내역</th>
+                  <th>협업 조건</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>계약 기간</td>
+                  <td class="num">6개월 (단위)</td>
+                </tr>
+                <tr>
+                  <td>고정비 (월)</td>
+                  <td class="num">900만원</td>
+                </tr>
+                <tr>
+                  <td>변동비 (월)</td>
+                  <td class="num">광고비의 15%</td>
+                </tr>
+                <tr>
+                  <td>요금 합계</td>
+                  <td class="num hi">월 900만원 + 광고비의 15%</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout insight">
+              <div class="ico">요금 예시 — 단계별 월 환산</div>
+              <p>예) 3단계 월 광고비 1.5억 기준 → 고정비 900만원 + 변동비 2,250만원 = <strong>월 3,150만원</strong> (VAT 별도).<br>광고비 규모에 따라 변동비가 함께 움직입니다.</p>
+            </div>
+            <div class="callout check">
+              <div class="ico"><span class="badge check">별도 실비</span></div>
+              <p>공식몰 웹사이트 개발(퍼블리싱), 콘텐츠 촬영, 리브랜딩/리패키징 등 추가 과업은<br>협업 시 <strong>별도 실비</strong>로 청구됩니다.</p>
             </div>
           </div>
         </section>
@@ -2494,30 +2646,32 @@
         <section class="s s-closing reveal" id="sec-closing" data-section="sec-closing">
           <div class="s-meta">★ · 종합</div>
           <div class="s-head">
-            <h2>종합 — 어떻게 시작할 것인가</h2>
-            <p class="lead">단계적으로, 신뢰를 쌓으며 시작합니다.</p>
+            <h2>어떻게 시작할 것인가</h2>
+            <p class="lead">히어로 SKU·키메시지·채널 시퀀싱을 확정하고,<br>단계적으로 신뢰를 쌓으며 시장을 확장합니다.</p>
           </div>
           <div class="s-body">
             <div class="flow">
               <div class="fstep s1">
-                <div class="fn">0</div><b>Phase 0 · 진단·전략 합의</b>
-                <p>시장 진단, 포지셔닝·SKU·채널 전략 확정</p>
+                <div class="fn">0</div>
+                <b>Phase 0 · 전략 합의</b>
+                <p>히어로 SKU·키메시지·채널 시퀀싱 확정, 클레임·콘텐츠 가이드</p>
               </div>
               <div class="fstep s2">
-                <div class="fn">1</div><b>Phase 1 · 발착 (1년차)</b>
-                <p>D2C·세리보이스 온라인, 콘텐츠·리뷰 성과 구축</p>
+                <div class="fn">1</div>
+                <b>Phase 1 · 증명 (1~3개월)</b>
+                <p>D2C 인프라·콘텐츠·리뷰 자산 구축, 퍼밍 크림 히어로 트랙션</p>
               </div>
               <div class="fstep s3">
-                <div class="fn">2</div><b>Phase 2 · 스케일 (2~3년차)</b>
-                <p>오프라인·쿠팡·이론 확장, 글로벌 발판</p>
+                <div class="fn">2</div>
+                <b>Phase 2~3 · 확장·스케일 (4~12개월)</b>
+                <p>약국 → 올리브영·쿠팡 확산, 선크림 시즌 스파이크 결합</p>
               </div>
             </div>
             <div class="callout">
-              <div class="ico">다음 단계 &amp; 비용 안내</div>
-              <p><strong>먼저 Phase 0(진단·전략 합의)부터 함께 시작하시길 제안</strong>드립니다. 업무 범위 확정 후 별도 구체화하여 전달합니다.</p>
-              <p style="margin-top:8px">※ 브랜드 전략 진단 · 하우스타일 마케팅 업무 용역 · 의사몰 구축 · 촬영 · 물류/이상 · 법통 자문료 비용은 매출·광고비 목표에 <strong>별도</strong>입니다.</p>
+              <div class="ico">제안 요약</div>
+              <p><strong>퍼밍 크림을 단일 히어로로 확정</strong>하고, <strong>'전문의가 만든 화잘먹의 과학'</strong>이라는 단일 키메시지로 시술·원장·제품·채널을 일관되게 연결합니다. 발렌은 자사몰·올리브영을 핵심 채널로 한 풀퍼널 그로스를 <strong>월 900만원 + 광고비의 15%</strong>로 운영합니다.</p>
+              <p>※ 웹 개발·촬영·리브랜딩·유통 수수료는 매출·광고비 목표 및 기본 요금과 <strong>별도</strong>입니다.</p>
             </div>
-            <p class="note big">본 제안서는 <strong>한국어(KR v1)</strong> 버전입니다. 동일 구성으로 <strong>영어 · 폴란드어</strong> 버전은 추후 제작 가능합니다.</p>
           </div>
         </section>
 
@@ -2526,7 +2680,7 @@
 
     <footer>
       <span class="fb"><img src="assets/valen_logo.png" alt="valen"></span>
-      <span>CHANTAL 한국 시장 진출 제안 (KR v1) &nbsp;·&nbsp; Confidential</span>
+      <span>INFIDERM 그로스 제안 (KR v1) &nbsp;·&nbsp; Confidential</span>
     </footer>
 
   </div>
@@ -2570,7 +2724,8 @@
     }, { passive: true });
 
     /* ── EDIT MODE ── */
-    const STORAGE_KEY = 'chantal_edits_v1';
+    const _brand = document.title.split(/[\s—]/)[0].toLowerCase().replace(/[^a-z0-9가-힣]/g, '');
+    const STORAGE_KEY = (_brand || 'proposal') + '_edits_v1';
     const MODE_KEY = STORAGE_KEY + '_mode';
 
     const SKIP_TAGS = new Set(['SCRIPT','STYLE','SVG','PATH','INPUT','BUTTON','A','IMG','BR','HR','CANVAS']);
@@ -2621,7 +2776,7 @@
       tocLink.appendChild(document.createTextNode(label));
     }
 
-    /* ─ RESET / EXPORT ─ */
+    /* ─ RESET / DOWNLOAD ─ */
     function resetEdits() {
       if (!confirm('모든 수정 내용을 초기화하시겠습니까?')) return;
       [STORAGE_KEY, MODE_KEY].forEach(k => localStorage.removeItem(k));
@@ -2747,7 +2902,4 @@
     }
 
     document.addEventListener('DOMContentLoaded', initEditMode);
-  </script>
-</body>
-
-</html>
+  </script></body></html>

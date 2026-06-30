@@ -40,16 +40,19 @@
 
 ## Step 4 — 아카이브 저장
 
-`archive/{날짜}_{브랜드명}/` 폴더 생성 후 HTML 복사 저장.
+`archive/{날짜}_{브랜드명}/` 폴더 생성 후 HTML 복사 저장. 편집 후 저장되는 수정본을 위해 `수정본/` 서브폴더도 함께 생성한다.
 
 ```
 archive/
   20260616_CHANTAL/
     CHANTAL_proposal.html
+    수정본/               ← "HTML 저장" 시 저장 대상 폴더
   20260616_INFIDERM/
     INFIDERM_proposal.html
+    수정본/
   20260701_CHANTAL_v2/        ← 동일 브랜드 재작업 시 _v2 추가
     CHANTAL_proposal.html
+    수정본/
 ```
 
 날짜 형식: `YYYYMMDD`  
@@ -66,7 +69,7 @@ Claude Code: `EDIT_MODE = false → true` Edit → 브라우저 새로고침(Cmd
 
 ## Step 6 — 편집 완료 반영
 
-**방법 A** (사용자 직접): 브라우저 "HTML 저장" 버튼 클릭 → 자동 읽기 전용 전환 (Claude Code 불필요).
+**방법 A** (사용자 직접): 브라우저 "HTML 저장" 버튼 클릭 → OS 저장 다이얼로그 → `수정본/` 폴더로 이동 후 저장.
 
 **방법 B** (Claude Code): 사용자 "수정 완료" → `EDIT_MODE = true → false` Edit.
 
@@ -78,6 +81,7 @@ Claude Code: `EDIT_MODE = false → true` Edit → 브라우저 새로고침(Cmd
 |---|---|
 | 제안서 파일 (작업용) | `루트/{브랜드명}_proposal.html` |
 | 아카이브 폴더 | `archive/{YYYYMMDD}_{브랜드명}/` |
+| 수정본 저장 폴더 | `archive/{YYYYMMDD}_{브랜드명}/수정본/` |
 | 다수 버전 | `archive/{YYYYMMDD}_{브랜드명}_v{N}/` |
 
 ---

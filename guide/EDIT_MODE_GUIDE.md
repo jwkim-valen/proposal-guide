@@ -22,15 +22,22 @@
 EDIT_MODE = true 설정 → 브라우저 새로고침
   └─ initEditMode()
        ├─ localStorage '_mode' 키 삭제 (이전 lock 해제)
+       ├─ data-static 없으면 restoreEdits() 실행
        ├─ 상단 편집 바 표시
        └─ 모든 [data-ek] 요소 contenteditable 활성화
 
 브라우저에서 "HTML 저장" 클릭
-  └─ exportHTML()
+  └─ downloadHTML()
        ├─ saveEdits() — localStorage에 텍스트 저장
-       ├─ localStorage '_mode' = 'readonly' 기록
-       └─ location.reload() → EDIT_MODE=true 이지만 readonly lock → 읽기 전용 렌더링
+       ├─ _srcHTML 기반 DOMParser로 clean DOM 생성
+       ├─ clean DOM에 localStorage 편집 내용 적용
+       ├─ EDIT_MODE = false, #edit-bar 제거, data-ek 제거
+       ├─ data-static="1" 추가 (열었을 때 restoreEdits 재실행 방지)
+       └─ showSaveFilePicker() → OS 저장 다이얼로그 (미지원 시 blob download fallback)
 ```
+
+> `_srcHTML`: 스크립트 최상단에서 동적 상태(is-visible, active 등) 반영 전 캡처.  
+> `data-static`: 다운로드된 파일을 브라우저에서 열었을 때 restoreEdits()가 실행되어 내용이 덮어써지는 것을 방지.
 
 ---
 
@@ -57,9 +64,9 @@ const STORAGE_KEY = (_brand || 'proposal') + '_edits_v1';
 |---|---|
 | `assignKeys(root)` | DOM TreeWalker로 텍스트 노드를 가진 요소에 `data-ek` 키 순서 부여 |
 | `saveEdits()` | 모든 `[data-ek]` innerHTML → localStorage |
-| `restoreEdits()` | localStorage → DOM innerHTML 복원 (모드 무관, 항상 실행) |
+| `restoreEdits()` | localStorage → DOM innerHTML 복원 (`data-static` 없을 때만 실행) |
 | `syncMetaToToc(el)` | `.s-meta` blur 시 TOC 대응 링크 텍스트 동기화 |
-| `exportHTML()` | saveEdits → `_mode=readonly` → location.reload() |
+| `downloadHTML()` | clean DOM에 편집 적용 → OS 저장 다이얼로그로 파일 저장 |
 | `resetEdits()` | confirm 후 localStorage 완전 삭제 + reload |
 | `initEditMode()` | DOMContentLoaded 시 전체 초기화 |
 
