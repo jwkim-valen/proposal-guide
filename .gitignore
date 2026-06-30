@@ -1,3 +1,6 @@
 .DS_Store
 *.DS_Store
 **/.DS_Store
+
+# 수정본 폴더 — 개인 작업물, git 추적 제외
+**/수정본/
