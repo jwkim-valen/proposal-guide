@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제안서 시스템 사용 가이드 — valen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --green: #00E1DC;
+      --blue-core: #0A1450;
+      --blue-800: #14287D;
+      --blue-600: #235FE6;
+      --blue-500: #376EE6;
+      --blue-200: #A5BEF5;
+      --gray-900: #121212;
+      --gray-700: #2C2C2C;
+      --gray-500: #555555;
+      --gray-400: #777777;
+      --gray-300: #999999;
+      --gray-100: #BBBBBB;
+      --gray-50: #DDDDDD;
+      --white: #FFFFFF;
+      --bg: #FFFFFF;
+      --bg-soft: #F7F8FA;
+      --border: #EAECF2;
+
+      --font-en: "Inter", -apple-system, sans-serif;
+      --font-ko: "Noto Sans KR", "Inter", -apple-system, sans-serif;
+
+      --t1: 40px;
+      --t1-lh: 52px;
+      --t3: 24px;
+      --t3-lh: 32px;
+      --sub2: 18px;
+      --sub2-lh: 26px;
+      --body1: 16px;
+      --body1-lh: 24px;
+      --body2: 14px;
+      --body2-lh: 22px;
+      --cap: 13px;
+      --cap-lh: 20px;
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box }
+    html { scroll-behavior: smooth }
+    body {
+      font-family: var(--font-ko);
+      background: var(--bg);
+      color: var(--gray-700);
+      font-size: var(--body1);
+      line-height: var(--body1-lh);
+      font-weight: 500;
+      -webkit-font-smoothing: antialiased;
+      letter-spacing: -.02em;
+      word-break: keep-all;
+      overflow-wrap: break-word
+    }
+
+    h1, h2, h3, h4, h5, h6,
+    p, li, b, strong, span,
+    .s-head .lead,
+    .cover-h1, .cover-sub, .cover-desc,
+    .intro-h1,
+    .callout p, .callout .ico,
+    .pull-quote p, .pull-quote .pq-sub,
+    .ucard b, .ucard p,
+    .dcol .dt, .dcol li,
+    .note,
+    .bar-conclusion .bc-msg, .bar-conclusion .bc-sub {
+      word-break: keep-all;
+      overflow-wrap: break-word
+    }
+
+    .tbl th, .tbl td { word-break: normal; overflow-wrap: break-word }
+
+    /* ── PAGE LAYOUT ── */
+    .page { max-width: 1440px; margin: 0 auto }
+    .layout { display: flex; align-items: flex-start }
+
+    /* ── TOC ── */
+    .toc {
+      width: 240px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 48px 0 48px 40px;
+      border-right: 1px solid var(--border)
+    }
+    .toc::-webkit-scrollbar { display: none }
+    .toc-label {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray-100);
+      display: block;
+      margin-bottom: 20px
+    }
+    .toc-list { list-style: none }
+    .toc-item { margin-bottom: 1px }
+    .toc-link {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 7px 16px 7px 0;
+      text-decoration: none;
+      color: var(--gray-400);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.45;
+      transition: color .2s;
+      position: relative;
+      border-left: 2px solid transparent;
+      padding-left: 12px
+    }
+    .toc-link:hover { color: var(--gray-700) }
+    .toc-link.active {
+      color: var(--blue-core);
+      font-weight: 600;
+      border-left-color: var(--green)
+    }
+    .toc-num {
+      font-family: var(--font-en);
+      font-size: 10px;
+      color: var(--gray-100);
+      min-width: 18px;
+      flex-shrink: 0
+    }
+    .toc-link.active .toc-num { color: var(--green) }
+
+    /* ── MAIN ── */
+    .main { flex: 1; min-width: 0; max-width: 960px }
+
+    /* ── COVER ── */
+    .cover-wrapper { padding: 20px 20px 0; background: var(--bg-soft) }
+    .cover-card {
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--blue-800);
+      position: relative;
+      min-height: 440px
+    }
+    .cover-img-area {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    /* ── INTRO SECTION ── */
+    .s-intro { padding: 64px 64px 56px }
+    .intro-eye {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2.3px;
+      text-transform: uppercase;
+      color: var(--gray-300);
+      margin-bottom: 16px
+    }
+    .intro-h1 {
+      font-size: var(--t1);
+      line-height: var(--t1-lh);
+      font-weight: 700;
+      letter-spacing: -.035em;
+      color: var(--blue-core);
+      margin-bottom: 10px
+    }
+    .intro-h1 span { color: var(--green); font-weight: 600 }
+    .intro-sub {
+      font-size: var(--body2);
+      color: var(--gray-400);
+      margin-bottom: 28px
+    }
+    .intro-identity {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin: 0 0 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+    .intro-tagline { margin: 0 }
+    .intro-tagline strong {
+      display: block;
+      font-family: var(--font-en);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--blue-core);
+      letter-spacing: -.02em;
+      line-height: 1.4
+    }
+    .intro-tagline span {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-400);
+      margin-top: 3px
+    }
+    .intro-kpi { display: flex; gap: 40px }
+    .intro-kpi-v {
+      font-family: var(--font-en);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--blue-core);
+      letter-spacing: -.04em;
+      line-height: 1
+    }
+    .intro-kpi-v em {
+      font-style: normal;
+      font-size: .52em;
+      color: var(--blue-core);
+      font-weight: 600;
+      margin-left: 1px
+    }
+    .intro-kpi-l {
+      font-size: 11px;
+      color: var(--gray-300);
+      margin-top: 6px;
+      line-height: 1.4
+    }
+    .intro-desc {
+      font-size: var(--body1);
+      line-height: 1.75;
+      color: var(--gray-500);
+      max-width: 680px;
+      margin-bottom: 24px
+    }
+    .intro-desc strong { color: var(--gray-700); font-weight: 600 }
+    .intro-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      font-size: var(--cap);
+      color: var(--gray-300)
+    }
+    .intro-meta b { color: var(--gray-500); font-weight: 600 }
+
+    /* ── SECTION ── */
+    .s { padding: 64px 64px; border-bottom: 1px solid var(--border) }
+    .s:last-child { border-bottom: none }
+    .s-meta {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+    #sec-core .s-meta { color: var(--gray-400) }
+    .s-head {
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border)
+    }
+    .s-head h2 {
+      font-size: 34px;
+      line-height: 44px;
+      font-weight: 700;
+      color: var(--blue-core);
+      letter-spacing: -.04em;
+      margin-bottom: 12px
+    }
+    .s-head .lead {
+      font-size: var(--body1);
+      line-height: 1.75;
+      color: var(--gray-500);
+      max-width: 680px;
+      margin-bottom: 0;
+      word-break: normal
+    }
+    .s-head .lead strong { color: var(--gray-700); font-weight: 600 }
+    .s-body > :first-child { margin-top: 0 }
+    .s-body > :last-child { margin-bottom: 0 }
+    .s-body h3 {
+      font-size: var(--sub2);
+      line-height: var(--sub2-lh);
+      font-weight: 700;
+      color: var(--blue-core);
+      margin: 36px 0 10px
+    }
+    .s-body h4 {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      margin: 24px 0 8px
+    }
+    .s-body p {
+      font-size: var(--body2);
+      line-height: var(--body2-lh);
+      color: var(--gray-500);
+      margin-bottom: 10px
+    }
+    .s-body strong { font-weight: 600; color: var(--gray-700) }
+    .hl {
+      background: rgba(0, 225, 220, .18);
+      font-weight: 600;
+      color: var(--blue-core);
+      padding: 0 4px;
+      border-radius: 3px
+    }
+
+    /* ── COMPARE ── */
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 12px;
+      align-items: center;
+      margin: 24px 0
+    }
+    .cbox {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 22px
+    }
+    .cbox.new {
+      background: rgba(0, 225, 220, .07);
+      border: 1px solid rgba(0, 225, 220, .28)
+    }
+    .cbox .ct {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gray-300);
+      margin-bottom: 12px
+    }
+    .cbox.new .ct { color: var(--gray-400) }
+    .cbox ul { list-style: none }
+    .cbox li {
+      font-size: var(--body2);
+      line-height: var(--body2-lh);
+      padding: 5px 0;
+      color: var(--gray-400)
+    }
+    .cbox.new li { color: var(--gray-500) }
+    .cbox.new li b { color: var(--blue-core); font-weight: 600 }
+    .carrow { font-size: 28px; color: var(--gray-200); font-weight: 400; line-height: 1; padding: 0 4px }
+
+    /* ── CALLOUT ── */
+    .callout {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 20px 0
+    }
+    .callout.dark { background: var(--blue-core); border-color: transparent }
+    .callout.check { background: var(--bg) }
+    .callout.insight { background: rgba(0, 225, 220, .06); border-color: rgba(0, 225, 220, .22) }
+    .callout.brand-msg { background: var(--bg-soft); border: 1px solid var(--border) }
+    .callout .ico {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--blue-600);
+      margin-bottom: 8px
+    }
+    .callout.dark .ico { color: var(--green) }
+    .callout.check .ico { color: var(--gray-300) }
+    .callout.insight .ico { color: var(--green) }
+    .callout.brand-msg .ico { color: var(--gray-400) }
+    .callout p {
+      font-size: var(--body2);
+      line-height: var(--body2-lh);
+      color: var(--gray-500);
+      margin-bottom: 0
+    }
+    .callout p + p { margin-top: 8px }
+    .callout.dark p, .callout.dark strong { color: rgba(255, 255, 255, .78) }
+    .bigmsg {
+      font-size: var(--sub2);
+      line-height: var(--sub2-lh);
+      font-weight: 600;
+      color: var(--blue-core);
+      margin-bottom: 4px
+    }
+    .callout.dark .bigmsg { color: var(--white) }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      background: var(--blue-core);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin: 24px 0
+    }
+    .pull-quote p { font-size: var(--sub2); font-weight: 600; color: var(--white); line-height: 1.6; margin: 0 }
+    .pull-quote .pq-sub { font-size: var(--body2); color: rgba(255,255,255,.45); font-weight: 500; margin-top: 8px }
+
+    /* ── STAT ROW ── */
+    .stat-row {
+      display: flex;
+      margin: 24px 0;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden
+    }
+    .stat-item { flex: 1; padding: 28px 24px; border-right: 1px solid var(--border); text-align: center }
+    .stat-item:last-child { border-right: none }
+    .stat-v {
+      font-family: var(--font-en);
+      font-size: 48px;
+      line-height: 1;
+      font-weight: 700;
+      color: var(--blue-core);
+      letter-spacing: -.04em;
+      margin-bottom: 8px
+    }
+    .stat-v em {
+      font-style: normal;
+      font-size: .5em;
+      color: var(--green);
+      font-weight: 600;
+      letter-spacing: 0;
+      margin-left: 1px
+    }
+    .stat-l { font-size: 12px; color: var(--gray-400); line-height: 1.5 }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-block;
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 20px;
+      letter-spacing: .3px;
+      margin-right: 6px
+    }
+    .badge.check { background: transparent; color: var(--gray-500); border: 1px solid var(--border) }
+
+    /* ── FLOW ── */
+    .flow { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap }
+    .fstep {
+      flex: 1;
+      min-width: 180px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px
+    }
+    .fstep .fn {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--blue-core);
+      background: var(--green);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px
+    }
+    .fstep.s2 .fn, .fstep.s3 .fn, .fstep.s4 .fn { background: var(--green); color: var(--blue-core) }
+    .fstep b { font-size: var(--body2); font-weight: 600; color: var(--blue-core); display: block; margin-bottom: 6px }
+    .fstep p { font-size: 12px; line-height: 1.6; color: var(--gray-400); margin: 0 }
+
+    /* ── DFRAME ── */
+    .dframe { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0 }
+    .dframe.two { grid-template-columns: repeat(2, 1fr) }
+    .dcol { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden }
+    .dcol .dt {
+      background: var(--blue-core);
+      color: var(--white);
+      font-size: var(--body2);
+      font-weight: 600;
+      padding: 14px 20px
+    }
+    .dcol.l1 .dt { background: var(--blue-600) }
+    .dcol.l2 .dt { background: var(--blue-500) }
+    .dcol .dt span { display: block; font-size: 11px; font-weight: 500; color: rgba(255,255,255,.55); margin-top: 3px }
+    .dcol ul { list-style: none; padding: 12px 20px 16px }
+    .dcol li {
+      font-size: 13px;
+      color: var(--gray-500);
+      padding: 6px 0 6px 16px;
+      position: relative;
+      border-top: 1px solid var(--bg-soft)
+    }
+    .dcol li:first-child { border-top: none }
+    .dcol li::before {
+      content: '';
+      position: absolute;
+      left: 3px;
+      top: 13px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--green)
+    }
+
+    /* ── POSITIONING MAP ── */
+    .pmap {
+      position: relative;
+      height: 360px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin: 24px 0;
+      overflow: hidden
+    }
+    .pmap .axis-x {
+      position: absolute;
+      top: 50%; left: 20px; right: 20px;
+      height: 1px;
+      background: #C8D0E0;
+      transform: translateY(-50%)
+    }
+    .pmap .axis-x::before {
+      content: '';
+      position: absolute;
+      left: -1px; top: -4px;
+      border-right: 7px solid #C8D0E0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent
+    }
+    .pmap .axis-x::after {
+      content: '';
+      position: absolute;
+      right: -1px; top: -4px;
+      border-left: 7px solid #C8D0E0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent
+    }
+    .pmap .axis-y {
+      position: absolute;
+      left: 50%; top: 36px; bottom: 36px;
+      width: 1px;
+      background: #C8D0E0;
+      transform: translateX(-50%)
+    }
+    .pmap .axis-y::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: -4px;
+      border-bottom: 7px solid #C8D0E0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent
+    }
+    .pmap .axis-y::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: -4px;
+      border-top: 7px solid #C8D0E0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent
+    }
+    .pmap .zone {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(0,225,220,.14) 0%, rgba(0,225,220,.05) 55%, transparent 75%);
+      pointer-events: none;
+      z-index: 0
+    }
+    .pmap .lbl { position: absolute; font-size: 11px; color: var(--gray-400); font-weight: 600 }
+    .dot {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--gray-400);
+      white-space: nowrap
+    }
+    .dot::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--gray-100); flex-shrink: 0 }
+    .dot.hero { font-size: 13px; font-weight: 600; color: var(--blue-core) }
+    .dot.hero::before { width: 14px; height: 14px; background: var(--green); box-shadow: 0 0 0 4px rgba(0,225,220,.15) }
+
+    /* ── TABLE ── */
+    .tbl-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin: 20px 0
+    }
+    .tbl { width: 100%; border-collapse: collapse; font-size: var(--body2); background: var(--bg); min-width: 420px }
+    .tbl th { background: var(--blue-core); color: var(--white); font-weight: 600; padding: 12px 16px; text-align: left; font-size: 13px }
+    .tbl td { padding: 11px 16px; border-top: 1px solid var(--border); color: var(--gray-500); vertical-align: middle }
+    .tbl tr:nth-child(even) td { background: var(--bg-soft) }
+    .tbl td.num { font-weight: 600; color: var(--gray-700); font-variant-numeric: tabular-nums }
+    .tbl td.hi { color: var(--blue-600); font-weight: 600 }
+
+    /* ── BAR CHART ── */
+    .chartcard { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px 20px; margin: 20px 0 }
+    .legend { display: flex; gap: 20px; margin-bottom: 16px; font-size: 12px; font-weight: 600; color: var(--gray-400) }
+    .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px }
+    .legend i.sales { background: var(--blue-core) }
+    .legend i.ad { background: var(--green) }
+    .barchart {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      height: 250px;
+      border-bottom: 1px solid var(--border);
+      position: relative
+    }
+    .chart-grid { position: absolute; left: 0; right: 0; top: 0; bottom: 0; pointer-events: none; z-index: 0 }
+    .chart-grid .gl { position: absolute; left: 0; right: 0; height: 0; border-top: 1px dashed rgba(0,0,0,.1) }
+    .bargroup { position: relative; z-index: 1; flex: 1; display: flex; justify-content: center; align-items: flex-end }
+    .barlabels { display: flex; justify-content: space-around; margin-top: 10px }
+    .barlabels .byear { flex: 1; text-align: center }
+    .bargroup { display: flex; flex-direction: column; align-items: center; flex: 1 }
+    .bset { display: flex; align-items: flex-end; gap: 10px; height: 250px }
+    .bar { width: 48px; border-radius: 4px 4px 0 0; position: relative; display: flex; justify-content: center }
+    .bar.sales { background: var(--blue-core) }
+    .bar.ad { background: var(--green) }
+    .bar .bv { position: absolute; top: -20px; font-size: 12px; font-weight: 600; color: var(--gray-700); font-variant-numeric: tabular-nums }
+    .bar .bv.ad { color: var(--gray-400) }
+    .byear { margin-top: 10px; font-size: 12px; font-weight: 600; color: var(--gray-500) }
+
+    /* ── METRICS ── */
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 20px 0 }
+    .metric { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 20px; border-top: 2px solid var(--green) }
+    .metric .mv { font-family: var(--font-en); font-size: var(--sub2); font-weight: 600; color: var(--blue-core); letter-spacing: -.03em; margin-bottom: 4px }
+    .metric .ml { font-size: 12px; color: var(--gray-400); font-weight: 500; line-height: 1.5 }
+
+    /* ── CARD GRID ── */
+    .cardgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0 }
+    .cardgrid.c3 { grid-template-columns: repeat(3, 1fr) }
+    .ucard { background: var(--bg-soft); border-radius: 10px; padding: 18px 16px }
+    .ucard .uh { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px }
+    .ucard .un { font-family: var(--font-en); font-weight: 700; font-size: 12px; color: var(--green); background: none; border-radius: 0; width: auto; height: auto; display: block }
+    .ucard .ut { font-family: var(--font-en); font-size: 11px; font-weight: 500; color: var(--gray-300); background: none; border: none; border-radius: 0; padding: 0 }
+    .ucard b { font-size: var(--body2); font-weight: 600; color: var(--blue-core); display: block; margin-bottom: 4px }
+    .ucard p { font-size: 11.5px; color: var(--gray-400); margin: 0; line-height: 1.6 }
+    .ucard-img {
+      width: calc(100% + 32px);
+      height: 180px;
+      margin: -18px -16px 16px;
+      background: var(--bg-soft);
+      border: 1px solid #d0d4e0;
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px 10px 0 0;
+      flex-shrink: 0
+    }
+
+    /* ── NOTE ── */
+    .note { font-size: var(--cap); line-height: var(--cap-lh); color: var(--gray-100); margin-top: 12px }
+    .s-body .note { color: var(--gray-100) }
+    .note.big { font-size: var(--body2); color: var(--gray-500); line-height: 1.75 }
+
+    /* ── CLOSING ── */
+    .s-closing { background: var(--blue-core); color: var(--white); padding: 60px 64px; border-bottom: none }
+    .s-closing .s-meta { color: var(--green) }
+    .s-closing .s-head h2 { color: var(--white) }
+    .s-closing .s-head .lead { color: rgba(255,255,255,.55) }
+    .s-closing .s-head { border-bottom-color: rgba(255,255,255,.1) }
+    .s-closing .callout { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.12) }
+    .s-closing .callout .ico { color: var(--green) }
+    .s-closing .callout p { color: rgba(255,255,255,.75) }
+    .s-closing .callout strong { color: var(--white) }
+    .s-closing .note.big { color: rgba(255,255,255,.45) }
+    .s-closing .fstep { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1) }
+    .s-closing .fstep b { color: var(--white) }
+    .s-closing .fstep p { color: rgba(255,255,255,.5) }
+
+    /* ── BAR CONCLUSION ── */
+    .bar-conclusion { background: var(--blue-core); border-radius: 10px; padding: 22px 28px; margin: 32px 0 0 }
+    .bar-conclusion .bc-msg { font-size: 22px; font-weight: 600; color: var(--white); line-height: 1.55; letter-spacing: -.02em }
+    .bar-conclusion .bc-sub { font-size: var(--body2); color: rgba(255,255,255,.5); margin-top: 6px; line-height: 1.65 }
+
+    /* ── PROGRESS BAR ── */
+    #progress-bar { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--green); z-index: 9999; pointer-events: none; transition: width .08s linear }
+
+    /* ── FOOTER ── */
+    footer { padding: 28px 64px; display: flex; align-items: center; justify-content: space-between; font-size: var(--cap); color: var(--gray-300) }
+    footer .fb img { height: 20px; display: block }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease }
+    .reveal.is-visible { opacity: 1; transform: translateY(0) }
+
+    /* ── EDIT MODE ── */
+    #edit-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 10000;
+      background: var(--blue-core); color: rgba(255,255,255,.85);
+      padding: 10px 24px; display: flex; align-items: center; gap: 14px;
+      font-family: var(--font-en); font-size: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.25)
+    }
+    body.is-edit { padding-top: 44px }
+    .eb-status { display: flex; align-items: center; gap: 7px; font-weight: 600; font-size: 13px; color: var(--green) }
+    .eb-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: eb-pulse 1.6s infinite }
+    @keyframes eb-pulse { 0%, 100% { opacity: 1 } 50% { opacity: .3 } }
+    .eb-hint { color: rgba(255,255,255,.38); font-size: 11px }
+    .eb-actions { margin-left: auto; display: flex; gap: 8px }
+    .eb-btn { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.8); padding: 5px 13px; border-radius: 6px; cursor: pointer; font-size: 12px; font-family: var(--font-en); font-weight: 500; transition: background .15s }
+    .eb-btn:hover { background: rgba(255,255,255,.18) }
+    .eb-export { background: var(--green); color: var(--blue-core); border-color: transparent; font-weight: 700 }
+    .eb-export:hover { opacity: .85 }
+    body.is-edit [data-ek]:hover { outline: 1.5px dashed rgba(0,225,220,.55); outline-offset: 3px; cursor: text; border-radius: 3px }
+    body.is-edit [data-ek]:focus { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 3px }
+
+    /* ── MOBILE ── */
+    @media(max-width:1100px) {
+      .toc { display: none }
+      .main { max-width: 100% }
+      .layout { display: block }
+    }
+    @media(max-width:767px) {
+      :root {
+        --t1: 26px; --t1-lh: 34px;
+        --t3: 20px; --t3-lh: 28px;
+        --sub2: 17px; --sub2-lh: 26px;
+        --body1: 17px; --body1-lh: 27px;
+        --body2: 15px; --body2-lh: 24px;
+        --cap: 14px; --cap-lh: 22px
+      }
+      .cover-wrapper { padding: 0 }
+      .cover-card { min-height: 260px }
+      .intro-kpi { gap: 20px }
+      .intro-kpi-v { font-size: 24px }
+      .s-intro { padding: 40px 24px 36px }
+      .intro-h1 { font-size: 30px; line-height: 40px }
+      .s { padding: 48px 24px }
+      .s-head { margin-bottom: 24px; padding-bottom: 18px }
+      .s-head h2 { font-size: 26px; line-height: 34px }
+      .s-closing { padding: 48px 24px }
+      footer { padding: 24px; flex-direction: column; gap: 6px; text-align: center }
+      .dframe, .dframe.two, .metrics { grid-template-columns: 1fr }
+      .cardgrid, .cardgrid.c3 { grid-template-columns: 1fr 1fr }
+      .compare { grid-template-columns: 1fr }
+      .carrow { text-align: center }
+      .bar { width: 36px }
+      .stat-row { flex-direction: column }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border) }
+      .stat-item:last-child { border-bottom: none }
+      .flow { flex-direction: column; gap: 8px }
+      .fstep { min-width: unset }
+      .bar-conclusion .bc-msg { font-size: 18px }
+      .intro-kpi { flex-wrap: wrap; gap: 16px }
+      .intro-kpi-item { flex: 1; min-width: 120px }
+      .tbl-wrap { margin: 16px 0 }
+      .pmap { zoom: 0.78 }
+      .barlabels { gap: 4px }
+      .barlabels .byear { font-size: 10px }
+      .chartcard { overflow-x: auto }
+      .barchart { min-width: 280px }
+      .pull-quote { padding: 20px 20px }
+    }
+    @media(max-width:480px) {
+      .cardgrid, .cardgrid.c3 { grid-template-columns: 1fr 1fr }
+      .tbl { min-width: 0 }
+      .tbl th, .tbl td { padding: 9px 10px; white-space: normal }
+      .intro-identity { padding: 18px 16px }
+      .intro-kpi-item { min-width: 80px }
+      .s-head h2 { font-size: 24px; line-height: 34px }
+      .s-head .lead { font-size: 16px; line-height: 1.75 }
+      .callout p, .ucard p { font-size: 14px; line-height: 1.7 }
+      .bar { width: 28px }
+      .pmap { zoom: 0.65 }
+    }
+  </style>
+  <script>const EDIT_MODE = false;</script>
+</head>
+
+<body>
+  <!-- EDIT BAR -->
+  <div id="edit-bar" style="display:none">
+    <div class="eb-status"><div class="eb-dot"></div><span>편집 모드</span></div>
+    <span class="eb-hint">텍스트 더블클릭하여 수정 · 수정 완료 후 "HTML 저장"을 눌러 파일을 다운로드하세요</span>
+    <div class="eb-actions">
+      <button class="eb-btn" onclick="resetEdits()">초기화</button>
+      <button class="eb-btn eb-export" onclick="downloadHTML()">HTML 저장</button>
+    </div>
+  </div>
+
+  <div id="progress-bar"></div>
+  <div class="page">
+
+    <!-- COVER -->
+    <div class="cover-wrapper">
+      <div class="cover-card reveal">
+        <img class="cover-img-area" src="assets/cover_img.png" alt="cover">
+      </div>
+    </div>
+
+    <div class="layout">
+
+      <!-- TOC -->
+      <nav class="toc" id="toc" aria-label="목차">
+        <span class="toc-label">Contents</span>
+        <ul class="toc-list">
+          <li class="toc-item"><a class="toc-link" href="#sec-01"><span class="toc-num">01</span>시스템 소개</a></li>
+          <li class="toc-item"><a class="toc-link" href="#sec-02"><span class="toc-num">02</span>제안서 만들기</a></li>
+          <li class="toc-item"><a class="toc-link" href="#sec-03"><span class="toc-num">03</span>편집하기</a></li>
+          <li class="toc-item"><a class="toc-link" href="#sec-04"><span class="toc-num">04</span>HTML 저장</a></li>
+          <li class="toc-item"><a class="toc-link" href="#sec-05"><span class="toc-num">05</span>파일 관리</a></li>
+          <li class="toc-item"><a class="toc-link" href="#sec-06"><span class="toc-num">06</span>명령어 레퍼런스</a></li>
+        </ul>
+      </nav>
+
+      <!-- MAIN -->
+      <main class="main">
+
+        <!-- INTRO -->
+        <section class="s s-intro reveal" id="sec-intro">
+          <div class="intro-eye">VALEN INTERNAL · 제안서 시스템</div>
+          <h1 class="intro-h1">제안서를 더 빠르고<br><span>일관되게 만드는 방법</span></h1>
+          <p class="intro-sub">Claude Code 기반 제안서 제작 · 편집 · 저장 완전 가이드</p>
+          <div class="intro-identity">
+            <div class="intro-tagline">
+              <strong>valen 제안서 제작 시스템</strong>
+              <span>브랜드 전략 제안서를 단일 HTML 파일로 빠르게 제작하는 워크플로우</span>
+            </div>
+            <div class="intro-kpi">
+              <div class="intro-kpi-item">
+                <div class="intro-kpi-v">5<em>단계</em></div>
+                <div class="intro-kpi-l">제안서 완성까지</div>
+              </div>
+              <div class="intro-kpi-item">
+                <div class="intro-kpi-v">3<em>개</em></div>
+                <div class="intro-kpi-l">핵심 명령어</div>
+              </div>
+              <div class="intro-kpi-item">
+                <div class="intro-kpi-v">1<em>파일</em></div>
+                <div class="intro-kpi-l">외부 의존성 없음</div>
+              </div>
+            </div>
+          </div>
+          <p class="intro-desc">이 시스템은 <strong>Claude Code</strong>로 제안서를 자동 생성하고, 브라우저에서 텍스트를 직접 수정한 뒤 단일 HTML 파일로 저장하는 워크플로우입니다. 외부 툴 없이 브라우저 하나로 완성된 제안서를 전달할 수 있습니다.</p>
+        </section>
+
+        <!-- 01 -->
+        <section class="s reveal" id="sec-01" data-section="sec-01">
+          <div class="s-meta">01 · 시스템 소개</div>
+          <div class="s-head">
+            <h2>Claude Code로 자동 생성하고<br>브라우저에서 직접 편집한다</h2>
+            <p class="lead">브랜드 정보를 입력하면 <strong>valen 디자인 시스템이 적용된 제안서</strong>가 자동으로 만들어집니다. 이후 편집과 저장까지 브라우저 하나로 처리합니다.</p>
+          </div>
+          <div class="s-body">
+            <div class="cardgrid c3">
+              <div class="ucard">
+                <div class="uh"><span class="un">STEP 1</span></div>
+                <b>자동 제작</b>
+                <p>Claude Code에 /온보딩 입력 → 브랜드 정보 입력 → 제안서 HTML 자동 생성. 컴포넌트·컬러·타이포 모두 valen 가이드라인 기반.</p>
+              </div>
+              <div class="ucard">
+                <div class="uh"><span class="un">STEP 2</span></div>
+                <b>인라인 편집</b>
+                <p>브라우저에서 직접 텍스트 클릭 수정. 수정 내용은 localStorage에 자동 저장되어 브라우저를 닫아도 유지됩니다.</p>
+              </div>
+              <div class="ucard">
+                <div class="uh"><span class="un">STEP 3</span></div>
+                <b>파일 저장 · 공유</b>
+                <p>"HTML 저장" 클릭 → OS 다이얼로그 → 수정본 폴더에 저장. 저장된 파일은 레이아웃과 컬러가 원본 그대로 유지됩니다.</p>
+              </div>
+            </div>
+            <div class="callout insight">
+              <div class="ico">핵심</div>
+              <p>제안서는 단일 <strong>.html 파일</strong> 하나로 완결됩니다. 외부 서버, 라이브러리, 의존성 없이 브라우저에서 바로 열 수 있고, 이메일 첨부나 공유 폴더로 전달이 가능합니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 02 -->
+        <section class="s reveal" id="sec-02" data-section="sec-02">
+          <div class="s-meta">02 · 제안서 만들기</div>
+          <div class="s-head">
+            <h2>5단계로 제안서 완성</h2>
+            <p class="lead">Claude Code 터미널에서 명령어를 입력하고, 브랜드 정보를 제공하면 <strong>자동으로 제안서가 생성</strong>됩니다.</p>
+          </div>
+          <div class="s-body">
+            <div class="flow">
+              <div class="fstep">
+                <div class="fn">1</div>
+                <b>Claude Code 열기</b>
+                <p>제안서_Guide 폴더에서 Claude Code 실행. 세션 시작 시 가이드라인 파일들을 자동으로 읽습니다.</p>
+              </div>
+              <div class="fstep">
+                <div class="fn">2</div>
+                <b>/온보딩 입력</b>
+                <p>채팅창에 /온보딩을 입력하면 브랜드 정보 수집을 시작합니다.</p>
+              </div>
+              <div class="fstep">
+                <div class="fn">3</div>
+                <b>브랜드 정보 입력</b>
+                <p>브랜드명, 산업, 타겟, 핵심 메시지 등을 질문에 따라 입력합니다.</p>
+              </div>
+              <div class="fstep">
+                <div class="fn">4</div>
+                <b>제안서 생성 완료</b>
+                <p>루트 폴더에 {브랜드명}_proposal.html이 자동 생성됩니다. 브라우저로 바로 열어 확인합니다.</p>
+              </div>
+              <div class="fstep">
+                <div class="fn">5</div>
+                <b>아카이브 저장</b>
+                <p>archive/{날짜}_{브랜드명}/ 폴더에 복사 저장합니다. 이후 편집은 이 아카이브 파일에서 진행합니다.</p>
+              </div>
+            </div>
+            <div class="callout check">
+              <div class="ico">팁</div>
+              <p>제안서가 생성된 후 내용을 크게 수정하고 싶다면 Claude Code에서 직접 요청합니다. 텍스트 수정 수준의 변경은 <strong>편집 모드</strong>에서 브라우저로 처리합니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 03 -->
+        <section class="s reveal" id="sec-03" data-section="sec-03">
+          <div class="s-meta">03 · 편집하기</div>
+          <div class="s-head">
+            <h2>브라우저에서 텍스트를 직접 수정한다</h2>
+            <p class="lead">편집 모드를 켜면 모든 텍스트 요소를 <strong>클릭해서 바로 수정</strong>할 수 있습니다. 수정 내용은 자동으로 저장됩니다.</p>
+          </div>
+          <div class="s-body">
+            <div class="flow">
+              <div class="fstep">
+                <div class="fn">1</div>
+                <b>편집 모드 ON</b>
+                <p>Claude Code에 "편집 모드"라고 입력합니다. EDIT_MODE = true로 전환됩니다.</p>
+              </div>
+              <div class="fstep">
+                <div class="fn">2</div>
+                <b>브라우저 새로고침</b>
+                <p>Cmd+R로 새로고침하면 상단에 편집 바가 나타납니다. 초록 점이 깜빡이면 편집 모드 활성화 상태입니다.</p>
+              </div>
+              <div class="fstep">
+                <div class="fn">3</div>
+                <b>텍스트 클릭 · 수정</b>
+                <p>수정할 텍스트를 클릭합니다. 초록 테두리가 표시되면 타이핑으로 수정합니다. 다른 곳 클릭 시 자동 저장됩니다.</p>
+              </div>
+              <div class="fstep">
+                <div class="fn">4</div>
+                <b>편집 완료</b>
+                <p>Claude Code에 "편집 완료"를 입력하거나, "HTML 저장" 버튼을 클릭해 파일로 저장합니다.</p>
+              </div>
+            </div>
+            <div class="callout insight">
+              <div class="ico">자동 저장</div>
+              <p>수정 내용은 브라우저 <strong>localStorage</strong>에 자동 저장됩니다. 브라우저를 닫았다가 다시 열어도 수정 내용이 유지됩니다. 단, 다른 브라우저나 시크릿 탭에서는 저장된 내용이 보이지 않습니다.</p>
+            </div>
+            <div class="callout">
+              <div class="ico">주의</div>
+              <p>이미지, 링크, 로고는 편집 모드에서 수정할 수 없습니다. 이미지 교체는 <strong>assets/ 폴더의 파일을 직접 교체</strong>하거나 Claude Code에 요청합니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 04 -->
+        <section class="s reveal" id="sec-04" data-section="sec-04">
+          <div class="s-meta">04 · HTML 저장</div>
+          <div class="s-head">
+            <h2>수정 완료 후 파일로 저장하기</h2>
+            <p class="lead">"HTML 저장" 버튼을 누르면 편집 내용이 반영된 <strong>깨끗한 최종 파일</strong>이 생성됩니다. 레이아웃과 컬러가 원본 그대로 유지됩니다.</p>
+          </div>
+          <div class="s-body">
+            <div class="flow">
+              <div class="fstep">
+                <div class="fn">1</div>
+                <b>HTML 저장 클릭</b>
+                <p>편집 바 오른쪽의 초록 "HTML 저장" 버튼을 클릭합니다.</p>
+              </div>
+              <div class="fstep">
+                <div class="fn">2</div>
+                <b>저장 위치 선택</b>
+                <p>OS 기본 저장 다이얼로그가 열립니다. archive/{날짜}_{브랜드명}/수정본/ 폴더로 이동해 저장합니다.</p>
+              </div>
+              <div class="fstep">
+                <div class="fn">3</div>
+                <b>저장 완료</b>
+                <p>파일명은 {브랜드명}_proposal_{날짜}.html 형태로 자동 제안됩니다. 그대로 저장하거나 원하는 이름으로 변경합니다.</p>
+              </div>
+            </div>
+            <div class="callout dark">
+              <div class="ico">저장된 파일의 특성</div>
+              <p>저장된 파일은 <strong>편집 모드 없이 열립니다.</strong> 레이아웃, 컬러, 모든 구조가 원본 그대로 보존됩니다. 클라이언트에게 전달하거나 PDF 변환 시 이 파일을 사용합니다.</p>
+              <p>수정본 폴더는 git에서 제외(gitignore)되어, 각자의 파일이 다른 팀원의 작업에 영향을 주지 않습니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 05 -->
+        <section class="s reveal" id="sec-05" data-section="sec-05">
+          <div class="s-meta">05 · 파일 관리</div>
+          <div class="s-head">
+            <h2>폴더 구조와 버전 관리</h2>
+            <p class="lead">제안서 파일은 <strong>아카이브 폴더</strong>에 날짜별로 정리됩니다. 수정본은 별도 폴더에 저장되어 git 추적에서 분리됩니다.</p>
+          </div>
+          <div class="s-body">
+            <div class="dframe two">
+              <div class="dcol l1">
+                <div class="dt">작업용 파일<span>루트에 위치, 편집 워크플로우용</span></div>
+                <ul>
+                  <li>{브랜드명}_proposal.html — 작업 중인 원본</li>
+                  <li>assets/ — 커버 이미지, 로고</li>
+                  <li>guide/ — 템플릿 · 가이드 문서</li>
+                </ul>
+              </div>
+              <div class="dcol l2">
+                <div class="dt">아카이브<span>버전 백업 · 수정본 저장</span></div>
+                <ul>
+                  <li>archive/{날짜}_{브랜드명}/ — 버전 폴더</li>
+                  <li>{브랜드명}_proposal.html — 아카이브 원본</li>
+                  <li>수정본/ — HTML 저장 파일 (gitignore)</li>
+                </ul>
+              </div>
+            </div>
+            <div class="callout check">
+              <div class="ico">Git 동기화</div>
+              <p>원본 제안서 파일과 가이드 문서는 git으로 팀 전체가 동기화합니다. <strong>수정본 폴더는 gitignore 처리</strong>되어 각자의 편집 파일이 충돌 없이 관리됩니다. 새 제안서를 만든 후 git push하면 팀원들이 pull로 받을 수 있습니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 06 CLOSING -->
+        <section class="s s-closing reveal" id="sec-06" data-section="sec-06">
+          <div class="s-meta">06 · 명령어 레퍼런스</div>
+          <div class="s-head">
+            <h2>전체 명령어 한눈에</h2>
+            <p class="lead">Claude Code 채팅창에 아래 명령어를 입력합니다.</p>
+          </div>
+          <div class="s-body">
+            <div class="tbl-wrap">
+              <table class="tbl">
+                <thead>
+                  <tr>
+                    <th>명령어</th>
+                    <th>동작</th>
+                    <th>사용 시점</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="hi">/온보딩</td>
+                    <td>브랜드 정보 수집 → 제안서 자동 생성</td>
+                    <td>새 제안서 처음 만들 때</td>
+                  </tr>
+                  <tr>
+                    <td class="hi">/새제안서</td>
+                    <td>정보 수집 단계부터 재시작</td>
+                    <td>다시 처음부터 만들 때</td>
+                  </tr>
+                  <tr>
+                    <td class="hi">편집 모드</td>
+                    <td>EDIT_MODE = true 전환 → 브라우저 편집 활성화</td>
+                    <td>텍스트 수정 전</td>
+                  </tr>
+                  <tr>
+                    <td class="hi">편집 완료</td>
+                    <td>EDIT_MODE = false 전환 → 원본 파일 정리</td>
+                    <td>편집 마친 후</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="callout">
+              <div class="ico">브라우저 액션</div>
+              <p>아래는 브라우저 편집 바에서 직접 클릭하는 버튼입니다. Claude Code 명령어가 아닙니다.</p>
+              <p><strong>HTML 저장</strong> — 수정 내용이 반영된 최종 파일을 저장합니다.<br><strong>초기화</strong> — localStorage의 모든 수정 내용을 삭제하고 원본으로 되돌립니다.</p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <footer>
+      <span class="fb"><img src="assets/valen_logo.png" alt="valen"></span>
+      <span>제안서 시스템 사용 가이드 &nbsp;·&nbsp; valen Internal</span>
+    </footer>
+
+  </div>
+
+  <script>
+    /* 다운로드용 원본 소스 캡처 (동적 상태 반영 전) */
+    const _srcHTML = document.documentElement.outerHTML;
+
+    // Scroll reveal
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // TOC active state
+    const sections = document.querySelectorAll('[data-section]');
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const tocObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          tocLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => tocObs.observe(s));
+
+    // Scroll progress bar
+    const progressBar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      progressBar.style.width = (scrollTop / scrollHeight * 100) + '%';
+    }, { passive: true });
+
+    /* ── EDIT MODE ── */
+    const _brand = document.title.split(/[\s—]/)[0].toLowerCase().replace(/[^a-z0-9가-힣]/g, '');
+    const STORAGE_KEY = (_brand || 'proposal') + '_edits_v1';
+    const MODE_KEY = STORAGE_KEY + '_mode';
+
+    const SKIP_TAGS = new Set(['SCRIPT','STYLE','SVG','PATH','INPUT','BUTTON','A','IMG','BR','HR','CANVAS']);
+    let ekCounter = 0;
+
+    function assignKeys(root) {
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+      let el;
+      while ((el = walker.nextNode())) {
+        if (SKIP_TAGS.has(el.tagName)) continue;
+        if (el.closest('nav,svg,#edit-bar')) continue;
+        if (el.parentElement && el.parentElement.dataset.ek) continue;
+        const hasText = Array.from(el.childNodes).some(n => n.nodeType === 3 && n.textContent.trim());
+        if (hasText && !el.dataset.ek) el.dataset.ek = 'ek-' + (ekCounter++);
+      }
+    }
+
+    function saveEdits() {
+      const data = {};
+      document.querySelectorAll('[data-ek]').forEach(el => { data[el.dataset.ek] = el.innerHTML; });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ text: data }));
+    }
+
+    function restoreEdits() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        if (saved.text) {
+          Object.entries(saved.text).forEach(([k, html]) => {
+            const el = document.querySelector('[data-ek="' + k + '"]');
+            if (el) el.innerHTML = html;
+          });
+        }
+      } catch(e) {}
+    }
+
+    function syncMetaToToc(metaEl) {
+      const section = metaEl.closest('[id]');
+      if (!section) return;
+      const tocLink = document.querySelector('.toc-link[href="#' + section.id + '"]');
+      if (!tocLink) return;
+      const raw = metaEl.textContent || '';
+      const label = raw.includes('·') ? raw.split('·').slice(1).join('·').trim() : raw.trim();
+      Array.from(tocLink.childNodes).forEach(n => { if (n.nodeType === 3) n.remove(); });
+      tocLink.appendChild(document.createTextNode(label));
+    }
+
+    function resetEdits() {
+      if (!confirm('모든 수정 내용을 초기화하시겠습니까?')) return;
+      [STORAGE_KEY, MODE_KEY].forEach(k => localStorage.removeItem(k));
+      location.reload();
+    }
+
+    async function downloadHTML() {
+      saveEdits();
+
+      /* 원본 소스 기반 clean DOM 생성 (live 동적 상태 제외) */
+      const parser = new DOMParser();
+      const doc = parser.parseFromString('<!DOCTYPE html>\n' + _srcHTML, 'text/html');
+
+      /* localStorage 편집 내용을 clean DOM에 적용 */
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      if (saved.text) {
+        let counter = 0;
+        function _applyKeys(root) {
+          const walker = doc.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+          let el;
+          while ((el = walker.nextNode())) {
+            if (SKIP_TAGS.has(el.tagName)) continue;
+            if (el.closest('nav,svg,#edit-bar,.drag-handle')) continue;
+            if (el.parentElement && el.parentElement.dataset.ek) continue;
+            const hasText = Array.from(el.childNodes).some(n => n.nodeType === 3 && n.textContent.trim());
+            if (hasText && !el.dataset.ek) el.dataset.ek = 'ek-' + (counter++);
+          }
+        }
+        ['.cover-wrapper', '.layout', 'footer'].forEach(sel => {
+          const root = doc.querySelector(sel);
+          if (root) _applyKeys(root);
+        });
+        Object.entries(saved.text).forEach(([k, v]) => {
+          const el = doc.querySelector('[data-ek="' + k + '"]');
+          if (el) el.innerHTML = v;
+        });
+      }
+
+      /* EDIT_MODE = false */
+      doc.querySelectorAll('script').forEach(s => {
+        if (s.textContent.trim().startsWith('const EDIT_MODE')) {
+          s.textContent = 'const EDIT_MODE = false;';
+        }
+      });
+
+      /* 편집 관련 요소·속성 제거 */
+      const bar = doc.querySelector('#edit-bar');
+      if (bar) bar.remove();
+      doc.querySelectorAll('[data-ek]').forEach(el => el.removeAttribute('data-ek'));
+
+      /* 다운로드 파일에서 restoreEdits() 재실행 방지 플래그 */
+      doc.documentElement.setAttribute('data-static', '1');
+
+      /* 직렬화 */
+      const html = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
+      const fname = (document.title.split(/[\s—]/)[0] || 'proposal').toLowerCase();
+      const today = new Date();
+      const dateStr = today.getFullYear().toString()
+        + String(today.getMonth() + 1).padStart(2, '0')
+        + String(today.getDate()).padStart(2, '0');
+      const suggestedName = fname + '_proposal_' + dateStr + '.html';
+      const enc = new TextEncoder();
+      const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+      const blob = new Blob([bom, enc.encode(html)], { type: 'text/html; charset=utf-8' });
+
+      /* 네이티브 저장 다이얼로그 (수정본 폴더로 직접 이동 가능) */
+      if (window.showSaveFilePicker) {
+        try {
+          const handle = await window.showSaveFilePicker({
+            suggestedName,
+            types: [{ description: 'HTML 파일', accept: { 'text/html': ['.html'] } }]
+          });
+          const writable = await handle.createWritable();
+          await writable.write(blob);
+          await writable.close();
+          return;
+        } catch(e) {
+          if (e.name === 'AbortError') return;
+        }
+      }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = suggestedName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function initEditMode() {
+      const bar = document.getElementById('edit-bar');
+      if (EDIT_MODE) localStorage.removeItem(MODE_KEY);
+      const isReadonly = !EDIT_MODE || localStorage.getItem(MODE_KEY) === 'readonly';
+
+      ['.cover-wrapper', '.layout', 'footer'].forEach(sel => {
+        const root = document.querySelector(sel);
+        if (root) assignKeys(root);
+      });
+
+      /* 저장된 텍스트 복원 (다운로드 파일은 내용 이미 적용됨 → 재실행 방지) */
+      if (!document.documentElement.dataset.static) restoreEdits();
+      document.querySelectorAll('.s-meta').forEach(el => syncMetaToToc(el));
+
+      if (isReadonly) { if (bar) bar.style.display = 'none'; return; }
+
+      if (bar) bar.style.display = 'flex';
+      document.body.classList.add('is-edit');
+
+      document.querySelectorAll('[data-ek]').forEach(el => {
+        el.setAttribute('contenteditable', 'true');
+        el.spellcheck = false;
+        el.addEventListener('blur', saveEdits);
+      });
+
+      document.querySelectorAll('.s-meta').forEach(el => {
+        el.addEventListener('blur', function() { syncMetaToToc(this); });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initEditMode);
+  </script>
+</body>
+
+</html>
