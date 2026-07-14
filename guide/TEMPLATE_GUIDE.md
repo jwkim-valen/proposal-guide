@@ -129,6 +129,8 @@ footer
 
 > `data-section` = `id` 동일하게 — TOC 자동 활성화에 필요.
 
+> 발표 모드 진입 시 `body.is-present`(전체화면 슬라이드), `body.is-simple`(핵심 메시지만 확대), 현재 섹션에 `.slide-active`가 붙는다. 동작 상세는 `EDIT_MODE_GUIDE.md` 참고.
+
 ---
 
 ## 4. 컴포넌트
