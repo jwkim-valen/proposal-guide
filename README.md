@@ -28,6 +28,7 @@ Claude Code 스킬 명령어로 제작 → 브라우저 인라인 편집 → 버
 │   └── uiux-guideline.md
 └── guide/
     ├── proposal_template.html       ← 제작 기반 템플릿
+    ├── 사용가이드.html                ← 팀 내부 교육자료
     ├── TEMPLATE_GUIDE.md
     ├── EDIT_MODE_GUIDE.md
     └── WORKFLOW.md
@@ -65,6 +66,7 @@ Claude Code에서 아래 명령어를 입력합니다.
 1. Claude Code에 `"수정 필요"` 입력 → `EDIT_MODE = true` 전환
 2. 브라우저에서 `Cmd+R` 새로고침 → 상단 편집 바 표시
 3. 텍스트 클릭하여 직접 수정 (수정 내용은 `localStorage` 자동 저장)
+   - 텍스트에 포커스하면 서식 바가 떠서 글자 크기·굵게·이탤릭·취소선 조정 가능
 4. 편집 바의 **"HTML 저장"** 클릭 → OS 저장 다이얼로그 → `수정본/` 폴더에 저장
 
 > 저장된 파일은 레이아웃·컬러가 원본 그대로 유지되며 편집 모드 없이 열림.  
@@ -72,20 +74,35 @@ Claude Code에서 아래 명령어를 입력합니다.
 
 ---
 
-## 기술 스펙
+## 발표 모드
 
-- **단일 파일 HTML** — 외부 의존성 없음, 브라우저에서 바로 열기 가능
-- **CSS 토큰 시스템** — `--green`, `--blue-core`, `--blue-600` 등 valen 브랜드 컬러
-- **컴포넌트** — compare, callout, flow, dframe, pmap, chartcard, cardgrid, stat-row, tbl 등
-- **편집 모드** — `localStorage` 기반 임시 저장, `contenteditable` 인라인 편집
-- **HTML 저장** — DOMParser 기반 clean DOM 생성 → `showSaveFilePicker()` OS 다이얼로그로 파일 저장 (레이아웃 보존)
-- **STORAGE_KEY** — `<title>` 첫 단어에서 자동 파생 (`{브랜드명}_edits_v1`)
+편집 바의 **"▶ 발표"** 클릭 또는 키보드 `F` → 섹션을 풀스크린 슬라이드로 한 화면씩 넘겨보기.
+
+| 조작 | 동작 |
+|---|---|
+| `←` `→` / 방향 버튼 | 이전·다음 섹션 |
+| `S` / "심플" 버튼 | 핵심 제목·리드만 확대해서 보기 |
+| `Esc` / "× 닫기" | 발표 모드 종료 |
+
+클라이언트 화면 공유 시 사용. 상세 동작은 `guide/EDIT_MODE_GUIDE.md` 참고.
 
 ---
 
-## 제작된 제안서
+## 이미지 / PDF 내보내기
 
-| 브랜드 | 파일 | 날짜 |
-|---|---|---|
-| CHANTAL | `archive/20260616_CHANTAL/` | 2026-06-16 |
-| INFIDERM | `archive/20260616_INFIDERM/` | 2026-06-16 |
+편집 바의 **"이미지 / PDF 저장"** 클릭 → PNG(전체 1장 또는 섹션별) 또는 PDF로 저장.
+
+> 이 기능만 `html2canvas`/`jsPDF`를 CDN에서 동적으로 로드 — 인터넷 연결이 필요한 유일한 예외 (그 외 전체 기능은 완전 자체완결형).
+
+---
+
+## 기술 스펙
+
+- **단일 파일 HTML** — 외부 의존성 없음, 브라우저에서 바로 열기 가능 (PNG/PDF 내보내기만 CDN 의존)
+- **CSS 토큰 시스템** — `--green`, `--blue-core`, `--blue-600` 등 valen 브랜드 컬러
+- **컴포넌트** — compare, callout, flow, dframe, pmap, chartcard, cardgrid, stat-row, tbl 등
+- **편집 모드** — `localStorage` 기반 임시 저장, `contenteditable` 인라인 편집, 서식 바로 폰트 크기·굵게·이탤릭·취소선 조정
+- **발표 모드** — 섹션 단위 풀스크린 슬라이드 전환, 심플뷰 토글
+- **내보내기** — PNG(전체/섹션별), PDF(섹션별 페이지) — `html2canvas`/`jsPDF` 동적 로드
+- **HTML 저장** — live DOM 기반 clean DOM 생성 → `showSaveFilePicker()` OS 다이얼로그로 파일 저장 (레이아웃 보존)
+- **STORAGE_KEY** — `<title>` 첫 단어에서 자동 파생 (`{브랜드명}_edits_v1`)
