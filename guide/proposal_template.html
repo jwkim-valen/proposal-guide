@@ -19,13 +19,11 @@
       --blue-600: #235FE6;
       --blue-500: #376EE6;
       --blue-200: #A5BEF5;
-      --gray-900: #121212;
       --gray-700: #2C2C2C;
       --gray-500: #555555;
       --gray-400: #777777;
       --gray-300: #999999;
       --gray-100: #BBBBBB;
-      --gray-50: #DDDDDD;
       --white: #FFFFFF;
       --bg: #FFFFFF;
       --bg-soft: #F7F8FA;
@@ -36,8 +34,6 @@
 
       --t1: 40px;
       --t1-lh: 52px;
-      --t3: 24px;
-      --t3-lh: 32px;
       --sub2: 18px;
       --sub2-lh: 26px;
       --body1: 16px;
@@ -627,10 +623,9 @@
     }
     .chart-grid { position: absolute; left: 0; right: 0; top: 0; bottom: 0; pointer-events: none; z-index: 0 }
     .chart-grid .gl { position: absolute; left: 0; right: 0; height: 0; border-top: 1px dashed rgba(0,0,0,.1) }
-    .bargroup { position: relative; z-index: 1; flex: 1; display: flex; justify-content: center; align-items: flex-end }
+    .bargroup { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center }
     .barlabels { display: flex; justify-content: space-around; margin-top: 10px }
     .barlabels .byear { flex: 1; text-align: center }
-    .bargroup { display: flex; flex-direction: column; align-items: center; flex: 1 }
     .bset { display: flex; align-items: flex-end; gap: 10px; height: 250px }
     .bar { width: 48px; border-radius: 4px 4px 0 0; position: relative; display: flex; justify-content: center }
     .bar.sales { background: var(--blue-core) }
@@ -763,7 +758,6 @@
     @media(max-width:767px) {
       :root {
         --t1: 26px; --t1-lh: 34px;
-        --t3: 20px; --t3-lh: 28px;
         --sub2: 17px; --sub2-lh: 26px;
         --body1: 17px; --body1-lh: 27px;
         --body2: 15px; --body2-lh: 24px;
@@ -976,6 +970,30 @@
       cursor: pointer; transition: background .15s; margin-top: 6px
     }
     .pp-pdf-btn:hover { background: #f5f5f5 }
+
+    /* 이미지 라이트박스 (클릭 시 원본 크기 팝업) */
+    #img-lightbox {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,.85);
+      align-items: center; justify-content: center;
+      cursor: zoom-out;
+    }
+    #img-lightbox.active { display: flex; }
+    #img-lightbox img {
+      max-width: 90vw; max-height: 90vh; object-fit: contain;
+      border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,.4);
+      cursor: default;
+    }
+    #img-lightbox .lb-close {
+      position: absolute; top: 20px; right: 28px;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,.12); color: #fff; border: none;
+      font-size: 22px; line-height: 1; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    #img-lightbox .lb-close:hover { background: rgba(255,255,255,.25); }
+    @media print { #img-lightbox { display: none !important; } }
 
 
   </style>
@@ -1792,6 +1810,8 @@
       ['#edit-bar', '#format-bar'].forEach(sel => {
         const el = doc.querySelector(sel); if (el) el.remove();
       });
+      /* PNG/PDF 내보내기로 동적 주입된 CDN 스크립트 제거 (렌더 차단·오프라인 빈 화면 방지) */
+      doc.querySelectorAll('script[src]').forEach(el => el.remove());
       doc.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
       doc.querySelectorAll('[data-ek]').forEach(el => el.removeAttribute('data-ek'));
       doc.querySelectorAll('[spellcheck]').forEach(el => el.removeAttribute('spellcheck'));
@@ -2204,7 +2224,49 @@ function initEditMode() {
       }
     }
 
-document.addEventListener('DOMContentLoaded', initEditMode);
+function initLightbox() {
+      var overlay = document.createElement('div');
+      overlay.id = 'img-lightbox';
+      overlay.innerHTML = '<button class="lb-close" aria-label="닫기">&times;</button><img>';
+      document.body.appendChild(overlay);
+      var lbImg = overlay.querySelector('img');
+      var lbClose = overlay.querySelector('.lb-close');
+
+      function openLightbox(src) {
+        lbImg.src = src;
+        overlay.classList.add('active');
+      }
+      function closeLightbox() {
+        overlay.classList.remove('active');
+        lbImg.src = '';
+      }
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay || e.target === lbClose) closeLightbox();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+      });
+
+      document.querySelectorAll('img').forEach(function(img) {
+        if (img.closest('#img-lightbox')) return;
+        if (img.classList.contains('cover-img-area')) return;
+        if (img.closest('footer .fb')) return;
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', function() { openLightbox(img.src); });
+      });
+
+      /* poster만 있고 실제 재생 소스가 없는 video(소재 성과 카드 썸네일 등)도 이미지처럼 팝업 */
+      document.querySelectorAll('video[poster]').forEach(function(video) {
+        if (video.querySelector('source') || video.currentSrc) return;
+        video.style.cursor = 'zoom-in';
+        video.addEventListener('click', function() { openLightbox(video.poster); });
+      });
+    }
+
+document.addEventListener('DOMContentLoaded', function() {
+      initEditMode();
+      initLightbox();
+    });
   </script>
 </body>
 

@@ -2,7 +2,9 @@
 
 ## 세션 시작 시 읽기 순서 (토큰 절약)
 
-세션 시작 → 제안서 내용 수신 전까지 아래 순서로만 읽는다. `proposal_template.html`은 제작 시점에 Read.
+세션 시작 → 제안서 내용 수신 전까지 아래 순서로만 읽는다. `proposal_template.html`은 **Read로 통째로 불러오지 않는다** — 커버 이미지가 base64로 내장돼 있어 한 줄이 약 1.9MB다. 제작 시점엔 Step 2의 cp + 좁은 범위 Read/Edit 절차를 따른다.
+
+세션 시작 시 `git pull`로 최신 템플릿 확인 권장 — PNG/PDF 저장, 발표 모드 등 최근 추가된 기능은 로컬이 최신이 아니면 아예 없을 수 있음.
 
 1. `docs/valen-brand-guideline.md` — 브랜드 색상·타이포·톤앤매너
 2. `docs/uiux-guideline.md` — UI/UX 원칙
@@ -19,22 +21,30 @@
 
 ## Step 2 — 제안서 내용 수신 → 제작
 
-1. `guide/proposal_template.html` Read
-2. `guide/TEMPLATE_GUIDE.md` 기준에 맞춰 제안서 내용 매핑
-3. `<title>` 태그를 브랜드명으로 업데이트 (STORAGE_KEY 자동 파생 기준)
-4. 루트에 `{브랜드명}_proposal.html` 생성
+1. **Bash `cp guide/proposal_template.html {브랜드명}_proposal.html`로 복제** (Read로 전체를 불러오지 않는다 — 커버 이미지 base64 한 줄이 약 1.9MB라 그대로 로드하면 컨텍스트가 터진다)
+2. Edit을 쓰려면 Read가 한 번 필요 — `Read(offset=1, limit=50)`처럼 좁게만. 이미지가 있는 줄(`grep -n "data:image" {파일} | cut -c1-60`로 줄 번호만 확인)은 Read 범위에서 항상 피한다.
+3. `guide/TEMPLATE_GUIDE.md` 기준에 맞춰 제안서 내용 매핑 — 각 적용 위치는 Grep으로 줄 번호 확인 후 그 근처만 좁게 Read → Edit
+4. `<title>` 태그를 브랜드명으로 업데이트 (STORAGE_KEY 자동 파생 기준)
+5. **핵심 기능 무결성 확인** — 생성된 파일에서 아래 함수명이 모두 존재하는지 grep으로 확인 (하나라도 없으면 STEP 1을 처음부터 다시 진행):
+   `downloadPNG`, `downloadPDF`, `togglePngPanel`, `_loadHtml2Canvas`, `_loadJsPDF`, `enterPresent`, `exitPresent`, `saveEdits`, `restoreEdits`, `downloadHTML`, `initEditMode`, `initLightbox`
+   ```
+   grep -cE "function (downloadPNG|downloadPDF|togglePngPanel|_loadHtml2Canvas|_loadJsPDF|initLightbox)|(enterPresent|exitPresent)\s*=\s*function" {브랜드명}_proposal.html
+   ```
+   (템플릿과 동일한 개수가 나와야 함 — grep -c는 개수만 반환하므로 안전)
 
 ---
 
-## Step 3 — 이미지 경로 적용
+## Step 3 — 이미지 삽입·교체 (커버·본문 공통, 선택)
 
-| 위치 | 이미지 파일 | HTML 경로 |
-|---|---|---|
-| 최상단 커버 (`cover-img-area`) | `cover_img.png` | `assets/cover_img.png` |
-| 푸터 로고 (`fb img`) | `valen_logo.png` | `assets/valen_logo.png` |
+> **공통 규칙: 어떤 이미지든(커버, 로고, 본문 섹션에 새로 넣는 사진·차트·스크린샷 전부) 반드시 base64로 내장한다.** `src="assets/..."` 같은 상대경로나 사용자 로컬 파일 경로를 그대로 참조하지 않는다 — 로컬(file://)에서는 같은 폴더의 이미지가 열려서 정상으로 보이지만, 파일을 `archive/`로 옮기거나 다른 사람에게 전달하거나 Netlify Drop처럼 HTML 파일 하나만 배포하면 이미지 파일이 함께 이동하지 않아 깨진다.
 
-경로는 생성된 HTML 파일 위치 기준 상대경로.  
-루트에 생성 시 → `assets/파일명` / guide/ 내부 시 → `guide/assets/파일명`
+기본 커버/로고는 `cp` 시점에 base64로 이미 내장되어 따라오므로 **아무 작업도 필요 없다.** 브랜드 전용 이미지로 바꾸거나 본문에 새 이미지를 추가해야 할 때:
+
+1. 이미지 파일 확보 (`guide/assets/` 또는 사용자 제공 경로 — 소스 보관용일 뿐 런타임 참조 아님)
+2. `python3 -c "import base64,sys; print(base64.b64encode(open(sys.argv[1],'rb').read()).decode())" 경로` 로 base64 문자열 생성
+3. 커버 교체: `{브랜드명}_proposal.html`의 `cover-img-area` `src="data:image/png;base64,..."` 값만 교체. 본문 추가: 해당 위치에 `<img src="data:image/{png|jpeg};base64,{생성한 문자열}" ...>` 형태로 삽입 (Read로 그 줄을 통째로 불러오지 말고, grep으로 위치만 확인한 뒤 Edit의 old_string은 앞부분 몇 글자 + 문맥만으로 특정)
+4. 적용 후 `grep -c 'src="data:' {파일}`이 `<img` 태그 총 개수와 일치하는지 확인 — 하나라도 `assets/` 상대경로(`src="assets/...`)가 남아있으면 반드시 base64로 교체 (상대경로는 archive 폴더 이동·전달·배포 시 깨짐)
+5. 별도 작업 불필요: 삽입한 이미지는 템플릿의 `initLightbox()`가 자동으로 인식해 클릭 시 원본 크기 팝업이 뜬다 (커버·푸터 로고 아이콘 제외). 카드/표처럼 작게 잘려 보이는 위치에 넣어도 원본 확인이 가능하다 — 자세한 동작은 `guide/EDIT_MODE_GUIDE.md`의 "이미지 라이트박스" 참고.
 
 ---
 

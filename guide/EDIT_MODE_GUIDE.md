@@ -69,6 +69,7 @@ const STORAGE_KEY = (_brand || 'proposal') + '_edits_v1';
 | `downloadHTML()` | live DOM 기반 clean DOM 생성 → OS 저장 다이얼로그로 파일 저장 |
 | `resetEdits()` | confirm 후 localStorage 완전 삭제 + reload |
 | `initEditMode()` | DOMContentLoaded 시 전체 초기화, `[data-ek]` focus/blur에 서식 바 연동 |
+| `initLightbox()` | DOMContentLoaded 시 전체 초기화, 본문 이미지 클릭 시 원본 크기 팝업 등록 |
 
 ---
 
@@ -152,3 +153,15 @@ DOM 순서 기반 — 모드에 관계없이 항상 동일한 키 값 보장.
 - 캡처 직전 `.reveal { opacity:1 !important; transform:none !important; transition:none !important }` 스타일을 임시 주입(`#png-reveal-override` / `#pdf-reveal-override`)해 스크롤 애니메이션으로 아직 안 보이는 요소도 캡처되게 하고, 완료 후 제거
 - 파일명: PNG `{brand}_proposal_{YYYYMMDD}[_NN].png`, PDF `{brand}_proposal_{YYYYMMDD}.pdf`
 - 패널 바깥을 클릭하면 자동으로 닫힘 (`.eb-png-wrap` 영역 밖 클릭 감지)
+
+---
+
+## 이미지 라이트박스 (원본 크기 팝업)
+
+카드·표 썸네일처럼 `object-fit: cover` 등으로 작게 잘려 보이는 본문 이미지를 클릭하면 원본 크기로 화면 중앙에 팝업된다. 편집 모드 여부와 무관하게 항상 동작.
+
+- `initLightbox()`가 `#img-lightbox` 오버레이(닫기 버튼 + `<img>`)를 `document.body`에 1회 생성
+- 대상: `document.querySelectorAll('img')` 전체에서 `cover-img-area`(커버), `footer .fb`(하단 로고 아이콘) 제외
+- `<video poster="...">`이면서 실제 재생 소스(`<source>`/`src`)가 없는 요소(소재 성과 카드 썸네일 등, 사실상 이미지 대용)도 `poster` 값으로 동일하게 팝업 대상에 포함
+- 닫기: 우상단 X 버튼, 배경(오버레이) 클릭, `Esc` 키
+- 새 이미지를 본문에 추가해도 별도 처리 없이 자동으로 라이트박스 대상이 됨 (커버/푸터 로고가 아닌 이상)

@@ -16,10 +16,7 @@ Claude Code 스킬 명령어로 제작 → 브라우저 인라인 편집 → 버
 ```
 제안서_Guide/
 ├── ONBOARDING.md                    ← Claude Code 워크플로우 지침
-├── {브랜드명}_proposal.html          ← 작업 중인 제안서 (루트)
-├── assets/
-│   ├── cover_img.png
-│   └── valen_logo.png
+├── {브랜드명}_proposal.html          ← 작업 중인 제안서 (루트) — 이미지 base64 내장, assets 참조 없음
 ├── archive/
 │   └── {YYYYMMDD}_{브랜드명}/       ← 버전 백업
 │       └── 수정본/                  ← 편집 후 저장 파일 (gitignore)
@@ -27,7 +24,8 @@ Claude Code 스킬 명령어로 제작 → 브라우저 인라인 편집 → 버
 │   ├── valen-brand-guideline.md
 │   └── uiux-guideline.md
 └── guide/
-    ├── proposal_template.html       ← 제작 기반 템플릿
+    ├── proposal_template.html       ← 제작 기반 템플릿 (커버/로고 base64 내장)
+    ├── assets/                      ← base64 변환용 원본 이미지 (소스 보관용, 런타임 참조 아님)
     ├── 사용가이드.html                ← 팀 내부 교육자료
     ├── TEMPLATE_GUIDE.md
     ├── EDIT_MODE_GUIDE.md
@@ -96,6 +94,17 @@ Claude Code에서 아래 명령어를 입력합니다.
 
 ---
 
+## 이미지 라이트박스
+
+본문 이미지(카드·표 썸네일 등 `object-fit: cover`로 작게 잘려 보이는 이미지 포함)를 클릭하면 원본 크기로 화면 중앙에 팝업됩니다.
+
+- 닫기: 우상단 `×` 버튼 / 배경 클릭 / `Esc`
+- 커버 이미지·푸터 로고 아이콘은 팝업 대상에서 제외
+- 실제 재생 소스 없이 `poster`만 있는 소재 썸네일용 `<video>`도 이미지처럼 팝업 대상에 포함
+- 새로 추가하는 이미지도 별도 처리 없이 자동 적용됨 — 상세 동작은 `guide/EDIT_MODE_GUIDE.md` 참고
+
+---
+
 ## 기술 스펙
 
 - **단일 파일 HTML** — 외부 의존성 없음, 브라우저에서 바로 열기 가능 (PNG/PDF 내보내기만 CDN 의존)
@@ -104,5 +113,6 @@ Claude Code에서 아래 명령어를 입력합니다.
 - **편집 모드** — `localStorage` 기반 임시 저장, `contenteditable` 인라인 편집, 서식 바로 폰트 크기·굵게·이탤릭·취소선 조정
 - **발표 모드** — 섹션 단위 풀스크린 슬라이드 전환, 심플뷰 토글
 - **내보내기** — PNG(전체/섹션별), PDF(섹션별 페이지) — `html2canvas`/`jsPDF` 동적 로드
+- **이미지 라이트박스** — 본문 이미지·소재 썸네일 클릭 시 원본 크기 팝업 (커버·푸터 로고 제외)
 - **HTML 저장** — live DOM 기반 clean DOM 생성 → `showSaveFilePicker()` OS 다이얼로그로 파일 저장 (레이아웃 보존)
 - **STORAGE_KEY** — `<title>` 첫 단어에서 자동 파생 (`{브랜드명}_edits_v1`)
